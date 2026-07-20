@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dossierCss/style.css">
-    <title>connexion</title>
+    <title>Connexion</title>
 </head>
-
 
 <body>
 
@@ -15,71 +14,43 @@
     <div class="formulaire">
 
         <div class="titre">
+            <h2>Formulaire de connexion</h2>
+            <span>Veriffication des information des utilisateur</span>
+        </div>
 
-            <h2>Bienvenue cher utilisateur</h2>
-            <span>Conecteez-vous à votre compte </span>
+
+        <div class="selecteur-profil">
+
+            <div class="curseur" id="curseur"></div>
+            <button type="button" class="bouton_admin" >Admin</button>
+            <button type="button" class="bouton_prof" >professeur</button>
+            <button type="button" class="bouton_etudiant" >Étudiant</button>
 
         </div>
 
 
-        <div class="choix_role">
+     <form id="formulaireConnexion">
 
-            <button type="button" class="role-btn active" data-role="admin">Administrateur</button>
-            <button type="button" class="role-btn" data-role="prof">Professeur</button>
-            <button type="button" class="role-btn" data-role="etudiant">Étudiant</button>
+            <div class="username">
 
-        </div>
-
-
-
-
-        <form id="loginForm" novalidate>
-
-
-            <div class="">
-
-                <label id="identifierLabel" for="identifier">Nom d'utilisateur</label>
-
-                <input type="text" id="identifier" name="identifier" placeholder="ex : jdupont" required>
-                <p class="message_erreur" id="erreur_identifiant">Ce champ est requis.</p>
+                <label class="identifiant" id="identifiant" >Nom d'utilisateur</label>
+                <input type="text" id="user_name" placeholder="Entrez votre nom d'utilisateur" required>
 
             </div>
-
-
-
+ 
             <div class="password">
-
-                <div>
-
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required minlength="6">
-                    <button type="button" class="toggle-pw" id="togglePw">Afficher</button>
-
-                </div>
-
-                <p class="message" id="erreurPassword">Le mot de passe doit contenir au moins 6 caractères.</p>
-
+                <label for="mot_passee">Mot de passe</label>
+                <input type="password" id="champMotDePasse" placeholder="••••••••" required>
+                <div class="message-erreur" id="messageErreur"></div>
             </div>
-
-
-
-
-            <div class="souvenir  souvenir_de_moi">
-
-                <label class="checkbox">
-                    <input type="checkbox" id="remember">
-                    <span> Se souvenir de mois </span>
-                </label>
-                <a href="#">Mot de passe oublié ?</a>
-
-            </div>
-
-            <button type="submit" class="connexio" id="btnconexion">Se connecter</button>
-
+ 
+            <button type="submit" class="bouton-connexion">Se connecter</button>
         </form>
-
+    
+        <script src="../dossierJS/admin.js"></script>
 
     </div>
+
 
 </body>
 

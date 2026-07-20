@@ -1,22 +1,163 @@
-
+/* On enleve les marges et espacements par defaut du navigateur */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: rgb(7, 7, 59);
-}
-
-.formulaire {
-
-    display: block;
-    margin: auto;
+    font-family: Arial, sans-serif;
+    background-color: #1e293b;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    width: 30%;
-    border: 1px solid rgb(255, 255, 255);
+}
 
+/* Boite blanche qui contient tout le formulaire */
+.formulaire {
+    background-color: #ffffff;
+    padding: 60px 50px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+}
+
+/* Zone du titre en haut du formulaire */
+.titre {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titre h2 {
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.titre span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Boite qui contient les 3 boutons Admin / Prof / Etudiant */
+.selecteur-profil {
+    position: relative;
+    display: flex;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 25px;
+    width: 338px;
+}
+
+/* Le rectangle fonce qui glisse derriere le bouton actif */
+.curseur {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 110px;
+    height: 32px;
+    background-color: #1e293b;
+    border-radius: 6px;
+    transition: left 0.3s;
+}
+
+/* Les 3 boutons ont le meme style de base */
+.bouton_admin,
+.bouton_prof,
+.bouton_etudiant {
+    position: relative;
+    width: 110px;
+    padding: 9px 0;
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #334155;
+    cursor: pointer;
 }
 
 
-.titre{
-    padding-left: 20%;
-    margin: 5%;
-    color: white;
+
+/* Le texte du bouton passe en blanc quand il est actif */
+
+.actif {
+    color: #ffffff;
+}
+
+/* Zone nom d'utilisateur / matricule */
+.username {
+    margin-bottom: 18px;
+}
+
+.username label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: bold;
+}
+
+.username input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Zone mot de passe */
+
+.password {
+    margin-bottom: 18px;
+}
+
+.password label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: bold;
+}
+
+.password input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.username input:focus,
+.password input:focus {
+    outline: none;
+    border-color: #1e293b;
+}
+
+
+
+/* Message rouge affiche seulement en cas d'erreur */
+
+.message-erreur {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none;
+}
+
+.bouton-connexion {
+    width: 100%;
+    padding: 12px;
+    background-color: #1e293b;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.bouton-connexion:hover {
+    background-color: #334155;
 }
