@@ -1,5 +1,3 @@
-
-import { use } from "react";
 import { createUser, getAllUsers, getUserByUsername, updateUsers, getUserById, deleteUser } from "../services/servicesUsers.js";
 
 
@@ -33,14 +31,10 @@ const creationUsers = (req, res) => {
 
 
     if (user) {
-        return res.status(201).json(`l'utilisateur ${username} ${role}  à été  `);
+        return res.status(201).json({id: user, nom, role, username});
     };
 
-    return res.json({
-        id: user.id,
-        nom: user.nom,
-        role: user.role
-    });
+    return res.json(user);
 
 };
 
@@ -74,7 +68,7 @@ const suprimerUsers = (req, res) => {
         return res.status(404).json({ error: "Utilisateur introuvable." });
     };
 
-    return res.status(200).json(`l'utilisateur a l'${id} a bieen été suprimé`)
+    return res.status(200).json(`l'utilisateur a l'${id} a bien été suprimé`)
 };
 
 

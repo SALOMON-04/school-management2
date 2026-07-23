@@ -9,7 +9,7 @@ const createUser = (nom, role, username) => {
 
     // Veriffication des usernames dans la base de donnée , si elle exixte on 
     // renvoie erreur sinon on ajoute le nouveau username 
-    const existant = db.prepare(`SELECT id FROM users WHERE username = ?`)
+    const existant = db.prepare(`SELECT id FROM users WHERE username = ?`).get(username);
 
     if(existant){
         return {erreur: `${username} déja utilisé, veuiller choisir un autre username`};
