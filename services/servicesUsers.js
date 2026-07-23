@@ -79,11 +79,11 @@ const getUserByUsername = (username, password) => {
 const updateUsers = (id, data) => {
 
     const updateUsersStmt = db.prepare(`
-        UPDATE users SET  nom = ?, role = ?
+        UPDATE users SET  nom = ?, role = ?, username = ?
         WHERE id = ?
     `);
 
-    return updateUsersStmt.run(data.nom, data.role, id);
+    return updateUsersStmt.run(data.nom, data.role, data.username, id);
 }
 
 

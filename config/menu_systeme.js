@@ -96,15 +96,16 @@ Votre choix : `);
                             const id = await question("ID de l'utilisateur à modifier : ");
                             const nom = await question("Nouveau nom : ");
                             const role = await question("Nouveau rôle : ");
+                            const username = await question ("Nouveau username : ")
 
 
                             // cette condition verifi si les champs de modif ne son pas vide si oui, on la modif n'est pas enregistré
 
-                            if (!nom.trim() || !role.trim()) {
+                            if (!nom.trim() || !role.trim()|| !username.trime() ) {
                                 console.log("Tous les champ sont obligatoires");
                                 logger.warning(`${user.nom} a tenté de modifier l'utilisateur ID ${id} avec des champs vides`);
                                 break;
-                            }
+                            };
 
                             updateUsers(Number(id), { nom, role });
                             console.log("Utilisateur modifié.");

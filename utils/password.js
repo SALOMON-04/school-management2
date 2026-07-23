@@ -23,7 +23,7 @@ const generPassword = (nom = "") => {
 
         const chiffre = Math.floor(Math.random() * 90) + 10 ;
 
-        password = `${aleatoire}${chiffre}${symboles()}${chiffre}${aleatoire}${symboles()}` ;
+        password = `${aleatoire}${symboles()}${chiffre}${aleatoire}${symboles()}` ;
 
     }while (db.prepare("SELECT 1 FROM users WHERE password = ?").get(password) ) ;
     
@@ -31,6 +31,6 @@ const generPassword = (nom = "") => {
 }
 
 
-console.log(generPassword());
+// console.log(generPassword());
 
 export default generPassword ;

@@ -39,16 +39,6 @@ body {
     color: #64748b;
 }
 
-/* Boite qui contient les 3 boutons Admin / Prof / Etudiant */
-.selecteur-profil {
-    position: relative;
-    display: flex;
-    background-color: #f1f5f9;
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 25px;
-    width: 338px;
-}
 
 /* Le rectangle fonce qui glisse derriere le bouton actif */
 .curseur {
@@ -60,21 +50,6 @@ body {
     background-color: #1e293b;
     border-radius: 6px;
     transition: left 0.3s;
-}
-
-/* Les 3 boutons ont le meme style de base */
-.bouton_admin,
-.bouton_prof,
-.bouton_etudiant {
-    position: relative;
-    width: 110px;
-    padding: 9px 0;
-    background: none;
-    border: none;
-    font-size: 13px;
-    font-weight: bold;
-    color: #334155;
-    cursor: pointer;
 }
 
 

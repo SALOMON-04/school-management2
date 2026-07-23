@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import routesAuth from "./routes/routesAuthantification.js"
 import { fileURLToPath } from "url";
 
 
@@ -12,7 +13,7 @@ const app = express() ;  // creaation du server
 
 
 app.use(express.json());  //convertion des information fichier json
-
+app.use("/api/auth", routesAuth); // recherche de  de tout ce qui est liée a l'authantification
 
 
 // donnné accès aux dossiers public de manière automatiques en utilisant la conversion des chemins

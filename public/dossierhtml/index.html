@@ -15,30 +15,21 @@
 
         <div class="titre">
             <h2>Formulaire de connexion</h2>
-            <span>Veriffication des information des utilisateur</span>
+            <span>Verification des information des utilisateur</span>
         </div>
 
-
-        <div class="selecteur-profil">
-
-            <div class="curseur" id="curseur"></div>
-            <button type="button" class="bouton_admin" >Admin</button>
-            <button type="button" class="bouton_prof" >professeur</button>
-            <button type="button" class="bouton_etudiant" >Étudiant</button>
-
-        </div>
 
 
      <form id="formulaireConnexion">
 
-            <div class="username">
+            <div class="username" id="username">
 
-                <label class="identifiant" id="identifiant" >Nom d'utilisateur</label>
+                <label class="identifiant" id="identifiant" >Username/ Matricule</label>
                 <input type="text" id="user_name" placeholder="Entrez votre nom d'utilisateur" required>
 
             </div>
  
-            <div class="password">
+            <div class="password" id="password">
                 <label for="mot_passee">Mot de passe</label>
                 <input type="password" id="champMotDePasse" placeholder="••••••••" required>
                 <div class="message-erreur" id="messageErreur"></div>
@@ -47,7 +38,7 @@
             <button type="submit" class="bouton-connexion">Se connecter</button>
         </form>
     
-        <script src="../dossierJS/admin.js"></script>
+        <script src="../dossierJS/login.js"></script>
 
     </div>
 
