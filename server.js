@@ -9,8 +9,8 @@ import { fileURLToPath } from "url";
 import routesAuth from "./routes/routesAuthantification.js";
 import routesUsers from "./routes/routesUsers.js";
 import routeStudents from "./routes/routesStudents.js"
-
-
+import routeTeachers from "./routes/routesTeachers.js"
+import routeSubject from "./routes/routesSubjects.js"
 
 
 
@@ -33,6 +33,8 @@ app.use(express.json());  //convertion des information fichier json
 app.use("/api/auth", routesAuth); // recherche de  de tout ce qui est liée a l'authantification
 app.use("/api/users", routesUsers);
 app.use("/api/students",routeStudents);
+app.use("/api/teachers", routeTeachers);
+app.use("/api/subjects", routeSubject);
 
 
 

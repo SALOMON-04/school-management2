@@ -46,13 +46,14 @@ const getAllTeacher = () => {
 
 // AFFICHE LE PROF EN PRECISENT LE NOM MATIERRE ET NON L'ID DE LA MATIERE
 
-const getAllTeacherAvecMatiere = () => {
+const getAllTeacherAvecMatiere = (matiere) => {
 
     return db.prepare(`
         SELECT teachers.id, teachers.nom, subjects.nom AS matiere
         FROM teachers
-        LEFT JOIN subjects ON teachers.subject_id = subjects.id  
-    `).all();
+        INNER JOIN subjects ON teachers.subject_id = subjects.id  
+        WHERE subjects.nom = ?
+    `).all(matiere);
 
 };
 
