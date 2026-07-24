@@ -8,11 +8,12 @@ const creationStudent = (req, res) => {
 
     const students = createStudent(matricule, nom, prenom, age, classe, username);
 
-    if (students) {
-        return res.status(404).json({ id: students, matricule, nom, prenom, age, classe, username });
+    if (students.changes === 0) {
+        return res.status(404).json({ error: "Une erreur est survenu lors de la création de l'etudiant" });
     };
 
-    return res.status(201).json(students)
+
+    return res.status(201).json({matricule, nom, prenom, classe });
 };
 
 

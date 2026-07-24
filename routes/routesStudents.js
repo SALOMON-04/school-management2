@@ -14,7 +14,7 @@ router.post("/", creationStudent);
 router.get("/", seachStudent);
 
 
-router.get("/:matricule", seachStudentsMatricule);
+router.get("/matricule/:matricule", seachStudentsMatricule);
 
 
 router.get("/:id", seachStudentsId);
