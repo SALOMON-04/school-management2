@@ -41,56 +41,64 @@ const moyenneGeneraleByStudent = (student_id) => {
 
 
 
-// MOYENNE GENERALE D'UN ETUDIANT DANS TOUTE LES MATIERE
+// LISTES DES MOYENNE DES MEILLEUR ETUDIANT DANS TOUTE LES MATIERE
 
-const moyenneGeneralEtuddiant = () => {
+const meilleurEtudiantParClasse = () => {
 
+    // Récupère toutes les classes distinctes
+    const classes = db.prepare(`SELECT DISTINCT classe FROM students`).all();
 
-    // Selectionner les étudiant de manière unique (DISTINCT)
-    // afin de parcourrir leur information de manière spécifique
-
-    const student = db.prepare(`
-            select DISTINCT student_id
-            FROM grades
-        `).all()
+    // Tableau qui va contenir le résultat final : un objet par classe
+    let resultatFinal = [];
 
 
-    if (student.length === 0) {
-        console.log("Aucun étudiant trouver")
+    // On parcourt chaque classe une par une
+    for (let i = 0; i < classes.length; i++) {
+
+        const classeActuelle = classes[i].classe;
+
+        // Récupère tous les étudiants de cette classe précise
+        const etudiantsDeCetteClasse = db.prepare(`
+            SELECT id, nom, prenom FROM students WHERE classe = ?
+        `).all(classeActuelle);
+
+
+        // Variables qui vont retenir le meilleur étudiant de CETTE classe
+        let meilleurEtudiant = null;
+        let meilleureMoyenne = 0;
+
+
+        // On parcourt chaque étudiant de cette classe
+        for (let j = 0; j < etudiantsDeCetteClasse.length; j++) {
+
+            const etudiant = etudiantsDeCetteClasse[j];
+
+            // On calcule sa moyenne générale (toutes matières confondues)
+            const resultatMoyenne = moyenneGeneraleByStudent(etudiant.id);
+
+            // moyenneGeneraleByStudent retourne soit 0 (aucune note),
+            // soit un objet { ...infos, moyenne: ... }
+            const sMoyenne = resultatMoyenne === 0 ? 0 : resultatMoyenne.moyenne;
+
+            if (sMoyenne > meilleureMoyenne) {
+                meilleureMoyenne = sMoyenne;
+                meilleurEtudiant = etudiant;
+            }
+        }
+
+
+        // On ajoute le résultat de cette classe au tableau final
+        resultatFinal.push({
+            classe: classeActuelle,
+            meilleurEtudiant: meilleurEtudiant
+                ? `${meilleurEtudiant.prenom} ${meilleurEtudiant.nom}`
+                : "Aucun étudiant noté",
+            moyenne: meilleureMoyenne
+        });
     }
 
 
-    // les varible qui vont recevoir l'id 
-    // de l'étudiant et sa moyenne en fonction de la matière
-
-    let meilleurStudent = null;
-    let meilleurMoyenne = 0;
-
-
-    // Cette boucle parcour la liste des etudiant dans
-    // la table grades en comparant leur moyenne 
-
-    for (let i = 0; i < student.length; i++) {
-
-        const moyenne = moyenneGeneraleByStudent(student[i].student_id)
-
-        if (moyenne > meilleurMoyenne) {
-            meilleurMoyenne = moyenne;
-            meilleurStudent = student[i].student_id;
-        };
-    };
-
-
-    // récupérer les infos complètes de l'étudiant
-
-    const infosEtudiant = db.prepare(`
-        SELECT matricule, nom, prenom, age, classe
-        FROM students
-        WHERE id = ?
-    `).get(meilleurStudent);
-
-
-    return {  student_id: meilleurStudent, infosEtudiant, moyenne: meilleurMoyenne }
+    return resultatFinal;
 };
 
 
@@ -176,4 +184,4 @@ const totalProfesseur = () => {
 };
 
 
-export {moyenneGeneraleByStudent, moyenneGeneraleEcole, moyenneGeneralEtuddiant, totalUsers, totalStudent, totalProfesseur}
+export {moyenneGeneraleByStudent, moyenneGeneraleEcole, meilleurEtudiantParClasse, totalUsers, totalStudent, totalProfesseur}

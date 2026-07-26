@@ -11,8 +11,9 @@ import routesUsers from "./routes/routesUsers.js";
 import routeStudents from "./routes/routesStudents.js"
 import routeTeachers from "./routes/routesTeachers.js"
 import routeSubject from "./routes/routesSubjects.js"
-
-
+import routeAbsence from './routes/routesAbsences.js'
+import routeGrades from "./routes/routesGrades.js";
+import routeStatistique from "./routes/routesStatistique.js"
 
 
 
@@ -35,6 +36,10 @@ app.use("/api/users", routesUsers);
 app.use("/api/students",routeStudents);
 app.use("/api/teachers", routeTeachers);
 app.use("/api/subjects", routeSubject);
+app.use("/api/absences", routeAbsence);
+app.use("/api/grades", routeGrades);
+app.use("/api/statis", routeStatistique);
+
 
 
 

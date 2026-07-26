@@ -41,7 +41,7 @@ const seachSubjectId = (req, res) => {
 
 
 
-const AffectSubject = (req, res) => {
+const affectSubject = (req, res) => {
 
     const subject_id = Number(req.params.subject_id);
     const teacher_id = Number(req.params.teacher_id); 
@@ -94,4 +94,4 @@ const supprimeSubject = (req, res) => {
 
 
 
-export {creationSubject, seachSubject, seachSubjectId, modifSubject, affectTeacherSubject, deleteSubject, supprimeSubject}
+export {creationSubject, seachSubject, seachSubjectId, modifSubject, affectSubject, supprimeSubject}

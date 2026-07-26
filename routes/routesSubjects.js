@@ -1,5 +1,5 @@
 import express from "express";;
-import {creationSubject, seachSubject, seachSubjectId, modifSubject, affectTeacherSubject, deleteSubject, supprimeSubject} from "../controleur/controleSujects.js";
+import {creationSubject, seachSubject, seachSubjectId, affectSubject, modifSubject, supprimeSubject} from "../controleur/controleSujects.js";
 
 
 
@@ -17,10 +17,10 @@ router.get("/", seachSubject);
 router.get("/:id", seachSubjectId);
 
 
-router.put("/id", modifSubject);
+router.put("/:id", modifSubject);
 
 
-router.put("/subject_id/:id/teacher_id/:id", affectTeacherSubject);
+router.put("/subject_id/:subject_id/teacher_id/:teacher_id", affectSubject);
 
 
 router.delete("/:id", supprimeSubject);
