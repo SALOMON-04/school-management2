@@ -1,27 +1,33 @@
 import db from "../db/database.js";
 import Users from "../models/modelsUser.js"
 import generPassword from "../utils/password.js";
+import bcrypt from "bcrypt";
+
+
 
 
 //AJOUTER UN UTILISATEUR
 
-const createUser = (nom, role, username) => {
+const createUser = async (nom, role, username) => {
 
+    
     // Veriffication des usernames dans la base de donnée , si elle exixte on 
     // renvoie erreur sinon on ajoute le nouveau username 
     const existant = db.prepare(`SELECT id FROM users WHERE username = ?`).get(username);
+
 
     if(existant){
         return {erreur: `${username} déja utilisé, veuiller choisir un autre username`};
     }
 
 
+    const  password = generPassword() //génération du mot de passe automatique
+
+    const passwordHash = await bcrypt.hash(password, 10) //varaible qui hash le password avec le sel integré
 
 
-    const  password = generPassword(nom) ; //génération du mot de passe automatique
-
-    // Appel du models utilisateur
-    const addUsers = new Users(nom, role, username, password);
+        // Appel du models utilisateur
+    const addUsers = new Users(nom, role, username, passwordHash);
 
 
     const insertUsers = db.prepare(`
@@ -30,15 +36,15 @@ const createUser = (nom, role, username) => {
     `)
     
     
-    const result = insertUsers.run(addUsers.nom, addUsers.role, addUsers.username, addUsers.password)
+    const result = insertUsers.run(addUsers.nom, addUsers.role, addUsers.username, addUsers.password);
 
     console.log(`Mot de passe généré : ${password}`);
 
         console.log(result)
     // on retourne le résultat ET l'id généré, pour que createStudent/createTeacher puissent l'utiliser
     return result.lastInsertRowid ;
-}
 
+}
 
 
 // AFFICHER LES UTILISATEUR
@@ -66,11 +72,11 @@ const getUserById = (id) => {
 
 // RECHERCHE D'UN UTILISATUER PAR SON NOM ET MOT DE PASSE
 
-const getUserByUsername = (username, password) => {
+const getUserByUsername = (username) => {
     return db.prepare(`
         SELECT * FROM users
-        WHERE username = ? AND password = ?
-    `).get(username, password);
+        WHERE username = ?
+    `).get(username);
 };
 
 

@@ -1,20 +1,23 @@
 import { getUserByUsername, getUserById } from "../services/servicesUsers.js";
 import { getStudentByMatricule } from "../services/servicesStudents.js";
 import { logger } from "../utils/logger.js";
+import bcrypt from "bcrypt";
 
 
 
 
-export const connexion = (req, res) => {
+export const connexion = async (req, res) => {
 
     const { identifiant, matricule, password } = req.body;
 
-    
+
 
 
     if (identifiant) {
 
-        const user = getUserByUsername(identifiant, password);
+
+
+        const user = getUserByUsername(identifiant);
 
         if (!user) {
 
@@ -24,6 +27,18 @@ export const connexion = (req, res) => {
 
         }
 
+
+
+        // comparaison du mot de passe entré et le hesh dans notre bd
+
+        const comparePasswordUser = await bcrypt.compare(password, user.password);  // Comparaison du hash avec le vrai password
+
+        if (!comparePasswordUser) {
+
+            logger.warning(`Mot de passe incorrect pour ${identifiant}`);
+            return res.status(401).json({ error: "username ou mot de passe incorrect" });
+
+        }
 
         logger.info(`${user.nom} ${user.role} connecté`);
 
@@ -38,17 +53,43 @@ export const connexion = (req, res) => {
 
     if (matricule) {
 
-        const student = getStudentByMatricule(matricule, password);
+        const student = getStudentByMatricule(matricule);
 
-       if (!student){
+        if (!student) {
 
-         logger.warning(`l'${matricule} ou ${password} n'est pas éligible `);
+            logger.warning(`l'${matricule} n'est pas éligible `);
 
-        return res.status(401).json({ error: " matricul ou mot de passe incorect" });
+            return res.status(401).json({ error: " matricul ou mot de passe incorect" });
 
-       };
+        };
 
-        logger.info(`${student.prenom} ${student.nom} ${student.classe} (student) connecté`);
+
+        // Verification du mot de passe de l'etudiant
+        const user = getUserById(student.user_id);
+
+
+        if (!user) {
+
+            logger.warning(`l'${matricule} ou ${password} n'est pas éligible `);
+
+            return res.status(401).json({ error: " username ou mot de passe incorect" });
+
+        }
+
+        // comparaison du mot de passe entré et le hesh dans notre bd
+
+        const compareStudentPassword = await bcrypt.compare(password, user.password);  // Comparaison du hash avec le vrai password
+
+        if (!compareStudentPassword) {
+
+            logger.warning(`Mot de passe incorrect pour ${matricule}`);
+            return res.status(401).json({ error: "username ou mot de passe incorrect" });
+
+        }
+
+
+
+        logger.info(`${student.prenom} ${student.nom} ${student.classe} est connecté`);
 
         return res.json({
             id: student.id,
@@ -63,7 +104,7 @@ export const connexion = (req, res) => {
     };
 
 
-    return res.status(404).json({error: "veuiller fornir lesinformation demander "});
+    return res.status(404).json({ error: "veuiller fornir lesinformation demander " });
 
 };
 

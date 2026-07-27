@@ -1,4 +1,6 @@
 import readline from "readline"; // "readline" va nous permettre de lire ce l'utilisateur va entré dans le terminale
+import bcrypt from "bcrypt"; // importation pour asher  le mot passe 
+
 
 import { getUserByUsername, getUserById } from "../services/servicesUsers.js";
 import { getStudentByMatricule } from "../services/servicesStudents.js";
@@ -32,7 +34,7 @@ const connexionUser = async (role) => {
 
     const password = await question("Mot de passe : ");
 
-    const user = getUserByUsername(username, password);
+    const user = getUserByUsername(username);
 
 
     // c'est condition vériffie l'existance de l'utilisateur,
@@ -43,6 +45,19 @@ const connexionUser = async (role) => {
         console.log("Username ou mot de passe incorrect.");
         return null;
     }
+
+
+    // vériffication du mot de passe avec bcrypt (comparaison avec le hash stocké en bd)
+
+    const comparePassword = await bcrypt.compare(password, user.password);
+
+    if (!comparePassword) {
+        logger.warning(`Mot de passe incorrect pour ${username}`);
+        console.log("Username ou mot de passe incorrect.");
+        return null;
+    }
+
+
 
 
     if (user.role !== role) {
@@ -64,14 +79,14 @@ const connexionUser = async (role) => {
 
 const connexionEtudiant = async () => {
 
+
     const matricule = await question("Matricule: ");
     const password = await question("Mot de passe : ");
 
     const etudiant = getStudentByMatricule(matricule);
 
 
-    // c'est condition vériffie l'existance de l'étudiant,
-    // son matricule te ses information
+    // c'est condition vériffie l'existance de l'étudiant
 
     if (!etudiant) {
         logger.warning(`Connexion échoué matricule: ${matricule} `);
@@ -81,11 +96,21 @@ const connexionEtudiant = async () => {
 
 
 
-
     // Récupération de l'utilisateur lié a l'étudiant récherché
     const user = getUserById(etudiant.user_id);
 
-    if (!user || user.password !== password) {
+    if (!user) {
+        logger.warning(`Utilisateur introuvable pour le matricule: ${matricule}`);
+        console.log("Mot de passe incorrect.");
+        return null;
+    }
+
+
+    // vériffication du mot de passe avec bcrypt
+
+    const comparePassword = await bcrypt.compare(password, user.password);
+
+    if (!comparePassword) {
         logger.warning(`Mot de passe incorrect pour l'étudiant au matricule: ${matricule}`);
         console.log("Mot de passe incorrect.");
         return null;
