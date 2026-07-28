@@ -1,3 +1,7 @@
+import dotenv from "dotenv"; // protection des donné sensible
+dotenv.config();
+
+
 import express from "express";
 import path from "path";
 

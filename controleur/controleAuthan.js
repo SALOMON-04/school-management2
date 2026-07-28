@@ -2,6 +2,7 @@ import { getUserByUsername, getUserById } from "../services/servicesUsers.js";
 import { getStudentByMatricule } from "../services/servicesStudents.js";
 import { logger } from "../utils/logger.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 
 
@@ -42,13 +43,25 @@ export const connexion = async (req, res) => {
 
         logger.info(`${user.nom} ${user.role} connecté`);
 
+
+        // Création du token JWT : contient l'id et le rôle, signé avec ta clé secrète
+        const token = jwt.sign(
+            { id: user.id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: "24h" }
+        );
+
+
         return res.json({
             id: user.id,
             nom: user.nom,
-            role: user.role
+            role: user.role,
+            token: token
         });
 
     };
+
+
 
 
     if (matricule) {
@@ -91,20 +104,31 @@ export const connexion = async (req, res) => {
 
         logger.info(`${student.prenom} ${student.nom} ${student.classe} est connecté`);
 
+
+        // Création du token JWT : contient l'id et le rôle, signé avec ta clé secrète
+        const token = jwt.sign(
+            { id: student.user_id, role: "etudiant" },
+            process.env.JWT_SECRET,
+            { expiresIn: "24h" }
+        );
+
+
+
         return res.json({
             id: student.id,
             user_id: student.user_id,
             nom: student.nom,
             prenom: student.prenom,
             classe: student.classe,
-            role: "etudiant"
+            role: "etudiant",
+            token: token
         });
 
 
     };
 
 
-    return res.status(404).json({ error: "veuiller fornir lesinformation demander " });
+    return res.status(404).json({ error: "veuiller fornir les information demander " });
 
 };
 
