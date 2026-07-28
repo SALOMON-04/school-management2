@@ -2,28 +2,33 @@ import express from "express";
 import { creationStudent, seachStudent, seachStudentsId, seachStudentsMatricule, modifStudent, supprimeStudent } from "../controleur/controleStudents.js";
 
 
+import { verifierToken } from "../middleweaes/middleAuth.js";
+import { autoriserRoles } from "../middleweaes/middleRoles.js";
+
+
+
 const router = express.Router();
 
 
 
 
-router.post("/", creationStudent);
+router.post("/",  verifierToken, autoriserRoles("admin"), creationStudent);
 
 
 
-router.get("/", seachStudent);
+router.get("/",  verifierToken, autoriserRoles("admin", "professeur"), seachStudent);
 
 
-router.get("/matricule/:matricule", seachStudentsMatricule);
+router.get("/matricule/:matricule",  verifierToken, autoriserRoles("admin"), seachStudentsMatricule);
 
 
-router.get("/:id", seachStudentsId);
+router.get("/:id",  verifierToken, autoriserRoles("admin", "professeur"), seachStudentsId);
 
 
-router.put("/:id", modifStudent);
+router.put("/:id",  verifierToken, autoriserRoles("admin"), modifStudent);
 
 
-router.delete("/:id", supprimeStudent);
+router.delete("/:id",  verifierToken, autoriserRoles("admin"), supprimeStudent);
 
 
 export default router;

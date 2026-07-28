@@ -23,18 +23,18 @@ const affUsersById = (req, res) => {
 };
 
 
-const creationUsers = (req, res) => {
+const creationUsers = async (req, res) => {
 
-    const { nom, role, username } = req.body;
+    const { nom, role, username, password} = req.body;
 
-    const user = createUser(nom, role, username);
+    const user =  await createUser(nom, role, username, password);
 
 
-    if (user) {
-        return res.status(201).json({id: user, nom, role, username});
+    if (user?.erreur) {
+        return res.status(400).json({error: user.erreur});
     };
 
-    return res.json(user);
+    return res.json({id: user, nom, role, username});
 
 };
 

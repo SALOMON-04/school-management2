@@ -24,7 +24,7 @@ export const connexion = async (req, res) => {
 
             logger.warning(`l'${identifiant} ou ${password} n'est pas éligible `);
 
-            return res.status(401).json({ error: " username ou mot de passe incorect" });
+            return res.status(401).json({ error: "identifiant incorrect" });
 
         }
 
@@ -37,13 +37,13 @@ export const connexion = async (req, res) => {
         if (!comparePasswordUser) {
 
             logger.warning(`Mot de passe incorrect pour ${identifiant}`);
-            return res.status(401).json({ error: "username ou mot de passe incorrect" });
+            return res.status(401).json({ error: "identifiant incorrect" });
 
         }
 
         logger.info(`${user.nom} ${user.role} connecté`);
 
-
+  
         // Création du token JWT : contient l'id et le rôle, signé avec ta clé secrète
         const token = jwt.sign(
             { id: user.id, role: user.role },
@@ -72,7 +72,7 @@ export const connexion = async (req, res) => {
 
             logger.warning(`l'${matricule} n'est pas éligible `);
 
-            return res.status(401).json({ error: " matricul ou mot de passe incorect" });
+            return res.status(401).json({ error: "identifiant incorrect" });
 
         };
 
@@ -85,7 +85,7 @@ export const connexion = async (req, res) => {
 
             logger.warning(`l'${matricule} ou ${password} n'est pas éligible `);
 
-            return res.status(401).json({ error: " username ou mot de passe incorect" });
+            return res.status(401).json({ error: "identifiant incorrect" });
 
         }
 
@@ -96,7 +96,7 @@ export const connexion = async (req, res) => {
         if (!compareStudentPassword) {
 
             logger.warning(`Mot de passe incorrect pour ${matricule}`);
-            return res.status(401).json({ error: "username ou mot de passe incorrect" });
+            return res.status(401).json({ error: "identifiant incorrect" });
 
         }
 

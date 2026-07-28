@@ -1,23 +1,31 @@
 import { afficherUtilisateur, affUsersById, creationUsers, modiffierusers, suprimerUsers } from "../controleur/controleUser.js";
 import express from "express"
 
+import { verifierToken } from "../middleweaes/middleAuth.js";
+import { autoriserRoles } from "../middleweaes/middleRoles.js"; 
+
+
+
+
+
+
 const router = express.Router();
 
 
 
-router.get("/", afficherUtilisateur);
+router.get("/", verifierToken, autoriserRoles("admin"), afficherUtilisateur);
 
 
-router.get("/:id", affUsersById);
+router.get("/:id",  verifierToken, autoriserRoles("admin"), affUsersById);
 
 
-router.post("/", creationUsers);
+router.post("/",  verifierToken, autoriserRoles("admin"), creationUsers);
 
 
-router.put("/:id", modiffierusers);
+router.put("/:id",  verifierToken, autoriserRoles("admin"), modiffierusers);
 
 
-router.delete("/:id", suprimerUsers);
+router.delete("/:id",  verifierToken, autoriserRoles("admin"), suprimerUsers);
 
 
 export default router;

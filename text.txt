@@ -1,0 +1,83 @@
+--- Nettoyage de la base ---
+Base nettoyée avec succès.
+
+--- Création des matières ---
+[
+  { id: 1, nom: 'Mathématiques', teacher_id: null },
+  { id: 2, nom: 'Français', teacher_id: null }
+] 
+
+--- Création de l'admin ---
+Mot de passe généré : dUd@45dUd!
+{ changes: 1, lastInsertRowid: 1 }
+
+
+{
+  "id": 1,
+  "nom": "Admin Principal",
+  "role": "admin",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzg1MjUxMTgxLCJleHAiOjE3ODUzMzc1ODF9.PqFde9FHOvuXp24nKUhbO9YbJTFzpvXPWM3I2a61i1k"
+}
+
+
+
+
+
+
+
+--- Création des professeurs ---
+
+Mot de passe généré : FWb_38FWb@
+{ changes: 1, lastInsertRowid: 2 }
+
+
+
+
+
+Mot de passe généré : pXS&44pXS@
+{ changes: 1, lastInsertRowid: 3 }
+
+{
+  "id": 3,
+  "nom": "Traore Fatou",
+  "role": "professeur",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InByb2Zlc3NldXIiLCJpYXQiOjE3ODUyNTE4NzgsImV4cCI6MTc4NTMzODI3OH0.59OPbRf-fXgxgMf0Az-dHDRuVw9GTPUcNqAGKvjwNDw"
+}
+
+
+[
+  { id: 1, nom: 'Kouassi Jean', subject_id: 1, user_id: 2 },
+  { id: 2, nom: 'Traore Fatou', subject_id: 2, user_id: 3 }
+] 
+
+--- Création des étudiants ---
+Mot de passe généré : PYB$83PYB#
+{ changes: 1, lastInsertRowid: 4 }
+Mot de passe généré : ZqS#98ZqS%
+{ changes: 1, lastInsertRowid: 5 }
+{
+  id: 1,
+  matricule: 'MAT001',
+  nom: 'Koffi',
+  prenom: 'Awa',
+  age: 15,
+  classe: '3eme A',
+  user_id: 4
+} {
+  id: 2,
+  matricule: 'MAT002',
+  nom: 'Diallo',
+  prenom: 'Ali',
+  age: 16,
+  classe: '3eme A',
+  user_id: 5
+} 
+
+--- Ajout des notes ---
+Notes ajoutées.
+
+--- Ajout des absences ---
+Absences ajoutées.
+
+=== SEED TERMINÉ AVEC SUCCÈS ===
+Regarde bien les mots de passe générés ci-dessus pour chaque compte créé !

@@ -3,13 +3,15 @@ import { createTeacher, getAllTeacher, getAllTeacherAvecMatiere, getTeacherById,
 
 
 
-const creationTeacher = (req, res) => {
-    const {nom, subject_id, username} = req.body;
+const creationTeacher = async (req, res) => {
+    const {nom, subject_id, username, password} = req.body;
 
-    const teacher = createTeacher(nom, subject_id, username);
+    const teacher = await createTeacher(nom, subject_id, username, password);
 
-    if(teacher.changes === 0){
-        return res.status(404).json({error: "Une erreur est survenu lors de la création du profésseur"});
+    if(teacher?.erreur){
+        return res.status(400).json({erreur: teacher.erreur})
+    }else if(teacher.changes === 0){
+        return res.status(404).json({erreur: "Une erreur est survenu lors de la création du profésseur"});
     };
 
 
@@ -63,6 +65,14 @@ const seachteacherId  = (req, res) => {
 const seachteacherUser_id = (req, res) => {
 
    const user_id = req.params.user_id;
+
+
+       // Nouvelle vérification : si c'est un prof, il ne peut voir QUE ses propres infos
+    if (req.user.role === "professeur" && req.user.id !== user_id) {
+        return res.status(403).json({ error: "Vous ne pouvez consulter que vos propres informations." });
+    }
+
+    
 
    const user = getTeacherByUser_id(user_id);
 

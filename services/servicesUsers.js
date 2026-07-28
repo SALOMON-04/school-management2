@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 
 //AJOUTER UN UTILISATEUR
 
-const createUser = async (nom, role, username) => {
+const createUser = async (nom, role, username, password) => {
 
     
     // Veriffication des usernames dans la base de donnée , si elle exixte on 
@@ -18,29 +18,30 @@ const createUser = async (nom, role, username) => {
 
     if(existant){
         return {erreur: `${username} déja utilisé, veuiller choisir un autre username`};
-    }
+    };
+
+    if(password.length < 6){
+        return {erreur: "le champ dois contenir au moins 6 caractère"};
+    };
+
+    const passwordHash = await bcrypt.hash(password, 10); //varaible qui hash le password avec le sel integré
 
 
-    const  password = generPassword() //génération du mot de passe automatique
-
-    const passwordHash = await bcrypt.hash(password, 10) //varaible qui hash le password avec le sel integré
-
-
-        // Appel du models utilisateur
+    // Appel du models utilisateur
     const addUsers = new Users(nom, role, username, passwordHash);
 
 
     const insertUsers = db.prepare(`
             INSERT INTO users(nom, role, username, password)
             VALUES(?, ?, ?, ?)
-    `)
+    `);
     
     
     const result = insertUsers.run(addUsers.nom, addUsers.role, addUsers.username, addUsers.password);
 
-    console.log(`Mot de passe généré : ${password}`);
 
-        console.log(result)
+
+    console.log(result);
     // on retourne le résultat ET l'id généré, pour que createStudent/createTeacher puissent l'utiliser
     return result.lastInsertRowid ;
 

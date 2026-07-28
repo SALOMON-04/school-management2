@@ -6,10 +6,10 @@ import { createUser } from "./servicesUsers.js";
 
 // CREER UN PROFFESSEUR
 
-const createTeacher = (nom, subject_id, username) => {
+const createTeacher = async (nom, subject_id, username, password) => {
 
     // INSERT LES INFO DU PROFDANS LA TABLE DES UITILISATEURS
-    const user_id = createUser(nom, "professeur", username);
+    const user_id =   await createUser(nom, "professeur", username, password);
 
 
     if (user_id?.erreur) return user_id; // Propagation de l'erreur vers le menu

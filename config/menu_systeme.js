@@ -66,10 +66,16 @@ Votre choix : `);
                             const nom = await question("Nom : ");
                             const role = await question("Rôle (Admin / Profésseur / Etudiant) : ");
                             const username = await question("Username : ");
+                            const password = await question("Mot de passe : ");
 
 
+                            if (!nom.trim() || !role.trim() || !username.trime() || !password.trim()) {
+                                console.log("Tous les champ sont obligatoires");
+                                logger.warning(`${user.nom} a tenté de modifier l'utilisateur ID ${id} avec des champs vides`);
+                                break;
+                            };
 
-                            const result = createUser(nom, role, username);
+                            const result = await createUser(nom, role, username, password);
 
 
                             // Veriffication de l'username existant et affichage de l'erreur sans que le programme s'arrete
@@ -101,7 +107,7 @@ Votre choix : `);
 
                             // cette condition verifi si les champs de modif ne son pas vide si oui, on la modif n'est pas enregistré
 
-                            if (!nom.trim() || !role.trim()|| !username.trime() ) {
+                            if (!nom.trim() || !role.trim()|| !username.trime()) {
                                 console.log("Tous les champ sont obligatoires");
                                 logger.warning(`${user.nom} a tenté de modifier l'utilisateur ID ${id} avec des champs vides`);
                                 break;
@@ -197,18 +203,19 @@ Votre choix : `);
                             const age = await question("Âge : ");
                             const classe = await question("Classe : ");
                             const username = await question("Username : ");
+                            const password = await question("Mot de passe : ");
 
 
                             // Cette condition permet de vérifier si un champs est vide si oui, l'enregistrement est annulé
 
-                            if (!matricule.trim() || !nom.trim() || !prenom.trim() || !age.trim() || !classe.trim()) {
+                            if (!matricule.trim() || !nom.trim() || !prenom.trim() || !age.trim() || !classe.trim() || !username.trim() || !password.trim()) {
                                 console.log("Tous les champs sont obligatoires.");
                                 logger.warning(`${user.nom} a tenté de modifier l'étudiant ID ${id} avec des champs vides`);
                                 break;
                             };
 
 
-                            const result = createStudent(matricule, nom, prenom, Number(age), classe, username);
+                            const result = await createStudent(matricule, nom, prenom, Number(age), classe, username, password);
 
                             // Veriffication de l'username existant et affichage de l'erreur sans que le programme s'arrete
                             if(result?.erreur){
@@ -339,13 +346,13 @@ Votre choix : `);
                             const nom = await question("Nom : ");
                             const matiere = await question("ID de la matière : ");
                             const username = await question("Username : ")
+                            const password = await question("Mot de passe : ");
 
-
-                            const result = createTeacher(nom, matiere, username);
+                            const result = await createTeacher(nom, matiere, username, password);
 
                             // Cette condition permet de vérifier si un champs est vide si oui, l'enregistrement est annulé
 
-                            if (!nom.trim() || !matiere.trim() || !username.trim()) {
+                            if (!nom.trim() || !matiere.trim() || !username.trim() || !password.trim()) {
                                 console.log("Tous les champs sont obligatoires.");
                                 logger.warning(`${user.nom} a tenté d'enregistré un professeur avec des champs vides`);
                                 break;

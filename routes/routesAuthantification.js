@@ -2,6 +2,8 @@ import express from "express";
 import { error, log } from "console";
 import {connexion} from "../controleur/controleAuthan.js"
 
+
+
 const router = express.Router();
 
 
@@ -13,13 +15,6 @@ router.post("/login" , connexion);
 
 
 
-// CONNEXION DE L'ETUDIANT
-
-
-// router.post("/login-etudiant", () => {
-
-  
-// });
 
 
 

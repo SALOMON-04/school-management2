@@ -2,14 +2,16 @@ import { createStudent, getAllStudents, getStudentById, getStudentByMatricule, u
 
 
 
-const creationStudent = (req, res) => {
+const creationStudent = async (req, res) => {
 
-    const { matricule, nom, prenom, age, classe, username } = req.body;
+    const { matricule, nom, prenom, age, classe, username, password } = req.body;
 
-    const students = createStudent(matricule, nom, prenom, age, classe, username);
+    const students = await createStudent(matricule, nom, prenom, age, classe, username, password);
 
-    if (students.changes === 0) {
-        return res.status(404).json({ error: "Une erreur est survenu lors de la création de l'etudiant" });
+    if(students?.erreur){
+        return res.status(400).json({erreur: students.erreur});
+    }else if (students.changes === 0) {
+        return res.status(404).json({ erreur: "Une erreur est survenu lors de la création de l'etudiant" });
     };
 
 

@@ -7,11 +7,11 @@ import { createUser } from "./servicesUsers.js";
 
 // CREATION DE L'ETUDIANT
 
-const createStudent = (matricule, nom, prenom, age, classe, username) => {
+const createStudent = async (matricule, nom, prenom, age, classe, username, password) => {
 
 
     // AJOUT DE L'ETUDIANT DANS LA TABLE DES UTILISATEUR
-    const user_id = createUser(`${prenom} ${nom}`, "etudiant", username);
+    const user_id = await createUser(`${prenom} ${nom}`, "etudiant", username, password);
 
 
     if (user_id?.erreur) return user_id; // propagation de l'erreure vers le menu
