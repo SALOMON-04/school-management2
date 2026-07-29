@@ -1,4 +1,4 @@
-import { error } from "console";
+
 import { createSubject, getAllSubjects, getSubjectById, updateASubject, choixMatiere, affectTeacherSubject, deleteSubject } from "../services/servicesSubjects.js";
 
 

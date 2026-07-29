@@ -64,10 +64,10 @@ const seachteacherId  = (req, res) => {
 
 const seachteacherUser_id = (req, res) => {
 
-   const user_id = req.params.user_id;
+   const user_id = Number(req.params.user_id);
 
 
-       // Nouvelle vérification : si c'est un prof, il ne peut voir QUE ses propres infos
+    // Nouvelle vérification : si c'est un prof, il ne peut voir QUE ses propres infos
     if (req.user.role === "professeur" && req.user.id !== user_id) {
         return res.status(403).json({ error: "Vous ne pouvez consulter que vos propres informations." });
     }

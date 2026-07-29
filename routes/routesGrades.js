@@ -1,5 +1,5 @@
 import express from "express";
-import { ajoutGrades, modifGrades, seachGrades, seachGradesStudent, moyenneStudent, supprimeGrades } from "../controleur/controleGrade.js";
+import { ajoutGrades, modifGrades, seachGrades, seachGradesStudent, gradesParProf, moyenneStudent, supprimeGrades } from "../controleur/controleGrade.js";
 
 
 import { verifierToken } from "../middleweaes/middleAuth.js";
@@ -22,6 +22,8 @@ router.get("/studentId/:studentId/subjectId/:subjectId",  verifierToken, autoris
 
 router.get("/studentId/:studentId/subjectId/:subjectId/moyenne",  verifierToken, autoriserRoles("admin", "professeur", "etudiant"), moyenneStudent);
 
+
+router.get("/teacher/:teacher_id", verifierToken, autoriserRoles("admin", "professeur"), gradesParProf);
 
 router.put("/:id",  verifierToken, autoriserRoles("admin", "professeur"), modifGrades);
 

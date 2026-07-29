@@ -42,4 +42,4 @@ const getClasseByTeacher = (teacher_id) => {
 };
 
 
-export {assignClasse,  retireClasse, getClasseByTeacher}
+export {assignClasse, retireClasse, getClasseByTeacher}

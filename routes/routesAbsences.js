@@ -1,5 +1,5 @@
 import express from "express";
-import {creationAbsence, seachAbsence, seachAbsenceId, modifAbsence, supprimeAbsence, compteAbsences, afficherAbsencesByStudent} from "../controleur/controleAbsences.js";
+import {creationAbsence, seachAbsence, seachAbsenceId, absencesParProf, modifAbsence, supprimeAbsence, compteAbsences, afficherAbsencesByStudent} from "../controleur/controleAbsences.js";
 
 
 import { verifierToken } from "../middleweaes/middleAuth.js";
@@ -23,6 +23,9 @@ router.get("/student/:student_id",  verifierToken, autoriserRoles("admin", "prof
 
 
 router.get("/:id",  verifierToken, autoriserRoles("admin"), seachAbsenceId);
+
+
+router.get("/teacher/:teacher_id", verifierToken, autoriserRoles("admin", "professeur"), absencesParProf);
 
 
 router.put("/:id",  verifierToken, autoriserRoles("admin", "professeur"), modifAbsence);

@@ -18,7 +18,7 @@ import routeSubject from "./routes/routesSubjects.js"
 import routeAbsence from './routes/routesAbsences.js'
 import routeGrades from "./routes/routesGrades.js";
 import routeStatistique from "./routes/routesStatistique.js"
-
+import routesTeacher_classes from "./routes/routesTeacher_classses.js";
 
 
 
@@ -43,8 +43,7 @@ app.use("/api/subjects", routeSubject);
 app.use("/api/absences", routeAbsence);
 app.use("/api/grades", routeGrades);
 app.use("/api/statis", routeStatistique);
-
-
+app.use("/api/teacher-classes", routesTeacher_classes);
 
 
 
