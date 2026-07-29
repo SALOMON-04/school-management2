@@ -1,8 +1,9 @@
 import db from "../db/database.js";
 import Grades from "../models/modelsGrade.js"
 
-
-
+import { getTeacherById } from "./servicesTeachers.js";
+import { getClasseByTeacher } from "./serviceTeachers_classes.js"; 
+import { getAllStudents } from "./servicesStudents.js";
 
 // AJOUTER UNE NOTES
 
@@ -64,6 +65,40 @@ const getStudentGrades = (studentId, subjectId) => {
             WHERE student_id = ?
             AND subject_id = ?
         `).all(studentId, subjectId)
+};
+
+
+
+
+//LIST DES NOTES EN FONCTION DE LA MATIERE DU PROF
+
+const getGradesByTeacher = (teacher_id) => {
+
+    //  récupérer la matière du prof
+    const teacher = getTeacherById(teacher_id);
+    if (!teacher) return [];
+
+
+
+    // récupérer ses classes, juste les noms
+    const classes = getClasseByTeacher(teacher_id).map((c) => c.classe);
+    if (classes.length === 0) return [];
+
+
+
+    //  tous les étudiants, filtrés sur les classes du prof
+    const students = getAllStudents().filter((s) => classes.includes(s.classe));
+    const studentIds = students.map((s) => s.id);
+
+
+
+    // toutes les notes, filtrées sur la matière du prof
+    // ET sur les étudiants trouvés à l'étape 3
+    const notes = affGrades().filter(
+        (note) => note.subject_id === teacher.subject_id && studentIds.includes(note.student_id)
+    );
+
+    return notes;
 };
 
 
@@ -206,6 +241,6 @@ const deleteGrades = (id) => {
 
 
 
-export { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, calculMoyenne, meilleurEtudiant }
+export { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, getGradesByTeacher, calculMoyenne, meilleurEtudiant }
 
 

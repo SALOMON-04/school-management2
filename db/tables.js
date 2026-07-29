@@ -56,6 +56,22 @@ db.exec(TableTeachers)
 
 
 
+// TABLE D'ACCES LIMITE AU CLASSE PAR TEACHERS
+
+
+const tableTeacher_classe = `
+    CREATE TABLE IF NOT EXISTS  teacher_classes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        teacher_id INTEGER NOT NULL,
+        classe TEXT NOT NULL,
+        FOREIGN KEY (teacher_id) REFERENCES teachers(id),
+        UNIQUE(teacher_id, classe)
+    ) 
+`;
+
+db.exec(tableTeacher_classe);
+
+
 
 // TABLE SUBJECTS
 

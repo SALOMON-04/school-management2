@@ -2,6 +2,11 @@ import db from "../db/database.js";
 import Absence from "../models/modelsAbsence.js"
 
 
+import { getAllStudents } from "./servicesStudents.js";
+import { getClasseByTeacher } from "../services/serviceTeachers_classes.js"
+
+
+
 const createAbsence = (student_id, status) => {
 
     // "data"  permet de géré la date de manière automatique 
@@ -41,6 +46,29 @@ const getAbsenceById = (id) => {
         `).get(id);
 
 };
+
+
+
+
+// RECHERCHE DES ABSCENCE LIER A UN PROF ET SA MATIERE UNIQUEMENT
+
+const getAbsencesByTeacher = (teacher_id) => {
+
+    // Classes assignées à ce prof
+    const classes = getClasseByTeacher(teacher_id).map((c) => c.classe);
+    if (classes.length === 0) return [];
+
+    // Étudiants de ces classes
+    const students = getAllStudents().filter((s) => classes.includes(s.classe));
+    const studentIds = students.map((s) => s.id);
+
+    // Absences de ces étudiants uniquement
+    const absences = getAllAbscence().filter((a) => studentIds.includes(a.student_id));
+
+    return absences;
+};
+
+
 
 
 
@@ -109,4 +137,4 @@ const getStudentAbsences = (studentId) => {
 
 
 
-export {createAbsence, getAllAbscence, getAbsenceById, updateAbsence, deleteAbsence, nombreAbsences, getStudentAbsences}
+export {createAbsence, getAllAbscence, getAbsenceById, getAbsencesByTeacher, updateAbsence, deleteAbsence, nombreAbsences, getStudentAbsences}

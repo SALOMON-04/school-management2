@@ -69,7 +69,7 @@ Votre choix : `);
                             const password = await question("Mot de passe : ");
 
 
-                            if (!nom.trim() || !role.trim() || !username.trime() || !password.trim()) {
+                            if (!nom.trim() || !role.trim() || !username.trim() || !password.trim()) {
                                 console.log("Tous les champ sont obligatoires");
                                 logger.warning(`${user.nom} a tenté de modifier l'utilisateur ID ${id} avec des champs vides`);
                                 break;
@@ -348,8 +348,6 @@ Votre choix : `);
                             const username = await question("Username : ")
                             const password = await question("Mot de passe : ");
 
-                            const result = await createTeacher(nom, matiere, username, password);
-
                             // Cette condition permet de vérifier si un champs est vide si oui, l'enregistrement est annulé
 
                             if (!nom.trim() || !matiere.trim() || !username.trim() || !password.trim()) {
@@ -359,6 +357,9 @@ Votre choix : `);
                             }
 
 
+                            const result = await createTeacher(nom, matiere, username, password);
+
+                           
                             // Veriffication de l'username existant et affichage de l'erreur sans que le programme s'arrete
                             if(result?.erreur){
                                 console.log(`${result.erreur}`);
