@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Etudiants - Akademc Manager</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="etudiant.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-circle">AK</div>
+      <div class="logo-text">AKADEMC<br>MANAGER</div>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span> Utilisateurs</li>
+      <li class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chalkboard-user"></i></span> Professeur</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-book-open"
+            style="color: rgb(255, 255, 255);"></i></span>matières</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Notes</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-regular fa-clock"></i></span> Absences</li>
+      <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+    </ul>
+    <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion</div>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <select class="year-select">
+        <option>Année scolaire 2025-2026</option>
+      </select>
+      <div class="admin-block">
+        <div class="admin-text">Administrateur<span class="role">Admin</span></div>
+        <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <div>
+        <div class="page-title">Gestion des étudiants <i class="fa-solid fa-user-graduate" style="color:#3B6BF5;"></i>
+        </div>
+        <div class="page-sub">Ajoutez, modifiez, supprimez et gérez les informations des étudiants.</div>
+      </div>
+      <button class="btn-primary"><i class="fa-solid fa-plus"></i> Ajouter un étudiant</button>
+    </div>
+
+    <div class="users-stats-row">
+      <div class="user-stat-card">
+        <div class="user-stat-icon purple"><i class="fa-solid fa-user-group"></i></div>
+        <div>
+          <div class="user-stat-label">Total étudiants</div>
+          <div class="user-stat-value">142</div>
+          <div class="user-stat-caption">Tous les étudiants</div>
+        </div>
+      </div>
+      <div class="user-stat-card">
+        <div class="user-stat-icon green"><i class="fa-solid fa-user-check"></i></div>
+        <div>
+          <div class="user-stat-label">Étudiants actifs</div>
+          <div class="user-stat-value">136</div>
+          <div class="user-stat-caption">Comptes actifs</div>
+        </div>
+      </div>
+      <div class="user-stat-card">
+        <div class="user-stat-icon orange"><i class="fa-solid fa-user-graduate"></i></div>
+        <div>
+          <div class="user-stat-label">Nouveaux étudiants</div>
+          <div class="user-stat-value">23</div>
+          <div class="user-stat-caption">Cette année</div>
+        </div>
+      </div>
+      <div class="user-stat-card">
+        <div class="user-stat-icon red"><i class="fa-solid fa-user-xmark"></i></div>
+        <div>
+          <div class="user-stat-label">Étudiants inactifs</div>
+          <div class="user-stat-value">6</div>
+          <div class="user-stat-caption">Comptes inactifs</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="users-layout">
+      <div>
+        <div class="filters-bar">
+          <div class="search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher un étudiant...">
+          </div>
+          <select class="filter-select">
+            <option>Toutes les classes</option>
+            <option>L1 Informatique</option>
+            <option>L2 Informatique</option>
+            <option>L2 Réseaux</option>
+            <option>L3 Sécurité</option>
+          </select>
+          <select class="filter-select">
+            <option>Statut</option>
+            <option>Actif</option>
+            <option>Inactif</option>
+          </select>
+          <button class="btn-reset"><i class="fa-solid fa-rotate-right"></i> Réinitialiser</button>
+        </div>
+
+        <div class="table-panel">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Matricule</th>
+                <th>Nom complet</th>
+                <th>Classe</th>
+                <th>Date de naissance</th>
+                <th>Téléphone</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2025L2001</td>
+                <td>Kouassi Jean</td>
+                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                <td>15/05/2004</td>
+                <td>07 12 34 56 78</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>2025L2002</td>
+                <td>Traoré Fatou</td>
+                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                <td>22/08/2004</td>
+                <td>07 98 76 54 32</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>2025L2003</td>
+                <td>Yao Serge</td>
+                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                <td>10/03/2004</td>
+                <td>05 64 23 11 09</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>2025L2004</td>
+                <td>Koné Aminata</td>
+                <td><span class="badge badge-classe">L2 Réseaux</span></td>
+                <td>18/11/2004</td>
+                <td>07 77 88 99 00</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>2025L2005</td>
+                <td>N'Guessan Koffi</td>
+                <td><span class="badge badge-classe">L3 Sécurité</span></td>
+                <td>02/01/2003</td>
+                <td>05 43 21 09 87</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>2025L2006</td>
+                <td>Bamba Mariam</td>
+                <td><span class="badge badge-classe">L1 Informatique</span></td>
+                <td>30/09/2005</td>
+                <td>07 55 66 77 88</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>2025L2007</td>
+                <td>Coulibaly Adama</td>
+                <td><span class="badge badge-classe">L2 Réseaux</span></td>
+                <td>12/06/2004</td>
+                <td>05 01 23 45 67</td>
+                <td><span class="badge badge-inactif">Inactif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>2025L2008</td>
+                <td>Diabaté Moussa</td>
+                <td><span class="badge badge-classe">L3 Sécurité</span></td>
+                <td>25/12/2002</td>
+                <td>07 89 01 23 45</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>2025L2009</td>
+                <td>Fofana Aissata</td>
+                <td><span class="badge badge-classe">L1 Informatique</span></td>
+                <td>05/07/2005</td>
+                <td>05 10 20 30 40</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>2025L2010</td>
+                <td>Zadi Stéphane</td>
+                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                <td>21/04/2004</td>
+                <td>07 65 43 21 09</td>
+                <td><span class="badge badge-actif">Actif</span></td>
+                <td>
+                  <div class="table-actions">
+                    <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                    <button class="icon-btn more"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="table-footer">
+            <div class="table-count">Affichage de 1 à 10 sur 142 étudiants</div>
+            <div class="pagination">
+              <button class="page-btn"><i class="fa-solid fa-angles-left"></i></button>
+              <button class="page-btn"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">4</button>
+              <button class="page-btn">5</button>
+              <button class="page-btn">15</button>
+              <button class="page-btn"><i class="fa-solid fa-angle-right"></i></button>
+              <button class="page-btn"><i class="fa-solid fa-angles-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-panel">
+        <div class="form-title">Ajouter / Modifier un étudiant</div>
+
+        <div class="form-section-title">Informations personnelles</div>
+        <div class="form-group">
+          <label class="form-label">Matricule <span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="Ex: 2025L2001">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nom <span class="required">*</span></label>
+            <input type="text" class="form-input" placeholder="Entrez le nom">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prénom <span class="required">*</span></label>
+            <input type="text" class="form-input" placeholder="Entrez le prénom">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date de naissance <span class="required">*</span></label>
+            <input type="text" class="form-input" placeholder="jj / mm / aaaa">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Genre <span class="required">*</span></label>
+            <select class="form-select">
+              <option>Sélectionnez</option>
+              <option>Masculin</option>
+              <option>Féminin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Téléphone</label>
+          <input type="text" class="form-input" placeholder="Ex: 07 12 34 56 78">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="etudiant@email.com (optionnel)">
+        </div>
+
+        <div class="form-section-title">Informations académiques</div>
+        <div class="form-group">
+          <label class="form-label">Classe <span class="required">*</span></label>
+          <select class="form-select">
+            <option>Sélectionnez une classe</option>
+            <option>L1 Informatique</option>
+            <option>L2 Informatique</option>
+            <option>L2 Réseaux</option>
+            <option>L3 Sécurité</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Statut <span class="required">*</span></label>
+          <select class="form-select">
+            <option>Actif</option>
+            <option>Inactif</option>
+          </select>
+        </div>
+
+        <div class="form-footer">
+          <button class="btn-cancel">Annuler</button>
+          <button class="btn-save">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
+</html>

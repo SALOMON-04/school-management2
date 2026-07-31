@@ -1,68 +1,62 @@
-
-let username = document.querySelector("#user_name");
-let password = document.querySelector("#champMotDePasse");
-
-
-let formulaire = document.querySelector("#formulaireConnexion");
-let messageErreur = document.getElementById("messageErreur");
-
-let profilActuel = null;
+const formulaire = document.querySelector("#formulaire");
+const username = document.querySelector("#username");
+const password = document.querySelector("#champMotDePasse");
+const messageErreur = document.querySelector("#messageErreur");
 
 
-// Quand on soumet le formulaire
 formulaire.addEventListener("submit", async function (evenement) {
 
-    // On empeche la page de se recharger
     evenement.preventDefault();
 
-
-    let identifiant = username.value.trim();
-    let motDePasse = password.value.trim();
-
+    const identifiant = username.value.trim();
+    const motDePasse = password.value.trim();
 
     if (identifiant === "" || motDePasse === "") {
-
         messageErreur.textContent = "Veuillez remplir tous les champs.";
         messageErreur.style.display = "block";
         return;
-
-    }
-
-    if (motDePasse.length > 10) {
-
-        messageErreur.textContent = "Le mot de passe doit contenir au moins 10 caracteres.";
-        messageErreur.style.display = "block";
-        return;
-
     }
 
     messageErreur.style.display = "none";
 
+    // Si ça ressemble à un matricule (étudiant), sinon c'est un username (admin/prof)
+    const donnees = identifiant.toUpperCase().startsWith("MAT")
+        ? { matricule: identifiant, password: motDePasse }
+        : { identifiant: identifiant, password: motDePasse };
 
+    try {
+        const reponse = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(donnees)
+        });
 
-    const donnees = identifiant.toUpperCase().startsWith("MAT") ? { matricule: identifiant, password: motDePasse } : {identifiant: identifiant, password: motDePasse };
+        const resultat = await reponse.json();
 
-    const reponse = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(donnees)
-    });
+        if (!reponse.ok) {
+            messageErreur.textContent = resultat.error;
+            messageErreur.style.display = "block";
+            return;
+        }
 
+        // Connexion réussie : on stocke les infos pour les autres pages
+        localStorage.setItem("token", resultat.token);
+        localStorage.setItem("id", resultat.id);
+        localStorage.setItem("nom", resultat.nom);
+        localStorage.setItem("role", resultat.role);
 
-    const resultat = await reponse.json();
+        // Redirection selon le rôle réel reçu du serveur
+        if (resultat.role === "admin") {
+            window.location.href = "../dossierhtml/admin.html";
+        } else if (resultat.role === "professeur") {
+            window.location.href = "../dossierhtml/professeur.html";
+        } else if (resultat.role === "etudiant") {
+            window.location.href = "../dossierhtml/etudiant.html";
+        }
 
-
-    if (reponse.ok){
-
-        alert(`Connexion réussie : ${resultat.role}`);
-        console.log(`Connexion réussie : ${resultat.message_}`);
-
-    } else {
-
-        messageErreur.textContent = resultat.message;
+    } catch (erreur) {
+        messageErreur.textContent = "Erreur de connexion au serveur.";
         messageErreur.style.display = "block";
-
     }
-
 
 });

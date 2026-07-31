@@ -1,0 +1,1090 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #FCEFD7;
+    color: #1a1a1a;
+    display: flex;
+}
+
+
+
+/* Sidebar */
+.menu {
+    width: 200px;
+    background: #16234A;
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+}
+
+.logo {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.logo img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+
+
+.logo-text {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.nav-list {
+    list-style: none;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.75);
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-left: 3px solid #3B6BF5;
+}
+
+.nav-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(4px);
+}
+
+.nav-icon {
+    width: 18px;
+    text-align: center;
+}
+
+.logout {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 24px 32px;
+}
+
+.entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.select_date {
+    background: #fff;
+    border: 1px solid #e0d5bd;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+
+
+/* ENTETE (ANNEE, BIENVENU ET BOUTON */
+
+.compte {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-text {
+    text-align: right;
+    font-size: 13px;
+}
+
+.admin-text .role {
+    display: block;
+    color: #888;
+    font-size: 11px;
+}
+
+.admin-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #3B6BF5;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.bienvenue {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.welcome-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.welcome-sub {
+    font-size: 13px;
+    color: #7a6f5c;
+}
+
+.btn_ajout {
+    background: #3B6BF5;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn_ajout:hover {
+    background: #2C56D9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(59, 107, 245, 0.35);
+}
+
+
+
+/* MINI BLOCK */
+
+
+.miniblock {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+
+
+.stat-block {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.statistique {
+
+    flex-direction: column-reverse;
+    gap: 10%;
+}
+
+.stat-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.stat-valeur {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #8a8a8a;
+}
+
+.stat-evolu {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1DAA4A;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+
+.stat-evolu.down {
+    color: #E0433D;
+}
+
+.bg-etudiants {
+    background: #4C5FD5;
+}
+
+.bg-profs {
+    background: #1DAA4A;
+}
+
+.bg-classes {
+    background: #F0A020;
+}
+
+.bg-matieres {
+    background: #2E7DE1;
+}
+
+.bg-notes {
+    background: #B23FD8;
+}
+
+.bg-absences {
+    background: #F0A020;
+}
+
+
+
+/* Actions rapides */
+.actions-block {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.actions-title {
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.action-btn {
+    background: #F5F2EC;
+    border: 1px solid #e5ded0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background: #3B6BF5;
+    border-color: #3B6BF5;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(59, 107, 245, 0.25);
+}
+
+.action {
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 8%;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+/* Content grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.data-table th {
+    text-align: left;
+    color: #9a9a9a;
+    font-weight: 600;
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table td {
+    padding: 8px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.row-id {
+    color: #9a9a9a;
+}
+
+.row-view {
+    cursor: pointer;
+    color: #3B6BF5;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.row-view:hover {
+    transform: scale(1.2);
+}
+
+.panel-footer {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.link-btn {
+    background: #F5F2EC;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    width: 100%;
+    cursor: pointer;
+    color: #444;
+    transition: all 0.2s ease;
+}
+
+.link-btn:hover {
+    background: #3B6BF5;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.activity-item,
+.alert-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f3f3;
+    font-size: 12px;
+}
+
+.activity-dot,
+.alert-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+.activity-text {
+    font-weight: 600;
+}
+
+.activity-time {
+    color: #aaa;
+    font-size: 11px;
+}
+
+.alert-dot.danger {
+    background: #FBE1E0;
+    color: #E0433D;
+}
+
+.alert-dot.warning {
+    background: #FCEFD0;
+    color: #E0A020;
+}
+
+.alert-dot.info {
+    background: #E1E9FE;
+    color: #3B6BF5;
+}
+
+.alert-dot.ok {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+/* Résumé */
+.summary-block {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.summary-item {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.summary-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.summary-icon.blue {
+    background: #E7EBFE;
+    color: #4C5FD5;
+}
+
+.summary-icon.green {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+.summary-icon.orange {
+    background: #FCEFD0;
+    color: #E0A020;
+}
+
+.summary-icon.pink {
+    background: #FBE1E8;
+    color: #E0437D;
+}
+
+.summary-label {
+    color: #9a9a9a;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.summary-value {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+
+
+/* entete de page (gestion utilisateurs, etudiants, professeurs...) */
+
+.entete_page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.titre_page {
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sous_titre_page {
+    font-size: 13px;
+    color: #7a6f5c;
+    margin-top: 4px;
+}
+
+
+
+/* cartes de statistiques (utilisateurs, etudiants, professeurs, matieres, notes, absences) */
+
+.grille_stats {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.carte_stat {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s ease;
+}
+
+.carte_stat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.icone_carte {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.icone_carte.violet {
+    background: #EDE9FE;
+    color: #6D4CE0;
+}
+
+.icone_carte.vert {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+.icone_carte.orange {
+    background: #FCEFD0;
+    color: #E0A020;
+}
+
+.icone_carte.bleu {
+    background: #E1E9FE;
+    color: #3B6BF5;
+}
+
+.icone_carte.rouge {
+    background: #FBE1E0;
+    color: #E0433D;
+}
+
+.label_carte {
+    font-size: 12px;
+    color: #8a8a8a;
+}
+
+.valeur_carte {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 2px 0;
+}
+
+.legende_carte {
+    font-size: 11px;
+    color: #aaa;
+}
+
+
+
+/* zone de gestion : tableau a gauche, formulaire a droite */
+
+.zone_gestion {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+
+
+/* barre de filtres (recherche, selects, reinitialiser) */
+
+.barre_filtres {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.champ_recherche {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #F5F2EC;
+    border-radius: 8px;
+    padding: 9px 12px;
+}
+
+.champ_recherche input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 13px;
+    flex: 1;
+}
+
+.champ_recherche i {
+    color: #aaa;
+}
+
+.select_filtre {
+    background: #F5F2EC;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #555;
+    min-width: 130px;
+}
+
+.btn_reinitialiser {
+    background: #EDE9FE;
+    color: #6D4CE0;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn_reinitialiser:hover {
+    background: #6D4CE0;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+
+
+/* tableau de gestion (utilisateurs, etudiants, professeurs, matieres, notes, absences) */
+
+.panneau_tableau {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tableau_gestion {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tableau_gestion th {
+    text-align: left;
+    color: #9a9a9a;
+    font-weight: 600;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.tableau_gestion td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #f3f3f3;
+    vertical-align: middle;
+}
+
+.cellule_personne {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar_personne {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #E1E9FE;
+    color: #3B6BF5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+
+
+/* badges (role, statut, classe...) */
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge.etudiant {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+.badge.professeur {
+    background: #FCEFD0;
+    color: #E0A020;
+}
+
+.badge.administrateur {
+    background: #E1E9FE;
+    color: #3B6BF5;
+}
+
+.badge.actif {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+.badge.inactif {
+    background: #FBE1E0;
+    color: #E0433D;
+}
+
+.badge.classe {
+    background: #E1E9FE;
+    color: #3B6BF5;
+}
+
+.badge.justifie {
+    background: #E1F5E7;
+    color: #1DAA4A;
+}
+
+.badge.non_justifie {
+    background: #FBE1E0;
+    color: #E0433D;
+}
+
+.badge.attention {
+    background: #FCEFD0;
+    color: #E0A020;
+}
+
+
+
+/* actions du tableau (modifier, supprimer, plus) */
+
+.actions_ligne {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn_action {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.btn_action.modifier {
+    background: #E1E9FE;
+    color: #3B6BF5;
+}
+
+.btn_action.modifier:hover {
+    background: #3B6BF5;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn_action.supprimer {
+    background: #FBE1E0;
+    color: #E0433D;
+}
+
+.btn_action.supprimer:hover {
+    background: #E0433D;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn_action.plus {
+    background: #F5F2EC;
+    color: #777;
+}
+
+.btn_action.plus:hover {
+    background: #e5ded0;
+}
+
+
+
+/* pied du tableau et pagination */
+
+.pied_tableau {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.compteur_tableau {
+    font-size: 12px;
+    color: #9a9a9a;
+}
+
+.pagination {
+    display: flex;
+    gap: 6px;
+}
+
+.btn_page {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s ease;
+}
+
+.btn_page:hover {
+    background: #F5F2EC;
+}
+
+.btn_page.active {
+    background: #3B6BF5;
+    color: #fff;
+    border-color: #3B6BF5;
+}
+
+
+
+/* panneau formulaire (ajouter / modifier) */
+
+.panneau_formulaire {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.titre_formulaire {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.sous_titre_formulaire {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9a9a9a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 14px 0 10px 0;
+}
+
+.groupe_champ {
+    margin-bottom: 12px;
+}
+
+.ligne_champ {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.etiquette_champ {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.etiquette_champ .obligatoire {
+    color: #E0433D;
+}
+
+.champ_texte,
+.champ_select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e5e0d5;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+    color: #333;
+    transition: border-color 0.2s ease;
+}
+
+.champ_texte:focus,
+.champ_select:focus {
+    border-color: #3B6BF5;
+}
+
+.champ_texte:disabled {
+    background: #F5F2EC;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.zone_mdp {
+    position: relative;
+}
+
+.zone_mdp i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+}
+
+.pied_formulaire {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn_annuler {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e0d5;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s ease;
+}
+
+.btn_annuler:hover {
+    background: #F5F2EC;
+}
+
+.btn_enregistrer {
+    flex: 1;
+    background: #3B6BF5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.btn_enregistrer:hover {
+    background: #2C56D9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(59, 107, 245, 0.35);
+}
+
+
+
+/* bascule de statut absence (justifie / non justifie) */
+
+.bascule_statut {
+    display: flex;
+    gap: 10px;
+}
+
+.btn_statut {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e0d5;
+    background: #fff;
+    color: #888;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn_statut:hover {
+    transform: translateY(-2px);
+}
+
+.btn_statut.justifie.active {
+    background: #E1F5E7;
+    border-color: #1DAA4A;
+    color: #1DAA4A;
+}
+
+.btn_statut.non_justifie.active {
+    background: #FBE1E0;
+    border-color: #E0433D;
+    color: #E0433D;
+}

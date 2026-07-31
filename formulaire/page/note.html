@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notes - Akademc Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="note.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-circle">AK</div>
+            <div class="logo-text">AKADEMC<br>MANAGER</div>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span> Utilisateurs</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chalkboard-user"></i></span> Professeur
+            </li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-book-open" style="color: rgb(255, 255, 255);"></i></span>matières</li>
+            <li class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Notes</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-regular fa-clock"></i></span> Absences</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+        </ul>
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <select class="year-select">
+                <option>Année scolaire 2025-2026</option>
+            </select>
+            <div class="admin-block">
+                <div class="admin-text">Administrateur<span class="role">Admin</span></div>
+                <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div>
+                <div class="page-title">Gestion des notes <i class="fa-solid fa-file-lines" style="color:#3B6BF5;"></i>
+                </div>
+                <div class="page-sub">Ajoutez, modifiez et consultez les notes des étudiants.</div>
+            </div>
+            <button class="btn-primary"><i class="fa-solid fa-plus"></i> Ajouter une note</button>
+        </div>
+
+        <div class="users-stats-row">
+            <div class="user-stat-card">
+                <div class="user-stat-icon purple"><i class="fa-solid fa-file-lines"></i></div>
+                <div>
+                    <div class="user-stat-label">Total des notes</div>
+                    <div class="user-stat-value">12 240</div>
+                    <div class="user-stat-caption">Toutes matières confondues</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon green"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                    <div class="user-stat-label">Moyenne générale</div>
+                    <div class="user-stat-value">13.4/20</div>
+                    <div class="user-stat-caption">Sur l'année en cours</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon orange"><i class="fa-solid fa-trophy"></i></div>
+                <div>
+                    <div class="user-stat-label">Meilleure note</div>
+                    <div class="user-stat-value">20/20</div>
+                    <div class="user-stat-caption">Yao Serge - Informatique</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div>
+                    <div class="user-stat-label">Notes en dessous de 10</div>
+                    <div class="user-stat-value">1 380</div>
+                    <div class="user-stat-caption">A surveiller</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="users-layout">
+            <div>
+                <div class="filters-bar">
+                    <div class="search-input">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Rechercher un étudiant...">
+                    </div>
+                    <select class="filter-select">
+                        <option>Toutes les classes</option>
+                        <option>L1 Informatique</option>
+                        <option>L2 Informatique</option>
+                        <option>L2 Réseaux</option>
+                        <option>L3 Sécurité</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Toutes les matières</option>
+                        <option>1. Français</option>
+                        <option>2. Mathématiques</option>
+                        <option>3. Informatique</option>
+                        <option>4. Anglais</option>
+                    </select>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-right"></i> Réinitialiser</button>
+                </div>
+
+                <div class="table-panel">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Id étudiant</th>
+                                <th>Étudiant</th>
+                                <th>Classe</th>
+                                <th>Id matière</th>
+                                <th>Matière</th>
+                                <th>Note</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2025L2001</td>
+                                <td>Kouassi Jean</td>
+                                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                                <td>1</td>
+                                <td>Français</td>
+                                <td><span class="badge badge-actif">15/20</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2025L2002</td>
+                                <td>Traoré Fatou</td>
+                                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                                <td>3</td>
+                                <td>Informatique</td>
+                                <td><span class="badge badge-actif">18/20</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>2025L2003</td>
+                                <td>Yao Serge</td>
+                                <td><span class="badge badge-classe">L2 Informatique</span></td>
+                                <td>3</td>
+                                <td>Informatique</td>
+                                <td><span class="badge badge-actif">20/20</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>2025L2004</td>
+                                <td>Koné Aminata</td>
+                                <td><span class="badge badge-classe">L2 Réseaux</span></td>
+                                <td>2</td>
+                                <td>Mathématiques</td>
+                                <td><span class="badge badge-inactif">08/20</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>2025L2005</td>
+                                <td>N'Guessan Koffi</td>
+                                <td><span class="badge badge-classe">L3 Sécurité</span></td>
+                                <td>4</td>
+                                <td>Anglais</td>
+                                <td><span class="badge badge-actif">14/20</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-footer">
+                        <div class="table-count">Affichage de 1 à 5 sur 12 240 notes</div>
+                        <div class="pagination">
+                            <button class="page-btn"><i class="fa-solid fa-angles-left"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-right"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angles-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <div class="form-title">Ajouter / Modifier une note</div>
+
+                <div class="form-section-title">Sélection</div>
+                <div class="form-group">
+                    <label class="form-label">Classe <span class="required">*</span></label>
+                    <select class="form-select" id="classe-select" onchange="filterStudents()">
+                        <option value="">Sélectionnez une classe</option>
+                        <option value="L1-Info">L1 Informatique</option>
+                        <option value="L2-Info">L2 Informatique</option>
+                        <option value="L2-Res">L2 Réseaux</option>
+                        <option value="L3-Sec">L3 Sécurité</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Étudiant <span class="required">*</span></label>
+                    <select class="form-select" id="etudiant-select">
+                        <option value="">Sélectionnez d'abord une classe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Matière <span class="required">*</span></label>
+                    <select class="form-select" id="matiere-select">
+                        <option value="">Sélectionnez une matière</option>
+                        <option value="1">1. Français</option>
+                        <option value="2">2. Mathématiques</option>
+                        <option value="3">3. Informatique</option>
+                        <option value="4">4. Anglais</option>
+                        <option value="5">5. Physique</option>
+                        <option value="6">6. SVT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Note <span class="required">*</span></label>
+                    <input type="number" class="form-input" placeholder="Ex: 15" min="0" max="20" step="0.25">
+                </div>
+
+                <div class="form-footer">
+                    <button class="btn-cancel">Annuler</button>
+                    <button class="btn-save">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script>
+        const studentsByClass = {
+            "L1-Info": [
+                { id: "2025L1006", name: "Bamba Mariam" },
+                { id: "2025L1009", name: "Fofana Aissata" }
+            ],
+            "L2-Info": [
+                { id: "2025L2001", name: "Kouassi Jean" },
+                { id: "2025L2002", name: "Traoré Fatou" },
+                { id: "2025L2003", name: "Yao Serge" },
+                { id: "2025L2010", name: "Zadi Stéphane" }
+            ],
+            "L2-Res": [
+                { id: "2025L2004", name: "Koné Aminata" },
+                { id: "2025L2007", name: "Coulibaly Adama" }
+            ],
+            "L3-Sec": [
+                { id: "2025L2005", name: "N'Guessan Koffi" },
+                { id: "2025L2008", name: "Diabaté Moussa" }
+            ]
+        };
+
+        function filterStudents() {
+            const classeId = document.getElementById('classe-select').value;
+            const etudiantSelect = document.getElementById('etudiant-select');
+            etudiantSelect.innerHTML = '';
+
+            if (!classeId || !studentsByClass[classeId]) {
+                etudiantSelect.innerHTML = '<option value="">Sélectionnez d\'abord une classe</option>';
+                return;
+            }
+
+            etudiantSelect.innerHTML = '<option value="">Sélectionnez un étudiant</option>';
+            studentsByClass[classeId].forEach(student => {
+                const option = document.createElement('option');
+                option.value = student.id;
+                option.textContent = student.id + ' - ' + student.name;
+                etudiantSelect.appendChild(option);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

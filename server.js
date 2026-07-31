@@ -1,6 +1,8 @@
 import dotenv from "dotenv"; // protection des donné sensible
 dotenv.config();
 
+console.log("JWT_SECRET vaut :", process.env.JWT_SECRET);
+
 
 import express from "express";
 import path from "path";

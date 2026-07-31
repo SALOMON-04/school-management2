@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Utilisateurs - Akademc Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="users.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-circle">AK</div>
+            <div class="logo-text">AKADEMC<br>MANAGER</div>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord</li>
+            <li class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-users"></i></span> Utilisateurs
+            </li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chalkboard-user"></i></span> Professeur
+            </li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-book-open" style="color: rgb(255, 255, 255);"></i></span>matières</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Notes</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-regular fa-clock"></i></span> Absences</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+        </ul>
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <select class="year-select">
+                <option>Année scolaire 2025-2026</option>
+            </select>
+            <div class="admin-block">
+                <div class="admin-text">Administrateur<span class="role">Admin</span></div>
+                <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div>
+                <div class="page-title">Gestion des utilisateurs <i class="fa-solid fa-users"
+                        style="color:#3B6BF5;"></i></div>
+                <div class="page-sub">Ajoutez, modifiez, supprimez et gérez les comptes utilisateurs du système.</div>
+            </div>
+            <button class="btn-primary"><i class="fa-solid fa-plus"></i> Ajouter un utilisateur</button>
+        </div>
+
+        <div class="users-stats-row">
+            <div class="user-stat-card">
+                <div class="user-stat-icon purple"><i class="fa-solid fa-user"></i></div>
+                <div>
+                    <div class="user-stat-label">Total utilisateurs</div>
+                    <div class="user-stat-value">57</div>
+                    <div class="user-stat-caption">Tous les comptes</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon green"><i class="fa-solid fa-user-graduate"></i></div>
+                <div>
+                    <div class="user-stat-label">Étudiants</div>
+                    <div class="user-stat-value">42</div>
+                    <div class="user-stat-caption">Comptes étudiants</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon orange"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div>
+                    <div class="user-stat-label">Professeurs</div>
+                    <div class="user-stat-value">12</div>
+                    <div class="user-stat-caption">Comptes professeurs</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <div class="user-stat-label">Administrateurs</div>
+                    <div class="user-stat-value">3</div>
+                    <div class="user-stat-caption">Comptes administrateurs</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="users-layout">
+            <div>
+                <div class="filters-bar">
+                    <div class="search-input">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Rechercher un utilisateur...">
+                    </div>
+                    <select class="filter-select">
+                        <option>Tous les rôles</option>
+                        <option>Étudiant</option>
+                        <option>Professeur</option>
+                        <option>Administrateur</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Statut</option>
+                        <option>Actif</option>
+                        <option>Inactif</option>
+                    </select>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-right"></i> Réinitialiser</button>
+                </div>
+
+                <div class="table-panel">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom complet</th>
+                                <th>Nom d'utilisateur</th>
+                                <th>Rôle</th>
+                                <th>Statut</th>
+                                <th>Date de création</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">KJ</div>
+                                        Kouassi Jean
+                                    </div>
+                                </td>
+                                <td>kouassi.jean</td>
+                                <td><span class="badge badge-etudiant">Étudiant</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>28/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">TF</div>
+                                        Traoré Fatou
+                                    </div>
+                                </td>
+                                <td>traore.fatou</td>
+                                <td><span class="badge badge-etudiant">Étudiant</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>27/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">YS</div>
+                                        Yao Serge
+                                    </div>
+                                </td>
+                                <td>yao.serge</td>
+                                <td><span class="badge badge-etudiant">Étudiant</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>26/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">PK</div>
+                                        Prof. Konan A.
+                                    </div>
+                                </td>
+                                <td>konan.prof</td>
+                                <td><span class="badge badge-professeur">Professeur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>20/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">PD</div>
+                                        Prof. Diabaté M.
+                                    </div>
+                                </td>
+                                <td>diabate.prof</td>
+                                <td><span class="badge badge-professeur">Professeur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>18/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">PY</div>
+                                        Prof. Yao K.
+                                    </div>
+                                </td>
+                                <td>yao.prof</td>
+                                <td><span class="badge badge-professeur">Professeur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>15/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">AP</div>
+                                        Admin Principal
+                                    </div>
+                                </td>
+                                <td>admin</td>
+                                <td><span class="badge badge-administrateur">Administrateur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>01/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">AA</div>
+                                        Admin Assistant
+                                    </div>
+                                </td>
+                                <td>admin.assistant</td>
+                                <td><span class="badge badge-administrateur">Administrateur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>01/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">SA</div>
+                                        Super Admin
+                                    </div>
+                                </td>
+                                <td>super.admin</td>
+                                <td><span class="badge badge-administrateur">Administrateur</span></td>
+                                <td><span class="badge badge-actif">Actif</span></td>
+                                <td>01/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">KA</div>
+                                        Koné Aminata
+                                    </div>
+                                </td>
+                                <td>kone.aminata</td>
+                                <td><span class="badge badge-etudiant">Étudiant</span></td>
+                                <td><span class="badge badge-inactif">Inactif</span></td>
+                                <td>25/07/2026</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button class="icon-btn more"><i
+                                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-footer">
+                        <div class="table-count">Affichage de 1 à 10 sur 57 utilisateurs</div>
+                        <div class="pagination">
+                            <button class="page-btn"><i class="fa-solid fa-angles-left"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn">6</button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-right"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angles-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <div class="form-title">Ajouter / Modifier un utilisateur</div>
+
+                <div class="form-section-title">Informations personnelles</div>
+                <div class="form-group">
+                    <label class="form-label">Nom complet <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="Entrez le nom complet">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nom d'utilisateur <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="Entrez le nom d'utilisateur">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Rôle <span class="required">*</span></label>
+                    <select class="form-select">
+                        <option>Sélectionnez un rôle</option>
+                        <option>Étudiant</option>
+                        <option>Professeur</option>
+                        <option>Administrateur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mot de passe</label>
+                    <div class="password-wrap">
+                        <input type="password" class="form-input" placeholder="Laisser vide pour ne pas changer">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Statut</label>
+                    <select class="form-select">
+                        <option>Actif</option>
+                        <option>Inactif</option>
+                    </select>
+                </div>
+
+                <div class="form-section-title">Informations supplémentaires</div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="Entrez l'email (optionnel)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Téléphone</label>
+                    <input type="text" class="form-input" placeholder="Entrez le téléphone (optionnel)">
+                </div>
+
+                <div class="form-footer">
+                    <button class="btn-cancel">Annuler</button>
+                    <button class="btn-save">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

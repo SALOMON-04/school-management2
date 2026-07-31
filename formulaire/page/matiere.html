@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matières - Akademc Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="matiere.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-circle">AK</div>
+            <div class="logo-text">AKADEMC<br>MANAGER</div>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span> Utilisateurs</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chalkboard-user"></i></span> Professeur
+            </li>
+             <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-book-open"
+                        style="color: rgb(255, 255, 255);"></i></span>matières</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Notes</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-regular fa-clock"></i></span> Absences</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+        </ul>
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <select class="year-select">
+                <option>Année scolaire 2025-2026</option>
+            </select>
+            <div class="admin-block">
+                <div class="admin-text">Administrateur<span class="role">Admin</span></div>
+                <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div>
+                <div class="page-title">Gestion des matières <i class="fa-solid fa-book" style="color:#3B6BF5;"></i>
+                </div>
+                <div class="page-sub">Ajoutez et consultez les matières. Le professeur est assigné automatiquement
+                    depuis la fiche professeur.</div>
+            </div>
+            <button class="btn-primary"><i class="fa-solid fa-plus"></i> Ajouter une matière</button>
+        </div>
+
+        <div class="users-stats-row">
+            <div class="user-stat-card">
+                <div class="user-stat-icon purple"><i class="fa-solid fa-book"></i></div>
+                <div>
+                    <div class="user-stat-label">Total matières</div>
+                    <div class="user-stat-value">16</div>
+                    <div class="user-stat-caption">Toutes matières</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon green"><i class="fa-solid fa-user-check"></i></div>
+                <div>
+                    <div class="user-stat-label">Assignées</div>
+                    <div class="user-stat-value">13</div>
+                    <div class="user-stat-caption">Avec un professeur</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon orange"><i class="fa-solid fa-user-slash"></i></div>
+                <div>
+                    <div class="user-stat-label">Non assignées</div>
+                    <div class="user-stat-value">3</div>
+                    <div class="user-stat-caption">Sans professeur (teacher_id NULL)</div>
+                </div>
+            </div>
+            <div class="user-stat-card">
+                <div class="user-stat-icon blue"><i class="fa-solid fa-user-graduate"></i></div>
+                <div>
+                    <div class="user-stat-label">Étudiants concernés</div>
+                    <div class="user-stat-value">142</div>
+                    <div class="user-stat-caption">Toutes classes confondues</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="users-layout">
+            <div>
+                <div class="filters-bar">
+                    <div class="search-input">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Rechercher une matière...">
+                    </div>
+                    <select class="filter-select">
+                        <option>Toutes les matières</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>Assignation</option>
+                        <option>Assignée</option>
+                        <option>Non assignée</option>
+                    </select>
+                    <button class="btn-reset"><i class="fa-solid fa-rotate-right"></i> Réinitialiser</button>
+                </div>
+
+                <div class="table-panel">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom de la matière</th>
+                                <th>Id professeur</th>
+                                <th>Professeur assigné</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Français</td>
+                                <td>USR-003</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">TF</div>
+                                        Traoré Fatou
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Mathématiques</td>
+                                <td>USR-001</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">KJ</div>
+                                        Kouassi Jean
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Informatique</td>
+                                <td>USR-002</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">YS</div>
+                                        Yao Serge
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Anglais</td>
+                                <td>—</td>
+                                <td><span class="badge badge-warning">Non assigné</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Physique</td>
+                                <td>USR-004</td>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">KA</div>
+                                        Koné Aminata
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>SVT</td>
+                                <td>—</td>
+                                <td><span class="badge badge-warning">Non assigné</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="icon-btn edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="icon-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-footer">
+                        <div class="table-count">Affichage de 1 à 6 sur 16 matières</div>
+                        <div class="pagination">
+                            <button class="page-btn"><i class="fa-solid fa-angles-left"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn"><i class="fa-solid fa-angle-right"></i></button>
+                            <button class="page-btn"><i class="fa-solid fa-angles-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <div class="form-title">Ajouter une matière</div>
+
+                <div class="form-section-title">Informations</div>
+                <div class="form-group">
+                    <label class="form-label">Nom de la matière <span class="required">*</span></label>
+                    <input type="text" class="form-input" placeholder="Ex: Philosophie">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Id professeur</label>
+                    <input type="text" class="form-input" value="Non assigné" disabled>
+                </div>
+
+                <div class="form-footer">
+                    <button class="btn-cancel">Annuler</button>
+                    <button class="btn-save">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
