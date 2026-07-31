@@ -20,22 +20,35 @@
 
         <ul class="nav-list">
 
-            <li class="nav-item active"><span class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord
+            <li class="nav-item active" data-section="tableau_bord" onclick="afficherSection(this)"><span
+                    class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord
             </li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-users"></i></span> Utilisateurs</li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-chalkboard-user"></i></span> Professeur
+
+            <li class="nav-item" data-section="utilisateurs" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-solid fa-users"></i></span> Utilisateurs</li>
+
+            <li class="nav-item" data-section="etudiants" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
+
+            <li class="nav-item" data-section="professeurs" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-solid fa-chalkboard-user"></i></span> Professeur
             </li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-book-open"
-                        style="color: rgb(255, 255, 255);"></i></span>matières</li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-file-lines"></i></span> Notes</li>
-            <li class="nav-item"><span class="nav-icon"><i class="fa-regular fa-clock"></i></span> Absences</li>
+
+            <li class="nav-item" data-section="matieres" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-solid fa-book-open" style="color: rgb(255, 255, 255);"></i></span>matières</li>
+
+            <li class="nav-item" data-section="notes" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-solid fa-file-lines"></i></span> Notes</li>
+
+            <li class="nav-item" data-section="absences" onclick="afficherSection(this)"><span class="nav-icon"><i
+                        class="fa-regular fa-clock"></i></span> Absences</li>
+
             <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
 
         </ul>
 
-        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
-        </div>
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion</div>
+
 
     </aside>
 
@@ -62,388 +75,2252 @@
 
 
 
-        <div class="bienvenue">
+        <!-- SECTION TABLEAU DE BORD -->
 
-            <div>
-                <div class="welcome-title">Bienvenue, Administrateur 👋</div>
-                <div class="welcome-sub">Voici un aperçu général de votre établissement</div>
-            </div>
-
-            <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Nouvelle inscription</button>
-
-        </div>
+        <section id="tableau_bord" class="page_section">
 
 
+            <div class="bienvenue">
 
-        <div class="miniblock">
-
-
-            <div class="stat-block">
-
-                <div class="stat-icon bg-etudiants"><i class="fa-solid fa-user-graduate"></i></div>
-
-                <div class="statistique">
-
-                    <span class="stat-valeur">12 000</span>
-                    <span class="stat-label">Etudiants</span>
-                    <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 12.5%</span>
-
+                <div>
+                    <div class="welcome-title">Bienvenue, Administrateur 👋</div>
+                    <div class="welcome-sub">Voici un aperçu général de votre établissement</div>
                 </div>
 
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Nouvelle inscription</button>
 
             </div>
 
 
 
-            <div class="stat-block">
+            <div class="miniblock">
 
-                <div class="stat-icon bg-profs"><i class="fa-solid fa-chalkboard-user"></i></div>
 
-                <div class="statistique">
+                <div class="stat-block">
 
-                    <span class="stat-valeur">84</span>
-                    <span class="stat-label">Professeurs</span>
+                    <div class="stat-icon bg-etudiants"><i class="fa-solid fa-user-graduate"></i></div>
 
-                    <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 8.3%</span>
+                    <div class="statistique">
 
-                </div>
+                        <span class="stat-valeur">12 000</span>
+                        <span class="stat-label">Etudiants</span>
+                        <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 12.5%</span>
 
-
-            </div>
-
-
-            <div class="stat-block">
-
-
-                <div class="stat-icon bg-classes"><i class="fa-solid fa-building"></i></div>
-
-                <div class="statistique">
-
-                    <span class="stat-valeur">36</span>
-                    <span class="stat-label">Classes</span>
-
-                    <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 8.2%</span>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="stat-block">
-
-                <div class="stat-icon bg-matieres"><i class="fa-solid fa-book"></i></div>
-
-                <div class="statistique">
-
-                    <span class="stat-valeur">16</span>
-                    <span class="stat-label">Matières</span>
-
-                    <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 7.1%</span>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-block">
-
-                <div class="stat-icon bg-notes"><i class="fa-solid fa-file-lines"></i></div>
-
-                <div class="statistique">
-
-                    <span class="stat-valeur">12 240</span>
-                    <span class="stat-label">Notes</span>
-
-                    <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 15.4%</span>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="stat-block">
-
-                <div class="stat-icon bg-absences"><i class="fa-solid fa-calendar-days"></i></div>
-
-                <div class="statistique">
-
-                    <span class="stat-valeur">12 240</span>
-                    <span class="stat-label">Absences enregistrées</span>
-
-                    <span class="stat-evolu down"><i class="fa-solid fa-arrow-up"></i> 3.2%</span>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="actions-block">
-
-            <div class="actions-title">Actions rapides</div>
-            
-            <div class="action">
-
-                <div class="action-btn"><i class="fa-solid fa-user-graduate"></i> + Nouveau étudiant</div>
-                <div class="action-btn"><i class="fa-solid fa-chalkboard-user"></i> + Nouveau professeur</div>
-                <div class="action-btn"><i class="fa-solid fa-book"></i> + Nouvelle matière</div>
-                <div class="action-btn"><i class="fa-solid fa-calendar-days"></i> + Nouvelle absence</div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="content-grid">
-
-
-            <div class="panel">
-
-
-                <div class="panel-title">Dernières activités</div>
-
-                <table class="data-table">
-
-                    <thead>
-
-                        <tr>
-                            <th>Id</th>
-                            <th>Matricule/Username</th>
-                            <th>Nom</th>
-                            <th>Matière</th>
-                            <th>User_id</th>
-                            <th>Date</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-
-
-
-                    <tbody>
-
-
-                        <tr>
-
-                            <td class="row-id">1</td>
-                            <td>2025001</td>
-                            <td>Kouassi Jean</td>
-                            <td>-</td>
-                            <td>USR-001</td>
-                            <td>28/07/2026</td>
-                            <td class="row-view"><i class="fa-solid fa-eye"></i></td>
-
-
-                        </tr>
-
-
-                        <tr>
-                            <td class="row-id">2</td>
-
-                            <td>prof.konan</td>
-                            <td>Mme Konan A.</td>
-                            <td>Mathématiques</td>
-                            <td>USR-084</td>
-                            <td>27/07/2026</td>
-                            <td class="row-view"><i class="fa-solid fa-eye"></i></td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="row-id">3</td>
-                            <td>2025002</td>
-                            <td>Traoré Fatou</td>
-                            <td>-</td>
-                            <td>USR-002</td>
-                            <td>27/07/2026</td>
-                            <td class="row-view"><i class="fa-solid fa-eye"></i></td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td class="row-id">4</td>
-                            <td>admin</td>
-                            <td>Administrateur</td>
-                            <td>-</td>
-                            <td>USR-000</td>
-                            <td>26/07/2026</td>
-                            <td class="row-view"><i class="fa-solid fa-eye"></i></td>
-                        </tr>
-
-
-                    </tbody>
-
-
-
-                </table>
-
-
-                <div class="panel-footer"><button class="link-btn">Voir tout</button></div>
-
-
-            </div>
-
-
-
-            <div class="panel">
-
-                <div class="panel-title">Activités récentes</div>
-                <div class="activity-item">
-
-                    <div class="activity-dot" style="background:#F0A020;"><i class="fa-solid fa-user-graduate"></i>
                     </div>
 
+
+                </div>
+
+
+
+                <div class="stat-block">
+
+                    <div class="stat-icon bg-profs"><i class="fa-solid fa-chalkboard-user"></i></div>
+
+                    <div class="statistique">
+
+                        <span class="stat-valeur">84</span>
+                        <span class="stat-label">Professeurs</span>
+
+                        <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 8.3%</span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="stat-block">
+
+
+                    <div class="stat-icon bg-classes"><i class="fa-solid fa-building"></i></div>
+
+                    <div class="statistique">
+
+                        <span class="stat-valeur">36</span>
+                        <span class="stat-label">Classes</span>
+
+                        <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 8.2%</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-block">
+
+                    <div class="stat-icon bg-matieres"><i class="fa-solid fa-book"></i></div>
+
+                    <div class="statistique">
+
+                        <span class="stat-valeur">16</span>
+                        <span class="stat-label">Matières</span>
+
+                        <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 7.1%</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-block">
+
+                    <div class="stat-icon bg-notes"><i class="fa-solid fa-file-lines"></i></div>
+
+                    <div class="statistique">
+
+                        <span class="stat-valeur">12 240</span>
+                        <span class="stat-label">Notes</span>
+
+                        <span class="stat-evolu"><i class="fa-solid fa-arrow-up"></i> 15.4%</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-block">
+
+                    <div class="stat-icon bg-absences"><i class="fa-solid fa-calendar-days"></i></div>
+
+                    <div class="statistique">
+
+                        <span class="stat-valeur">12 240</span>
+                        <span class="stat-label">Absences enregistrées</span>
+
+                        <span class="stat-evolu down"><i class="fa-solid fa-arrow-up"></i> 3.2%</span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="actions-block">
+
+                <div class="actions-title">Actions rapides</div>
+
+                <div class="action">
+
+                    <div class="action-btn"><i class="fa-solid fa-user-graduate"></i> + Nouveau étudiant</div>
+                    <div class="action-btn"><i class="fa-solid fa-chalkboard-user"></i> + Nouveau professeur</div>
+                    <div class="action-btn"><i class="fa-solid fa-book"></i> + Nouvelle matière</div>
+                    <div class="action-btn"><i class="fa-solid fa-calendar-days"></i> + Nouvelle absence</div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="content-grid">
+
+
+                <div class="panel">
+
+
+                    <div class="panel-title">Dernières activités</div>
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Id</th>
+                                <th>Matricule/Username</th>
+                                <th>Nom</th>
+                                <th>Matière</th>
+                                <th>User_id</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                            <tr>
+
+                                <td class="row-id">1</td>
+                                <td>2025001</td>
+                                <td>Kouassi Jean</td>
+                                <td>-</td>
+                                <td>USR-001</td>
+                                <td>28/07/2026</td>
+                                <td class="row-view"><i class="fa-solid fa-eye"></i></td>
+
+
+                            </tr>
+
+
+                            <tr>
+                                <td class="row-id">2</td>
+
+                                <td>prof.konan</td>
+                                <td>Mme Konan A.</td>
+                                <td>Mathématiques</td>
+                                <td>USR-084</td>
+                                <td>27/07/2026</td>
+                                <td class="row-view"><i class="fa-solid fa-eye"></i></td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td class="row-id">3</td>
+                                <td>2025002</td>
+                                <td>Traoré Fatou</td>
+                                <td>-</td>
+                                <td>USR-002</td>
+                                <td>27/07/2026</td>
+                                <td class="row-view"><i class="fa-solid fa-eye"></i></td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td class="row-id">4</td>
+                                <td>admin</td>
+                                <td>Administrateur</td>
+                                <td>-</td>
+                                <td>USR-000</td>
+                                <td>26/07/2026</td>
+                                <td class="row-view"><i class="fa-solid fa-eye"></i></td>
+                            </tr>
+
+
+                        </tbody>
+
+
+
+                    </table>
+
+
+                    <div class="panel-footer"><button class="link-btn">Voir tout</button></div>
+
+
+                </div>
+
+
+
+                <div class="panel">
+
+                    <div class="panel-title">Activités récentes</div>
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#F0A020;"><i class="fa-solid fa-user-graduate"></i>
+                        </div>
+
+
+                        <div>
+                            <div class="activity-text">Nouvel étudiant inscrit</div>
+                            <div class="activity-time">Il y a 2 min</div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#1DAA4A;"><i class="fa-solid fa-book"></i></div>
+
+                        <div>
+                            <div class="activity-text">Nouvelle matière créée</div>
+                            <div class="activity-time">Il y a 15 min</div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#3B6BF5;"><i
+                                class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+
+                        <div>
+                            <div class="activity-text">Enseignant ajouté</div>
+                            <div class="activity-time">Il y a 1h</div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="panel-footer"><button class="link-btn">Voir toutes les activités</button></div>
+
+                </div>
+
+
+
+
+                <div class="panel">
+
+
+                    <div class="panel-title">Alertes</div>
+                    <div class="alert-item">
+
+                        <div class="alert-dot danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div>18 étudiants n'ont pas payé leurs frais de scolarité.</div>
+
+                    </div>
+
+
+                    <div class="alert-item">
+
+                        <div class="alert-dot warning"><i class="fa-solid fa-file-lines"></i></div>
+                        <div>6 enseignants n'ont pas encore saisi les notes.</div>
+
+                    </div>
+
+
+                    <div class="alert-item">
+
+                        <div class="alert-dot info"><i class="fa-regular fa-clock"></i></div>
+                        <div>15 absences non justifiées aujourd'hui.</div>
+
+                    </div>
+
+                    <div class="panel-footer"><button class="link-btn">Voir toutes les alertes</button></div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="summary-block">
+                <div class="summary-title">Résumé de l'établissement</div>
+                <div class="summary-row">
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon blue"><i class="fa-solid fa-calendar-days"></i></div>
+                        <div><span class="summary-label">Année scolaire</span><span class="summary-value">2025 -
+                                2026</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon green"><i class="fa-regular fa-calendar-check"></i></div>
+                        <div><span class="summary-label">Date de début</span><span
+                                class="summary-value">01/09/2025</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon orange"><i class="fa-regular fa-calendar"></i></div>
+                        <div><span class="summary-label">Date de fin</span><span class="summary-value">31/07/2026</span>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon blue"><i class="fa-solid fa-user"></i></div>
+                        <div><span class="summary-label">Total des utilisateurs</span><span
+                                class="summary-value">96</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon pink"><i class="fa-regular fa-calendar-check"></i></div>
+                        <div><span class="summary-label">Taux de paiement</span><span class="summary-value">95%</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <div class="summary-icon orange"><i class="fa-solid fa-user-check"></i></div>
+                        <div><span class="summary-label">Taux de présence</span><span class="summary-value">87%</span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SECTION UTILISATEUR -->
+
+        <section id="utilisateurs" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+
+                    <div class="titre_page">Gestion des utilisateurs <i class="fa-solid fa-users"
+                            style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Ajoutez, modifiez, supprimez et gérez les comptes utilisateurs du
+                        système.</div>
+
+                </div>
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter un utilisateur</button>
+
+            </div>
+
+
+
+            <!-- // MINI BLOCK UTILISATEUR -->
+
+            <div class="grille_stats">
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte violet"><i class="fa-solid fa-user"></i></div>
 
                     <div>
-                        <div class="activity-text">Nouvel étudiant inscrit</div>
-                        <div class="activity-time">Il y a 2 min</div>
-                    </div>
 
+                        <div class="label_carte">Total utilisateurs</div>
+                        <div class="valeur_carte">57</div>
+                        <div class="legende_carte">Tous les comptes</div>
+
+                    </div>
 
                 </div>
 
 
-                <div class="activity-item">
 
-                    <div class="activity-dot" style="background:#1DAA4A;"><i class="fa-solid fa-book"></i></div>
+                <div class="carte_stat">
+
+                    <div class="icone_carte vert"><i class="fa-solid fa-user-graduate"></i></div>
 
                     <div>
-                        <div class="activity-text">Nouvelle matière créée</div>
-                        <div class="activity-time">Il y a 15 min</div>
+
+                        <div class="label_carte">Étudiants</div>
+                        <div class="valeur_carte">42</div>
+                        <div class="legende_carte">Comptes étudiants</div>
+
                     </div>
 
                 </div>
 
 
+                <div class="carte_stat">
 
-                <div class="activity-item">
-
-                    <div class="activity-dot" style="background:#3B6BF5;"><i class="fa-solid fa-chalkboard-user"></i>
-                    </div>
+                    <div class="icone_carte orange"><i class="fa-solid fa-chalkboard-user"></i></div>
 
                     <div>
-                        <div class="activity-text">Enseignant ajouté</div>
-                        <div class="activity-time">Il y a 1h</div>
+
+                        <div class="label_carte">Professeurs</div>
+                        <div class="valeur_carte">12</div>
+                        <div class="legende_carte">Comptes professeurs</div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte bleu"><i class="fa-solid fa-shield-halved"></i></div>
+
+                    <div>
+
+                        <div class="label_carte">Administrateurs</div>
+                        <div class="valeur_carte">3</div>
+                        <div class="legende_carte">Comptes administrateurs</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+                        <div class="champ_recherche">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un utilisateur...">
+
+                        </div>
+
+
+                        <select class="select_filtre">
+
+                            <option>Tous les rôles</option>
+                            <option>Étudiant</option>
+                            <option>Professeur</option>
+                            <option>Administrateur</option>
+
+                        </select>
+
+
+                        <select class="select_filtre">
+
+                            <option>Statut</option>
+                            <option>Actif</option>
+                            <option>Inactif</option>
+
+                        </select>
+                        
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+
+                    </div>
+
+
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nom complet</th>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Rôle</th>
+                                    <th>Statut</th>
+                                    <th>Date de création</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">KJ</div>
+                                            Kouassi Jean
+                                        </div>
+                                    </td>
+                                    <td>kouassi.jean</td>
+                                    <td><span class="badge etudiant">Étudiant</span></td>
+                                    <td><span class="badge actif">Actif</span></td>
+                                    <td>28/07/2026</td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">PK</div>
+                                            Prof. Konan A.
+                                        </div>
+                                    </td>
+                                    <td>konan.prof</td>
+                                    <td><span class="badge professeur">Professeur</span></td>
+                                    <td><span class="badge actif">Actif</span></td>
+                                    <td>20/07/2026</td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">AP</div>
+                                            Admin Principal
+                                        </div>
+                                    </td>
+                                    <td>admin</td>
+                                    <td><span class="badge administrateur">Administrateur</span></td>
+                                    <td><span class="badge actif">Actif</span></td>
+                                    <td>01/07/2026</td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 57 utilisateurs</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                                <button class="btn_page">3</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- // FOUMULAIRE D4ENREGISTREMENT UTILISTAEUR -->
+
+                <div class="panneau_formulaire">
+
+
+                    <div class="titre_formulaire">Ajouter / Modifier un utilisateur</div>
+
+                    <div class="sous_titre_formulaire">Informations personnelles</div>
+
+
+                    <!-- // champs de formulaire Nom complet -->
+
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" >Nom complet <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="nomUser" placeholder="Entrez le nom complet">
+
+                    </div>
+
+
+                    <!-- // champs de formulaire Username -->
+
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" >Nom d'utilisateur <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="usernameUser" placeholder="Entrez le nom d'utilisateur">
+
+                    </div>
+
+
+                    <!-- // SELECTION DE ROLE -->
+
+                    <div class="groupe_champ">
+
+
+                        <label class="etiquette_champ">Rôle <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="roleUser">
+
+                            <option>Sélectionnez un rôle</option>
+                            <option>Étudiant</option>
+                            <option>Professeur</option>
+                            <option>Administrateur</option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- champs de formulaire password de l'utilisateur -->
+
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Mot de passe</label>
+
+                        <div class="zone_mdp">
+                            
+                            <input type="password" class="champ_texte"  id="passwordUser" placeholder="Laisser vide pour ne pas changer">
+                            <i class="fa-regular fa-eye-slash"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Champ de l'activiter de l'utilisateur  -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Statut</label>
+
+                        <select class="champ_select">
+
+                            <option>Actif</option>
+                            <option>Inactif</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="pied_formulaire">
+
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+
                     </div>
 
 
                 </div>
 
-                <div class="panel-footer"><button class="link-btn">Voir toutes les activités</button></div>
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+        <!-- SECTION ETUDIANT -->
+
+        <section id="etudiants" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+
+                <div>
+
+                    <div class="titre_page">Gestion des étudiants <i class="fa-solid fa-user-graduate"
+                            style="color:#3B6BF5;"></i></div>
+
+                    <div class="sous_titre_page">Ajoutez, modifiez, supprimez et gérez les informations des étudiants.
+                    </div>
+
+                </div>
+
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter un étudiant</button>
+
+            </div>
+
+
+
+            <!-- MINI BLOCK DE LA SECTION ETUDIANT -->
+
+            <div class="grille_stats">
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte violet"><i class="fa-solid fa-user-group"></i></div>
+
+                    <div>
+
+                        <div class="label_carte">Total étudiants</div>
+                        <div class="valeur_carte">142</div>
+                        <div class="legende_carte">Tous les étudiants</div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte vert"><i class="fa-solid fa-user-check"></i></div>
+
+                    <div>
+
+                        <div class="label_carte">Étudiants actifs</div>
+                        <div class="valeur_carte">136</div>
+                        <div class="legende_carte">Comptes actifs</div>
+
+                    </div>
+                    
+                </div>
+
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte orange"><i class="fa-solid fa-user-graduate"></i></div>
+
+                    <div>
+                        <div class="label_carte">Nouveaux étudiants</div>
+                        <div class="valeur_carte">23</div>
+                        <div class="legende_carte">Cette année</div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte rouge"><i class="fa-solid fa-user-xmark"></i></div>
+
+                    <div>
+                        <div class="label_carte">Étudiants inactifs</div>
+                        <div class="valeur_carte">6</div>
+                        <div class="legende_carte">Comptes inactifs</div>
+                    </div>
+
+                </div>
 
             </div>
 
 
 
 
-            <div class="panel">
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
 
 
-                <div class="panel-title">Alertes</div>
-                <div class="alert-item">
+                        <div class="champ_recherche">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un étudiant...">
+                        </div>
 
-                    <div class="alert-dot danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                    <div>18 étudiants n'ont pas payé leurs frais de scolarité.</div>
+
+                        <select class="select_filtre">
+                            <option>Toutes les classes</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                            <option>L2 Réseaux</option>
+                            <option>L3 Sécurité</option>
+                        </select>
+
+                        <select class="select_filtre">
+                            <option>Statut</option>
+                            <option>Actif</option>
+                            <option>Inactif</option>
+                        </select>
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+                    </div>
+
+
+
+
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>Matricule</th>
+                                    <th>Nom complet</th>
+                                    <th>Classe</th>
+                                    <th>Date de naissance</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+
+
+
+                            <tbody>
+
+                                <tr>
+                                    <td>1</td>
+                                    <td>2025L2001</td>
+                                    <td>Kouassi Jean</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>15/05/2004</td>
+                                    <td><span class="badge actif">Actif</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>2</td>
+                                    <td>2025L2004</td>
+                                    <td>Koné Aminata</td>
+                                    <td><span class="badge classe">L2 Réseaux</span></td>
+                                    <td>18/11/2004</td>
+                                    <td><span class="badge actif">Actif</span></td>
+
+                                    <td>
+
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>3</td>
+                                    <td>2025L2007</td>
+                                    <td>Coulibaly Adama</td>
+                                    <td><span class="badge classe">L2 Réseaux</span></td>
+                                    <td>12/06/2004</td>
+                                    <td><span class="badge inactif">Inactif</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 142 étudiants</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                                <button class="btn_page">3</button>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <div class="alert-item">
 
-                    <div class="alert-dot warning"><i class="fa-solid fa-file-lines"></i></div>
-                    <div>6 enseignants n'ont pas encore saisi les notes.</div>
+                <!-- FORMULAIRE D'ENREGISTREMENT DE L'ETUDIANT -->
+
+                <div class="panneau_formulaire">
+
+
+                    <div class="titre_formulaire">Ajouter / Modifier un étudiant</div>
+
+                    <div class="sous_titre_formulaire">Informations personnelles</div>
+
+
+                     <!-- Champs d'enregistrement du matricule -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Matricule <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantMatricule" placeholder="Ex: 2025L2001">
+
+                    </div>
+
+
+                    <!-- Champs d'enregistrement du Nom -->
+                    <div class="ligne_champ">
+
+                        <div class="groupe_champ">
+
+                            <label class="etiquette_champ">Nom <span class="obligatoire">*</span></label>
+                            <input type="text" class="champ_texte" id="etudiantNom" placeholder="Entrez le nom">
+
+                        </div>
+
+
+
+                        <!-- Champs d'enregistrement du Prenom -->
+                        <div class="groupe_champ">
+
+                            <label class="etiquette_champ">Prénom <span class="obligatoire">*</span></label>
+                            <input type="text" class="champ_texte" id="etudiantPrenom" placeholder="Entrez le prénom">
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Champs d'enregistrement du classe -->
+                    <div class="sous_titre_formulaire">Informations académiques</div>
+
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="etudiantClasse">
+                            <option>Sélectionnez une classe</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                            <option>L2 Réseaux</option>
+                            <option>L3 Sécurité</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- champ du status de l'etudiant dans l'ecole -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Statut <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="etudiantStatus">
+
+                            <option>Actif</option>
+                            <option>Inactif</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
 
                 </div>
 
+            </div>
 
-                <div class="alert-item">
+        </section>
 
-                    <div class="alert-dot info"><i class="fa-regular fa-clock"></i></div>
-                    <div>15 absences non justifiées aujourd'hui.</div>
 
+
+        <!-- SECTION PROFESSEUR -->
+
+        <section id="professeurs" class="page_section" style="display:none">
+
+            <!-- entete de la page professeur -->
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Gestion des professeurs <i class="fa-solid fa-chalkboard-user"
+                            style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Ajoutez, modifiez, supprimez et gérez les informations des professeurs.
+                    </div>
                 </div>
 
-                <div class="panel-footer"><button class="link-btn">Voir toutes les alertes</button></div>
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter un professeur</button>
 
             </div>
 
 
-        </div>
 
+            <!-- Mini block de la page professeur -->
+            <div class="grille_stats">
 
+                <div class="carte_stat">
 
+                    <div class="icone_carte violet"><i class="fa-solid fa-user-group"></i></div>
 
-        <div class="summary-block">
-            <div class="summary-title">Résumé de l'établissement</div>
-            <div class="summary-row">
-
-                <div class="summary-item">
-
-                    <div class="summary-icon blue"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div><span class="summary-label">Année scolaire</span><span class="summary-value">2025 - 2026</span>
-                    </div>
-
-                </div>
-
-
-                <div class="summary-item">
-
-                    <div class="summary-icon green"><i class="fa-regular fa-calendar-check"></i></div>
-                    <div><span class="summary-label">Date de début</span><span class="summary-value">01/09/2025</span>
-                    </div>
-
-                </div>
-
-
-                <div class="summary-item">
-
-                    <div class="summary-icon orange"><i class="fa-regular fa-calendar"></i></div>
-                    <div><span class="summary-label">Date de fin</span><span class="summary-value">31/07/2026</span>
+                    <div>
+                        <div class="label_carte">Total professeurs</div>
+                        <div class="valeur_carte">58</div>
+                        <div class="legende_carte">Tous les professeurs</div>
                     </div>
 
                 </div>
 
 
 
-                <div class="summary-item">
+                <div class="carte_stat">
 
-                    <div class="summary-icon blue"><i class="fa-solid fa-user"></i></div>
-                    <div><span class="summary-label">Total des utilisateurs</span><span class="summary-value">96</span>
+                    <div class="icone_carte vert"><i class="fa-solid fa-user-check"></i></div>
+
+                    <div>
+                        <div class="label_carte">Professeurs actifs</div>
+                        <div class="valeur_carte">54</div>
+                        <div class="legende_carte">En activité</div>
                     </div>
 
                 </div>
 
 
-                <div class="summary-item">
 
-                    <div class="summary-icon pink"><i class="fa-regular fa-calendar-check"></i></div>
-                    <div><span class="summary-label">Taux de paiement</span><span class="summary-value">95%</span></div>
+                <div class="carte_stat">
+
+                    <div class="icone_carte orange"><i class="fa-solid fa-user-graduate"></i></div>
+
+                    <div>
+                        <div class="label_carte">Nouveaux professeurs</div>
+                        <div class="valeur_carte">6</div>
+                        <div class="legende_carte">Cette année</div>
+                    </div>
 
                 </div>
 
 
-                <div class="summary-item">
 
-                    <div class="summary-icon orange"><i class="fa-solid fa-user-check"></i></div>
-                    <div><span class="summary-label">Taux de présence</span><span class="summary-value">87%</span></div>
+                <div class="carte_stat">
+
+                    <div class="icone_carte rouge"><i class="fa-solid fa-user-xmark"></i></div>
+
+                    <div>
+                        <div class="label_carte">Professeurs inactifs</div>
+                        <div class="valeur_carte">4</div>
+                        <div class="legende_carte">Comptes désactivés</div>
+                    </div>
 
                 </div>
 
 
             </div>
 
-        </div>
+
+            <!-- Barre de recherche en fonction des élément -->
+
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+
+                        <div class="champ_recherche">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un professeur...">
+
+                        </div>
+
+
+                        <select class="select_filtre">
+
+                            <option>Toutes les matières</option>
+                            <option>Mathématiques</option>
+                            <option>Informatique</option>
+                            <option>Français</option>
+
+                        </select>
+
+
+
+                        <select class="select_filtre">
+
+                            <option>Statut</option>
+                            <option>Actif</option>
+                            <option>Inactif</option>
+
+                        </select>
+
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+
+                    </div>
+
+
+                    <!-- Liste des different utilisateur  -->
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>#</th>
+                                    <th>Nom complet</th>
+                                    <th>Matière</th>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Statut</th>
+                                    <th>Date de création</th>
+                                    <th>Actions</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <tr>
+
+                                    <td>1</td>
+
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">KJ</div>
+                                            Kouassi Jean
+                                        </div>
+
+                                    </td>
+
+                                    <td><span class="badge classe">Mathématiques</span></td>
+                                    <td>kouassi.jean</td>
+                                    <td><span class="badge actif">Actif</span></td>
+                                    <td>28/07/2026</td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>2</td>
+
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">YS</div>
+                                            Yao Serge
+                                        </div>
+                                    </td>
+
+                                    <td><span class="badge classe">Informatique</span></td>
+                                    <td>yao.serge</td>
+                                    <td><span class="badge actif">Actif</span></td>
+                                    <td>27/07/2026</td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>3</td>
+
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">CA</div>
+                                            Coulibaly Adama
+                                        </div>
+                                    </td>
+
+                                    <td><span class="badge classe">SVT</span></td>
+                                    <td>coulibaly.adama</td>
+                                    <td><span class="badge inactif">Inactif</span></td>
+                                    <td>24/07/2026</td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 58 professeurs</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                                <button class="btn_page">3</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Formulaire de création d'un prof -->
+                <div class="panneau_formulaire">
+
+
+                    <div class="titre_formulaire">Ajouter / Modifier un professeur</div>
+
+                    <div class="sous_titre_formulaire">Informations du compte</div>
+
+
+                    <!-- champs d'enregistrement du nom -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Nom <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="nomProf" placeholder="Entrez le nom complet">
+
+                    </div>
+
+                    
+                    <!-- champs d'enregistrement du matière -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Matière <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="profMatiere">
+                            <option>Sélectionnez une matière</option>
+                            <option>Mathématiques</option>
+                            <option>Informatique</option>
+                            <option>Français</option>
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- champs d'enregistrement du username -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Nom d'utilisateur <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="profUsername" placeholder="Entrez le nom d'utilisateur">
+
+                    </div>
+
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Mot de passe <span class="obligatoire">*</span></label>
+
+                        <div class="zone_mdp">
+
+                            <input type="password" class="champ_texte"  id="profPassword" placeholder="Entrez le mot de passe">
+                            <i class="fa-regular fa-eye-slash"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- champs d'enregistrement du staus -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Statut</label>
+
+                        <select class="champ_select" id="profStatus">
+                            <option>Actif</option>
+                            <option>Inactif</option>
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SECTION MATIERES -->
+
+        <section id="matieres" class="page_section" style="display:none">
+
+            <!-- Entete de la page matière -->
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Gestion des matières <i class="fa-solid fa-book" style="color:#3B6BF5;"></i>
+                    </div>
+                    <div class="sous_titre_page">Le professeur est assigné automatiquement depuis la fiche professeur.
+                    </div>
+                </div>
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter une matière</button>
+
+            </div>
+
+
+
+            <!-- Mini block de la page -->
+            <div class="grille_stats">
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte violet"><i class="fa-solid fa-book"></i></div>
+
+                    <div>
+                        <div class="label_carte">Total matières</div>
+                        <div class="valeur_carte">16</div>
+                        <div class="legende_carte">Toutes matières</div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte vert"><i class="fa-solid fa-user-check"></i></div>
+
+                    <div>
+                        <div class="label_carte">Assignées</div>
+                        <div class="valeur_carte">13</div>
+                        <div class="legende_carte">Avec un professeur</div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte orange"><i class="fa-solid fa-user-slash"></i></div>
+
+                    <div>
+                        <div class="label_carte">Non assignées</div>
+                        <div class="valeur_carte">3</div>
+                        <div class="legende_carte">Sans professeur</div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- liste des matière enregistré et le prof principal -->
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom de la matière</th>
+                                    <th>Professeur assigné</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>1</td>
+
+                                    <td>Français</td>
+
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">TF</div>
+                                            Traoré Fatou
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>Mathématiques</td>
+
+                                    <td>
+                                        <div class="cellule_personne">
+                                            <div class="avatar_personne">KJ</div>
+                                            Kouassi Jean
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>3</td>
+                                    <td>Anglais</td>
+
+                                    <td><span class="badge attention">Non assigné</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 16 matières</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- formulaires de création de la matière -->
+
+                <div class="panneau_formulaire">
+
+                    <div class="titre_formulaire">Ajouter une matière</div>
+
+                    <div class="sous_titre_formulaire">Informations</div>
+
+
+                    <!-- champ du nom de la matière -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Nom de la matière <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="nomMatiere" placeholder="Ex: Philosophie">
+
+                    </div>
+
+
+                    <!-- champ de l'id du prof lier a la matière -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Id professeur</label>
+                        <input type="text" class="champ_texte" id="idProfesseur" value="Non assigné" disabled>
+
+                    </div>
+
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- SECTION NOTE -->
+
+        <section id="notes" class="page_section" style="display:none">
+
+
+
+            <!-- Entete de la page des note -->
+            <div class="entete_page">
+
+
+                <div>
+                    <div class="titre_page">Gestion des notes <i class="fa-solid fa-file-lines"
+                            style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Ajoutez, modifiez et consultez les notes des étudiants.</div>
+                </div>
+
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter une note</button>
+
+            </div>
+
+
+
+            <!-- Mini block de la page des note -->
+            <div class="grille_stats">
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte violet"><i class="fa-solid fa-file-lines"></i></div>
+
+                    <div>
+                        <div class="label_carte">Total des notes</div>
+                        <div class="valeur_carte">12 240</div>
+                        <div class="legende_carte">Toutes matières confondues</div>
+                    </div>
+
+                </div>
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte vert"><i class="fa-solid fa-chart-line"></i></div>
+
+                    <div>
+                        <div class="label_carte">Moyenne générale</div>
+                        <div class="valeur_carte">13.4/20</div>
+                        <div class="legende_carte">Sur l'année en cours</div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte orange"><i class="fa-solid fa-trophy"></i></div>
+
+                    <div>
+                        
+                        <div class="label_carte">Meilleure note</div>
+                        <div class="valeur_carte">20/20</div>
+                        <div class="legende_carte">Yao Serge - Informatique</div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte rouge"><i class="fa-solid fa-triangle-exclamation"></i></div>
+
+                    <div>
+                        <div class="label_carte">Notes en dessous de 10</div>
+                        <div class="valeur_carte">1 380</div>
+                        <div class="legende_carte">A surveiller</div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Bare de recherche dans la liste des note enregistrer -->
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+                        <div class="champ_recherche">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un étudiant...">
+                        </div>
+
+                        <select class="select_filtre">
+                            <option>Toutes les classes</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                        </select>
+
+                        <select class="select_filtre">
+                            <option>Toutes les matières</option>
+                            <option>1. Français</option>
+                            <option>2. Mathématiques</option>
+                            <option>3. Informatique</option>
+                        </select>
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+                    </div>
+
+
+
+                    <!-- Liste des notes enregistrer -->
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id étudiant</th>
+                                    <th>Étudiant</th>
+                                    <th>Classe</th>
+                                    <th>Id matière</th>
+                                    <th>Matière</th>
+                                    <th>Note</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>2025L2001</td>
+                                    <td>Kouassi Jean</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>1</td>
+                                    <td>Français</td>
+                                    <td><span class="badge actif">15/20</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                
+
+                                <tr>
+                                    <td>2025L2003</td>
+                                    <td>Yao Serge</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>3</td>
+                                    <td>Informatique</td>
+                                    <td><span class="badge actif">20/20</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+                                    <td>2025L2004</td>
+                                    <td>Koné Aminata</td>
+                                    <td><span class="badge classe">L2 Réseaux</span></td>
+                                    <td>2</td>
+                                    <td>Mathématiques</td>
+                                    <td><span class="badge inactif">08/20</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 12 240 notes</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+                <!-- Formulaire de l'enregistrement de la note -->
+                <div class="panneau_formulaire">
+
+                    <div class="titre_formulaire">Ajouter / Modifier une note</div>
+
+                    <div class="sous_titre_formulaire">Sélection</div>
+
+
+                    <!-- champ du choi x de la classe pour otenir les etudiant -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="classe_note" onchange="filtrerEtudiants('classe_note', 'etudiant_note')">
+
+                            <option value="">Sélectionnez une classe</option>
+                            <option value="L1-Info">L1 Informatique</option>
+                            <option value="L2-Info">L2 Informatique</option>
+                            <option value="L2-Res">L2 Réseaux</option>
+                            <option value="L3-Sec">L3 Sécurité</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- hamps du choix de l'etudiant -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="etudiant_note">
+                            <option value="">Sélectionnez d'abord une classe</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- champ du choix de la matier pour enregistrer la note -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Matière <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="mtiereNote">
+
+                            <option value="">Sélectionnez une matière</option>
+                            <option value="1">1. Français</option>
+                            <option value="2">2. Mathématiques</option>
+                            <option value="3">3. Informatique</option>
+                            <option value="4">4. Anglais</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- champs pour entrer la note -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Note <span class="obligatoire">*</span></label>
+                        <input type="number" class="champ_texte" placeholder="Ex: 15" min="0" max="20" step="0.25">
+
+                    </div>
+
+
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SECTION ABSENCES -->
+
+        <section id="absences" class="page_section" style="display:none">
+
+
+            <!-- Entete de la page des absence -->
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Gestion des absences <i class="fa-regular fa-clock"
+                            style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Ajoutez, modifiez et consultez les absences des étudiants.</div>
+                </div>
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter une absence</button>
+
+            </div>
+
+
+
+            <!-- Mini block de la page des absences -->
+            <div class="grille_stats">
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte violet"><i class="fa-regular fa-clock"></i></div>
+
+                    <div>
+                        <div class="label_carte">Total absences</div>
+                        <div class="valeur_carte">12 240</div>
+                        <div class="legende_carte">Depuis le début de l'année</div>
+                    </div>
+
+                </div>
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte vert"><i class="fa-solid fa-check"></i></div>
+
+                    <div>
+                        <div class="label_carte">Justifiées</div>
+                        <div class="valeur_carte">9 860</div>
+                        <div class="legende_carte">Absences justifiées</div>
+                    </div>
+
+                </div>
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte rouge"><i class="fa-solid fa-xmark"></i></div>
+
+                    <div>
+                        <div class="label_carte">Non justifiées</div>
+                        <div class="valeur_carte">2 380</div>
+                        <div class="legende_carte">A traiter</div>
+                    </div>
+
+                </div>
+
+
+                <div class="carte_stat">
+
+                    <div class="icone_carte orange"><i class="fa-solid fa-calendar-day"></i></div>
+
+                    <div>
+                        <div class="label_carte">Absences aujourd'hui</div>
+                        <div class="valeur_carte">47</div>
+                        <div class="legende_carte">Enregistrées ce jour</div>
+                    </div>
+
+                </div>
+                
+
+            </div>
+
+
+            <!-- Barre de recherche de la liste -->
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+
+                        <div class="champ_recherche">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un étudiant...">
+                        </div>
+
+
+                        <select class="select_filtre">
+                            <option>Toutes les classes</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                        </select>
+
+
+                        <select class="select_filtre">
+                            <option>Statut</option>
+                            <option>Justifié</option>
+                            <option>Non justifié</option>
+                        </select>
+
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+
+                    </div>
+
+
+
+                    <!-- listre de toute les absence enregistrer -->
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id étudiant</th>
+                                    <th>Étudiant</th>
+                                    <th>Classe</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+
+
+                            <tbody>
+
+                                <tr>
+                                    <td>2025L2001</td>
+                                    <td>Kouassi Jean</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>28/07/2026</td>
+                                    <td><span class="badge non_justifie">Non justifié</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>2025L2002</td>
+                                    <td>Traoré Fatou</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>27/07/2026</td>
+                                    <td><span class="badge justifie">Justifié</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td>2025L2005</td>
+                                    <td>N'Guessan Koffi</td>
+                                    <td><span class="badge classe">L3 Sécurité</span></td>
+                                    <td>26/07/2026</td>
+                                    <td><span class="badge non_justifie">Non justifié</span></td>
+
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 12 240 absences</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Formulaire de l'enregistrement des absences -->
+                <div class="panneau_formulaire">
+
+
+                    <div class="titre_formulaire">Ajouter une absence</div>
+
+                    <div class="sous_titre_formulaire">Sélection</div>
+
+
+                    <!-- Choix des classe pour obtenir les etudiant -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="classe_absence"  onchange="filtrerEtudiants('classe_absence', 'etudiant_absence')">
+                            
+                            <option value="">Sélectionnez une classe</option>
+                            <option value="L1-Info">L1 Informatique</option>
+                            <option value="L2-Info">L2 Informatique</option>
+                            <option value="L2-Res">L2 Réseaux</option>
+                            <option value="L3-Sec">L3 Sécurité</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Liste des etudiants en fonction de la classe -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
+
+                        <select class="champ_select" id="etudiant_absence">
+                            <option value="">Sélectionnez d'abord une classe</option>
+                        </select>
+
+                    </div>
+
+
+                    <!-- Choix du status justifié/non justifié -->
+                    <div class="sous_titre_formulaire">Statut</div>
+
+                    <div class="groupe_champ">
+
+                        <div class="bascule_statut">
+
+
+                            <!-- bouton justifié -->
+                            <button type="button" class="btn_statut justifie" id="btn_justifie"  onclick="changerStatut('justifie')"> 
+                                 <i class="fa-solid fa-check"></i> Justifié
+                            </button>
+
+
+                            <!-- bouton non justifier -->
+                            <button type="button" class="btn_statut non_justifie" id="btn_non_justifie"
+                                onclick="changerStatut('non_justifie')">
+                                <i class="fa-solid fa-xmark"></i> Non justifié
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
 
     </main>
+
+    <script src="../dossierJS/protectionPage.js"></script>
+    <script src="../dossierJS/admin.js"></script>
 
 </body>
 
