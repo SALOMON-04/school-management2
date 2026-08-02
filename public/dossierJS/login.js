@@ -49,9 +49,9 @@ formulaire.addEventListener("submit", async function (evenement) {
         if (resultat.role === "admin") {
             window.location.href = "../dossierhtml/admin.html";
         } else if (resultat.role === "professeur") {
-            window.location.href = "../dossierhtml/professeur.html";
+            window.location.href = "../dossierhtml/teachers.html";
         } else if (resultat.role === "etudiant") {
-            window.location.href = "../dossierhtml/etudiant.html";
+            window.location.href = "../dossierhtml/students.html";
         }
 
     } catch (erreur) {

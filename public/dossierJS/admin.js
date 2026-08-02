@@ -1,9 +1,4 @@
-protegePages("admin");
-
-
-
-
-
+protegePages('admin');
 
 
 
@@ -88,3 +83,37 @@ function changerStatut(statut) {
 }
 
 
+
+
+// branchement des evenements du menu (remplace les onclick dans le html)
+
+document.querySelectorAll('.nav-item[data-section]').forEach(function (item) {
+    item.addEventListener('click', function () {
+        afficherSection(item);
+    });
+});
+
+
+// branchement du select classe -> liste des etudiants (page notes)
+
+document.getElementById('classe_note').addEventListener('change', function () {
+    filtrerEtudiants('classe_note', 'etudiant_note');
+});
+
+
+// branchement du select classe -> liste des etudiants (page absences)
+
+document.getElementById('classe_absence').addEventListener('change', function () {
+    filtrerEtudiants('classe_absence', 'etudiant_absence');
+});
+
+
+// branchement des boutons justifie / non justifie (page absences)
+
+document.getElementById('btn_justifie').addEventListener('click', function () {
+    changerStatut('justifie');
+});
+
+document.getElementById('btn_non_justifie').addEventListener('click', function () {
+    changerStatut('non_justifie');
+});

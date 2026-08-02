@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Espace professeur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../dossierCss/teachers.css">
+
+</head>
+
+<body>
+
+    <aside class="menu">
+
+        <div class="logo">
+
+            <a href="../dossierhtml/index.html">
+
+                <img src="../image/ACADEMIC MANAGER.png" alt="logo ACADEMIC MANAGER">
+                <div class="logo-text">AKADEMC<br>MANAGER</div>
+
+            </a>
+
+        </div>
+
+
+        <ul class="nav-list">
+
+            <li class="nav-item active" data-section="accueil"><span class="nav-icon"><i
+                        class="fa-solid fa-house"></i></span> Tableau de bord
+            </li>
+            <li class="nav-item" data-section="notes"><span class="nav-icon"><i
+                        class="fa-solid fa-file-lines"></i></span> Notes</li>
+            <li class="nav-item" data-section="absences"><span class="nav-icon"><i
+                        class="fa-regular fa-clock"></i></span> Absences</li>
+            <li class="nav-item" data-section="mon_profil"><span class="nav-icon"><i
+                        class="fa-solid fa-user"></i></span> Mon profil</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+
+        </ul>
+
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
+
+    </aside>
+
+
+
+
+
+    <main class="main">
+
+
+
+        <div class="entete">
+
+            <select class="select_date">
+                <option>Année scolaire 2025-2026</option>
+            </select>
+
+            <div class="compte">
+                <div class="admin-text">Konan A.<span class="role">Professeur</span></div>
+                <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+
+        </div>
+
+
+
+        <!-- section accueil -->
+
+        <section id="accueil" class="page_section">
+
+
+            <div class="bienvenue">
+
+                <div>
+                    <div class="welcome-title">Bienvenue, Konan A. 👋</div>
+                    <div class="welcome-sub">Matière : Mathématiques</div>
+                </div>
+
+            </div>
+
+
+            <div class="grille_stats">
+
+                <div class="carte_stat">
+                    <div class="icone_carte violet"><i class="fa-solid fa-user-group"></i></div>
+                    <div>
+                        <div class="label_carte">Étudiants notés</div>
+                        <div class="valeur_carte">38</div>
+                        <div class="legende_carte">Sur l'année</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte vert"><i class="fa-solid fa-chart-line"></i></div>
+                    <div>
+                        <div class="label_carte">Moyenne de la classe</div>
+                        <div class="valeur_carte">13.1/20</div>
+                        <div class="legende_carte">Mathématiques</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte orange"><i class="fa-regular fa-clock"></i></div>
+                    <div>
+                        <div class="label_carte">Absences signalées</div>
+                        <div class="valeur_carte">9</div>
+                        <div class="legende_carte">Depuis le début de l'année</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte rouge"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div>
+                        <div class="label_carte">Non justifiées</div>
+                        <div class="valeur_carte">2</div>
+                        <div class="legende_carte">A traiter</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="content-grid">
+
+
+                <div class="panel">
+
+                    <div class="panel-title">Dernières notes ajoutées</div>
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Étudiant</th>
+                                <th>Classe</th>
+                                <th>Note</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Kouassi Jean</td>
+                                <td>L2 Informatique</td>
+                                <td>15/20</td>
+                            </tr>
+
+                            <tr>
+                                <td>Koné Aminata</td>
+                                <td>L2 Réseaux</td>
+                                <td>08/20</td>
+                            </tr>
+
+                            <tr>
+                                <td>Yao Serge</td>
+                                <td>L2 Informatique</td>
+                                <td>17/20</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-title">Dernières absences</div>
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#E0433D;"><i class="fa-solid fa-xmark"></i></div>
+
+                        <div>
+                            <div class="activity-text">N'Guessan Koffi - Non justifiée</div>
+                            <div class="activity-time">28/07/2026</div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#1DAA4A;"><i class="fa-solid fa-check"></i></div>
+
+                        <div>
+                            <div class="activity-text">Traoré Fatou - Justifiée</div>
+                            <div class="activity-time">27/07/2026</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section notes -->
+
+        <section id="notes" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Notes <i class="fa-solid fa-file-lines" style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Matière : Mathématiques</div>
+                </div>
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter une note</button>
+
+            </div>
+
+
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+                        <div class="champ_recherche">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un étudiant...">
+                        </div>
+
+                        <select class="select_filtre">
+                            <option>Toutes les classes</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                            <option>L2 Réseaux</option>
+                            <option>L3 Sécurité</option>
+                        </select>
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+                    </div>
+
+
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id étudiant</th>
+                                    <th>Étudiant</th>
+                                    <th>Classe</th>
+                                    <th>Note</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>2025L2001</td>
+                                    <td>Kouassi Jean</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td><span class="badge actif">15/20</span></td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2025L2004</td>
+                                    <td>Koné Aminata</td>
+                                    <td><span class="badge classe">L2 Réseaux</span></td>
+                                    <td><span class="badge inactif">08/20</span></td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2025L2003</td>
+                                    <td>Yao Serge</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td><span class="badge actif">17/20</span></td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 3 sur 38 notes</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panneau_formulaire">
+
+                    <div class="titre_formulaire">Ajouter / Modifier une note</div>
+
+                    <div class="sous_titre_formulaire">Sélection</div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
+                        <select class="champ_select" id="classe_note">
+                            <option value="">Sélectionnez une classe</option>
+                            <option value="L1-Info">L1 Informatique</option>
+                            <option value="L2-Info">L2 Informatique</option>
+                            <option value="L2-Res">L2 Réseaux</option>
+                            <option value="L3-Sec">L3 Sécurité</option>
+                        </select>
+                    </div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
+                        <select class="champ_select" id="etudiant_note">
+                            <option value="">Sélectionnez d'abord une classe</option>
+                        </select>
+                    </div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Matière</label>
+                        <input type="text" class="champ_texte" value="Mathématiques" disabled>
+                    </div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Note <span class="obligatoire">*</span></label>
+                        <input type="number" class="champ_texte" placeholder="Ex: 15" min="0" max="20" step="0.25">
+                    </div>
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section absences -->
+
+        <section id="absences" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Absences <i class="fa-regular fa-clock" style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Enregistre et consulte les absences de tes élèves.</div>
+                </div>
+
+                <button class="btn_ajout"><i class="fa-solid fa-plus"></i> Ajouter une absence</button>
+
+            </div>
+
+
+            <div class="zone_gestion">
+
+                <div>
+
+                    <div class="barre_filtres">
+
+                        <div class="champ_recherche">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Rechercher un étudiant...">
+                        </div>
+
+                        <select class="select_filtre">
+                            <option>Toutes les classes</option>
+                            <option>L1 Informatique</option>
+                            <option>L2 Informatique</option>
+                            <option>L2 Réseaux</option>
+                            <option>L3 Sécurité</option>
+                        </select>
+
+                        <select class="select_filtre">
+                            <option>Statut</option>
+                            <option>Justifié</option>
+                            <option>Non justifié</option>
+                        </select>
+
+                        <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
+                            Réinitialiser</button>
+
+                    </div>
+
+
+                    <div class="panneau_tableau">
+
+                        <table class="tableau_gestion">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Id étudiant</th>
+                                    <th>Étudiant</th>
+                                    <th>Classe</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>2025L2005</td>
+                                    <td>N'Guessan Koffi</td>
+                                    <td><span class="badge classe">L3 Sécurité</span></td>
+                                    <td>28/07/2026</td>
+                                    <td><span class="badge non_justifie">Non justifié</span></td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2025L2002</td>
+                                    <td>Traoré Fatou</td>
+                                    <td><span class="badge classe">L2 Informatique</span></td>
+                                    <td>27/07/2026</td>
+                                    <td><span class="badge justifie">Justifié</span></td>
+                                    <td>
+                                        <div class="actions_ligne">
+                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="btn_action supprimer"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="pied_tableau">
+
+                            <div class="compteur_tableau">Affichage de 1 à 2 sur 9 absences</div>
+
+                            <div class="pagination">
+                                <button class="btn_page active">1</button>
+                                <button class="btn_page">2</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panneau_formulaire">
+
+                    <div class="titre_formulaire">Ajouter une absence</div>
+
+                    <div class="sous_titre_formulaire">Sélection</div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
+                        <select class="champ_select" id="classe_absence">
+                            <option value="">Sélectionnez une classe</option>
+                            <option value="L1-Info">L1 Informatique</option>
+                            <option value="L2-Info">L2 Informatique</option>
+                            <option value="L2-Res">L2 Réseaux</option>
+                            <option value="L3-Sec">L3 Sécurité</option>
+                        </select>
+                    </div>
+
+                    <div class="groupe_champ">
+                        <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
+                        <select class="champ_select" id="etudiant_absence">
+                            <option value="">Sélectionnez d'abord une classe</option>
+                        </select>
+                    </div>
+
+                    <div class="sous_titre_formulaire">Statut</div>
+
+                    <div class="groupe_champ">
+                        <div class="bascule_statut">
+                            <button type="button" class="btn_statut justifie" id="btn_justifie">
+                                <i class="fa-solid fa-check"></i> Justifié
+                            </button>
+                            <button type="button" class="btn_statut non_justifie" id="btn_non_justifie">
+                                <i class="fa-solid fa-xmark"></i> Non justifié
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pied_formulaire">
+                        <button class="btn_annuler">Annuler</button>
+                        <button class="btn_enregistrer">Enregistrer</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section mon profil -->
+
+        <section id="mon_profil" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Mon profil <i class="fa-solid fa-user" style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Tes informations personnelles.</div>
+                </div>
+
+            </div>
+
+
+            <div class="carte_profil">
+
+                <div class="avatar_grand">KA</div>
+
+                <div class="nom_profil">Konan A.</div>
+                <div class="sous_texte_profil">Professeur - Mathématiques</div>
+
+                <div class="liste_infos">
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Nom</span>
+                        <span class="valeur_info">Konan A.</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Matière enseignée</span>
+                        <span class="valeur_info">Mathématiques</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Nom d'utilisateur</span>
+                        <span class="valeur_info">konan.prof</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="../dossierJS/protectionPage.js"></script>
+    <script src="../dossierJS/teachers.js"> </script>
+
+</body>
+
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Espace étudiant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../dossierCss/students.css">
+
+</head>
+
+<body>
+
+    <aside class="menu">
+
+        <div class="logo">
+
+            <a href="../dossierhtml/index.html">
+
+                <img src="../image/ACADEMIC MANAGER.png" alt="logo ACADEMIC MANAGER">
+                <div class="logo-text">AKADEMC<br>MANAGER</div>
+
+            </a>
+
+        </div>
+
+
+        <ul class="nav-list">
+
+            <li class="nav-item active" data-section="accueil"><span class="nav-icon"><i
+                        class="fa-solid fa-house"></i></span> Tableau de bord
+            </li>
+            <li class="nav-item" data-section="mes_notes"><span class="nav-icon"><i
+                        class="fa-solid fa-file-lines"></i></span> Mes notes</li>
+            <li class="nav-item" data-section="mes_absences"><span class="nav-icon"><i
+                        class="fa-regular fa-clock"></i></span> Mes absences</li>
+            <li class="nav-item" data-section="mon_profil"><span class="nav-icon"><i
+                        class="fa-solid fa-user"></i></span> Mon profil</li>
+            <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
+
+        </ul>
+
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
+
+    </aside>
+
+
+
+
+
+    <main class="main">
+
+
+
+        <div class="entete">
+
+            <select class="select_date">
+                <option>Année scolaire 2025-2026</option>
+            </select>
+
+            <div class="compte">
+                <div class="admin-text">Kouassi Jean<span class="role">Étudiant</span></div>
+                <div class="admin-avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+
+        </div>
+
+
+
+        <!-- section accueil -->
+
+        <section id="accueil" class="page_section">
+
+
+            <div class="bienvenue">
+
+                <div>
+                    <div class="welcome-title">Bienvenue, Jean 👋</div>
+                    <div class="welcome-sub">Voici un aperçu de ta scolarité</div>
+                </div>
+
+            </div>
+
+
+            <div class="grille_stats">
+
+                <div class="carte_stat">
+                    <div class="icone_carte violet"><i class="fa-solid fa-chart-line"></i></div>
+                    <div>
+                        <div class="label_carte">Moyenne générale</div>
+                        <div class="valeur_carte">15.2/20</div>
+                        <div class="legende_carte">Toutes matières</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte vert"><i class="fa-solid fa-book"></i></div>
+                    <div>
+                        <div class="label_carte">Matières</div>
+                        <div class="valeur_carte">6</div>
+                        <div class="legende_carte">Suivies cette année</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte orange"><i class="fa-regular fa-clock"></i></div>
+                    <div>
+                        <div class="label_carte">Absences</div>
+                        <div class="valeur_carte">4</div>
+                        <div class="legende_carte">Depuis le début de l'année</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte rouge"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div>
+                        <div class="label_carte">Non justifiées</div>
+                        <div class="valeur_carte">1</div>
+                        <div class="legende_carte">A régulariser</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="content-grid">
+
+
+                <div class="panel">
+
+                    <div class="panel-title">Mes dernières notes</div>
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Matière</th>
+                                <th>Note</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Français</td>
+                                <td>15/20</td>
+                            </tr>
+
+                            <tr>
+                                <td>Informatique</td>
+                                <td>18/20</td>
+                            </tr>
+
+                            <tr>
+                                <td>Mathématiques</td>
+                                <td>13/20</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-title">Mes dernières absences</div>
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#E0433D;"><i class="fa-solid fa-xmark"></i></div>
+
+                        <div>
+                            <div class="activity-text">Non justifiée</div>
+                            <div class="activity-time">28/07/2026</div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-dot" style="background:#1DAA4A;"><i class="fa-solid fa-check"></i></div>
+
+                        <div>
+                            <div class="activity-text">Justifiée</div>
+                            <div class="activity-time">15/07/2026</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section mes notes -->
+
+        <section id="mes_notes" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Mes notes <i class="fa-solid fa-file-lines" style="color:#3B6BF5;"></i>
+                    </div>
+                    <div class="sous_titre_page">Consulte tes notes par matière.</div>
+                </div>
+
+            </div>
+
+
+            <div class="grille_stats">
+
+                <div class="carte_stat">
+                    <div class="icone_carte violet"><i class="fa-solid fa-chart-line"></i></div>
+                    <div>
+                        <div class="label_carte">Moyenne générale</div>
+                        <div class="valeur_carte">15.2/20</div>
+                        <div class="legende_carte">Toutes matières</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte vert"><i class="fa-solid fa-trophy"></i></div>
+                    <div>
+                        <div class="label_carte">Meilleure note</div>
+                        <div class="valeur_carte">18/20</div>
+                        <div class="legende_carte">Informatique</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte orange"><i class="fa-solid fa-book"></i></div>
+                    <div>
+                        <div class="label_carte">Matières notées</div>
+                        <div class="valeur_carte">6</div>
+                        <div class="legende_carte">Sur l'année</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panneau_tableau">
+
+                <table class="tableau_gestion">
+
+                    <thead>
+
+                        <tr>
+                            <th>Id matière</th>
+                            <th>Matière</th>
+                            <th>Note</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Français</td>
+                            <td><span class="badge actif">15/20</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Mathématiques</td>
+                            <td><span class="badge actif">13/20</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Informatique</td>
+                            <td><span class="badge actif">18/20</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Anglais</td>
+                            <td><span class="badge inactif">08/20</span></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section mes absences -->
+
+        <section id="mes_absences" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Mes absences <i class="fa-regular fa-clock" style="color:#3B6BF5;"></i>
+                    </div>
+                    <div class="sous_titre_page">Consulte l'historique de tes absences.</div>
+                </div>
+
+            </div>
+
+
+            <div class="grille_stats">
+
+                <div class="carte_stat">
+                    <div class="icone_carte violet"><i class="fa-regular fa-clock"></i></div>
+                    <div>
+                        <div class="label_carte">Total absences</div>
+                        <div class="valeur_carte">4</div>
+                        <div class="legende_carte">Depuis le début de l'année</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte vert"><i class="fa-solid fa-check"></i></div>
+                    <div>
+                        <div class="label_carte">Justifiées</div>
+                        <div class="valeur_carte">3</div>
+                        <div class="legende_carte">Absences justifiées</div>
+                    </div>
+                </div>
+
+                <div class="carte_stat">
+                    <div class="icone_carte rouge"><i class="fa-solid fa-xmark"></i></div>
+                    <div>
+                        <div class="label_carte">Non justifiées</div>
+                        <div class="valeur_carte">1</div>
+                        <div class="legende_carte">A régulariser</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panneau_tableau">
+
+                <table class="tableau_gestion">
+
+                    <thead>
+
+                        <tr>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>28/07/2026</td>
+                            <td><span class="badge non_justifie">Non justifié</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>15/07/2026</td>
+                            <td><span class="badge justifie">Justifié</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>02/07/2026</td>
+                            <td><span class="badge justifie">Justifié</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>20/06/2026</td>
+                            <td><span class="badge justifie">Justifié</span></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- section mon profil -->
+
+        <section id="mon_profil" class="page_section" style="display:none">
+
+
+            <div class="entete_page">
+
+                <div>
+                    <div class="titre_page">Mon profil <i class="fa-solid fa-user" style="color:#3B6BF5;"></i></div>
+                    <div class="sous_titre_page">Tes informations personnelles.</div>
+                </div>
+
+            </div>
+
+
+            <div class="carte_profil">
+
+                <div class="avatar_grand">KJ</div>
+
+                <div class="nom_profil">Kouassi Jean</div>
+                <div class="sous_texte_profil">Étudiant - L2 Informatique</div>
+
+                <div class="liste_infos">
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Matricule</span>
+                        <span class="valeur_info">2025L2001</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Nom</span>
+                        <span class="valeur_info">Kouassi</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Prénom</span>
+                        <span class="valeur_info">Jean</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Âge</span>
+                        <span class="valeur_info">21 ans</span>
+                    </div>
+
+                    <div class="ligne_info">
+                        <span class="cle_info">Classe</span>
+                        <span class="valeur_info">L2 Informatique</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../dossierJS/protectionPage.js"></script>
+    <script src="../dossierJS/students.js"></script>
+
+</body>
+
+</html>

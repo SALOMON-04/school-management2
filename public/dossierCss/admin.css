@@ -25,15 +25,16 @@ body {
     padding: 24px 0;
 }
 
-.logo {
+.logo a {
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
     gap: 5%;
 }
 
-.logo img {
+.logo a img {
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -41,10 +42,11 @@ body {
 
 
 
-.logo-text {
+.logo-text  {
     font-size: 15px;
     font-weight: 700;
     line-height: 1.2;
+    color: white;
 }
 
 .nav-list {

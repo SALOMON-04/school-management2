@@ -4,8 +4,7 @@ const protegePages = (utilisateur) => {
     const role = localStorage.getItem("role");
 
     if(!token || role !== utilisateur){
-        window.location.href = "../public/dossierhtml/index.html"
+        window.location.href = "../dossierhtml/index.html"
     }
 };
 
-export default protegePages ;

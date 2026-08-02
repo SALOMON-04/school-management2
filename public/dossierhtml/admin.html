@@ -14,40 +14,47 @@
     <aside class="menu">
 
         <div class="logo">
-            <img src="../image/ACADEMIC MANAGER.png" alt="logo ACADEMIC MANAGER">
-            <div class="logo-text">AKADEMC<br>MANAGER</div>
+
+            <a href="../dossierhtml/index.html">
+
+                <img src="../image/ACADEMIC MANAGER.png" alt="logo ACADEMIC MANAGER">
+                <div class="logo-text">AKADEMC<br>MANAGER</div>
+
+            </a>
+
         </div>
 
         <ul class="nav-list">
 
-            <li class="nav-item active" data-section="tableau_bord" onclick="afficherSection(this)"><span
-                    class="nav-icon"><i class="fa-solid fa-house"></i></span> Tableau de bord
+            <li class="nav-item active" data-section="tableau_bord"><span class="nav-icon"><i
+                        class="fa-solid fa-house"></i></span> Tableau de bord
             </li>
 
-            <li class="nav-item" data-section="utilisateurs" onclick="afficherSection(this)"><span class="nav-icon"><i
+            <li class="nav-item" data-section="utilisateurs"><span class="nav-icon"><i
                         class="fa-solid fa-users"></i></span> Utilisateurs</li>
 
-            <li class="nav-item" data-section="etudiants" onclick="afficherSection(this)"><span class="nav-icon"><i
+            <li class="nav-item" data-section="etudiants"><span class="nav-icon"><i
                         class="fa-solid fa-user-graduate"></i></span> Etudiants</li>
 
-            <li class="nav-item" data-section="professeurs" onclick="afficherSection(this)"><span class="nav-icon"><i
+            <li class="nav-item" data-section="professeurs"><span class="nav-icon"><i
                         class="fa-solid fa-chalkboard-user"></i></span> Professeur
             </li>
 
-            <li class="nav-item" data-section="matieres" onclick="afficherSection(this)"><span class="nav-icon"><i
-                        class="fa-solid fa-book-open" style="color: rgb(255, 255, 255);"></i></span>matières</li>
+            <li class="nav-item" data-section="matieres"><span class="nav-icon"><i class="fa-solid fa-book-open"
+                        style="color: rgb(255, 255, 255);"></i></span>matières</li>
 
-            <li class="nav-item" data-section="notes" onclick="afficherSection(this)"><span class="nav-icon"><i
+            <li class="nav-item" data-section="notes"><span class="nav-icon"><i
                         class="fa-solid fa-file-lines"></i></span> Notes</li>
 
-            <li class="nav-item" data-section="absences" onclick="afficherSection(this)"><span class="nav-icon"><i
+            <li class="nav-item" data-section="absences"><span class="nav-icon"><i
                         class="fa-regular fa-clock"></i></span> Absences</li>
 
             <li class="nav-item"><span class="nav-icon"><i class="fa-solid fa-gear"></i></span> Paramètres</li>
 
         </ul>
 
-        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion</div>
+        <div class="logout"><span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Déconnexion
+        </div>
 
 
     </aside>
@@ -592,7 +599,7 @@
                             <option>Inactif</option>
 
                         </select>
-                        
+
 
                         <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
                             Réinitialiser</button>
@@ -722,7 +729,7 @@
 
                     <div class="groupe_champ">
 
-                        <label class="etiquette_champ" >Nom complet <span class="obligatoire">*</span></label>
+                        <label class="etiquette_champ">Nom complet <span class="obligatoire">*</span></label>
                         <input type="text" class="champ_texte" id="nomUser" placeholder="Entrez le nom complet">
 
                     </div>
@@ -732,8 +739,9 @@
 
                     <div class="groupe_champ">
 
-                        <label class="etiquette_champ" >Nom d'utilisateur <span class="obligatoire">*</span></label>
-                        <input type="text" class="champ_texte" id="usernameUser" placeholder="Entrez le nom d'utilisateur">
+                        <label class="etiquette_champ">Nom d'utilisateur <span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="usernameUser"
+                            placeholder="Entrez le nom d'utilisateur">
 
                     </div>
 
@@ -766,8 +774,9 @@
                         <label class="etiquette_champ">Mot de passe</label>
 
                         <div class="zone_mdp">
-                            
-                            <input type="password" class="champ_texte"  id="passwordUser" placeholder="Laisser vide pour ne pas changer">
+
+                            <input type="password" class="champ_texte" id="passwordUser"
+                                placeholder="Laisser vide pour ne pas changer">
                             <i class="fa-regular fa-eye-slash"></i>
 
                         </div>
@@ -868,7 +877,7 @@
                         <div class="legende_carte">Comptes actifs</div>
 
                     </div>
-                    
+
                 </div>
 
 
@@ -1057,7 +1066,7 @@
                     <div class="sous_titre_formulaire">Informations personnelles</div>
 
 
-                     <!-- Champs d'enregistrement du matricule -->
+                    <!-- Champs d'enregistrement du matricule -->
                     <div class="groupe_champ">
 
                         <label class="etiquette_champ">Matricule <span class="obligatoire">*</span></label>
@@ -1418,7 +1427,7 @@
 
                     </div>
 
-                    
+
                     <!-- champs d'enregistrement du matière -->
                     <div class="groupe_champ">
 
@@ -1439,7 +1448,8 @@
                     <div class="groupe_champ">
 
                         <label class="etiquette_champ">Nom d'utilisateur <span class="obligatoire">*</span></label>
-                        <input type="text" class="champ_texte" id="profUsername" placeholder="Entrez le nom d'utilisateur">
+                        <input type="text" class="champ_texte" id="profUsername"
+                            placeholder="Entrez le nom d'utilisateur">
 
                     </div>
 
@@ -1449,7 +1459,8 @@
 
                         <div class="zone_mdp">
 
-                            <input type="password" class="champ_texte"  id="profPassword" placeholder="Entrez le mot de passe">
+                            <input type="password" class="champ_texte" id="profPassword"
+                                placeholder="Entrez le mot de passe">
                             <i class="fa-regular fa-eye-slash"></i>
 
                         </div>
@@ -1774,7 +1785,7 @@
                     <div class="icone_carte orange"><i class="fa-solid fa-trophy"></i></div>
 
                     <div>
-                        
+
                         <div class="label_carte">Meilleure note</div>
                         <div class="valeur_carte">20/20</div>
                         <div class="legende_carte">Yao Serge - Informatique</div>
@@ -1874,7 +1885,7 @@
 
                                 </tr>
 
-                                
+
 
                                 <tr>
                                     <td>2025L2003</td>
@@ -1954,7 +1965,7 @@
 
                         <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
 
-                        <select class="champ_select" id="classe_note" onchange="filtrerEtudiants('classe_note', 'etudiant_note')">
+                        <select class="champ_select" id="classe_note">
 
                             <option value="">Sélectionnez une classe</option>
                             <option value="L1-Info">L1 Informatique</option>
@@ -2095,7 +2106,7 @@
                     </div>
 
                 </div>
-                
+
 
             </div>
 
@@ -2255,8 +2266,8 @@
 
                         <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
 
-                        <select class="champ_select" id="classe_absence"  onchange="filtrerEtudiants('classe_absence', 'etudiant_absence')">
-                            
+                        <select class="champ_select" id="classe_absence">
+
                             <option value="">Sélectionnez une classe</option>
                             <option value="L1-Info">L1 Informatique</option>
                             <option value="L2-Info">L2 Informatique</option>
@@ -2289,14 +2300,13 @@
 
 
                             <!-- bouton justifié -->
-                            <button type="button" class="btn_statut justifie" id="btn_justifie"  onclick="changerStatut('justifie')"> 
-                                 <i class="fa-solid fa-check"></i> Justifié
+                            <button type="button" class="btn_statut justifie" id="btn_justifie">
+                                <i class="fa-solid fa-check"></i> Justifié
                             </button>
 
 
                             <!-- bouton non justifier -->
-                            <button type="button" class="btn_statut non_justifie" id="btn_non_justifie"
-                                onclick="changerStatut('non_justifie')">
+                            <button type="button" class="btn_statut non_justifie" id="btn_non_justifie">
                                 <i class="fa-solid fa-xmark"></i> Non justifié
                             </button>
 
