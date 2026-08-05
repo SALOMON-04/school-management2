@@ -117,3 +117,23 @@ document.getElementById('btn_justifie').addEventListener('click', function () {
 document.getElementById('btn_non_justifie').addEventListener('click', function () {
     changerStatut('non_justifie');
 });
+
+
+
+
+
+// SECTION UTLISATEUR association du front au back a traver les routes
+
+
+
+
+const enregistreUser = document.getElementById("enregistreUser");
+
+document.addEventListener("click", () => {
+
+    const nom = document.getElementById("nomUser").value;
+    const pseudo = document.getElementById("username").value;
+    const role = document.getElementById("roleUser").value;
+    const password = document.getElementById("passwordUser").value;
+    
+})
