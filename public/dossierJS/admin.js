@@ -1,3 +1,5 @@
+
+
 protegePages('admin');
 
 
@@ -122,6 +124,55 @@ document.getElementById('btn_non_justifie').addEventListener('click', function (
 
 
 
+
+// Chargement de la liste dans la bd user
+
+
+const chargerUser = async () => {
+
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/users", {
+
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const utilisateur = await (reponse).json();
+
+
+    const tbody = document.getElementById("listeUsers");
+
+    tbody.innerHTML = "";
+
+
+    utilisateur.forEach(function (user) {
+
+        const ligne = document.createElement("tr");
+        ligne.innerHTML = `
+        
+            <td>${user.id}</td>
+            <td>${user.nom}</td>
+            <td>${user.username}</td>
+            <td>${user.role}</td>
+        
+        `;
+
+        tbody.append(ligne);
+
+    })
+
+};
+
+
+
+
+
+
+
+
+
+
+
 // SECTION UTLISATEUR association du front au back a traver les routes
 
 
@@ -129,11 +180,73 @@ document.getElementById('btn_non_justifie').addEventListener('click', function (
 
 const enregistreUser = document.getElementById("enregistreUser");
 
-document.addEventListener("click", () => {
+enregistreUser.addEventListener("click", async function () {
 
+    const token = localStorage.getItem("token");
     const nom = document.getElementById("nomUser").value;
-    const pseudo = document.getElementById("username").value;
+    const username = document.getElementById("usernameUser").value;
     const role = document.getElementById("roleUser").value;
     const password = document.getElementById("passwordUser").value;
-    
-})
+
+
+
+    if (!nom.trim() || !username.trim() || !role.trim() || !password.trim()) {
+        return alert("Tous les champs de création de l'utilisateur sont obligatoire")
+    };
+
+
+    const reponse = await fetch("http://localhost:3000/api/users", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ nom, username, role, password })
+
+    })
+
+    const data = await reponse.json();
+
+
+
+    if (!reponse.ok) {
+        console.log("Erreur :", data.error || data.erreur);
+        return;
+    };
+
+
+    alert(`Utilisateur ${data.username} ajouter avec succès`)
+
+    console.log("Utilisateur créé :", data);
+
+
+    document.getElementById("nomUser").value = "";
+    document.getElementById("usernameUser").value = "";
+    document.getElementById("roleUser").value = "";
+    document.getElementById("passwordUser").value = "";
+
+    // Chargement de la liste des utilisateur dans la bd
+
+    chargerUser();
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Chargement de la liste des utilisateur dans la bd
+
+chargerUser();
