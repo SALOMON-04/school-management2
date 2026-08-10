@@ -154,6 +154,11 @@ const chargerUser = async () => {
             <td>${user.nom}</td>
             <td>${user.username}</td>
             <td>${user.role}</td>
+            <td>
+                <button class="btn_action modifierUser"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn_action supprimerUser"><i class="fa-solid fa-trash"></i></button>
+  
+            </td>
         
         `;
 
