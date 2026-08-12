@@ -568,6 +568,11 @@
             </div>
 
 
+
+
+
+            <!-- liste et formoulaire de creation des utilisateur -->
+
             <div class="zone_gestion">
 
                 <div>
@@ -608,227 +613,281 @@
                     </div>
 
 
-                    <div class="panneau_tableau">
+                    <div class="gestionUser">
 
-                        <table class="tableau_gestion">
+                        <div class="panneau_tableau">
 
-                            <thead>
+                            <table class="tableau_gestion">
 
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nom complet</th>
-                                    <th>Nom d'utilisateur</th>
-                                    <th>Rôle</th>
-                                    <th>Actions</th>
-                                </tr>
+                                <thead>
 
-                            </thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nom complet</th>
+                                        <th>Nom d'utilisateur</th>
+                                        <th>Rôle</th>
+                                        <th>Actions</th>
+                                    </tr>
 
-
-
-
-
-
-                            <tbody id="listeUsers">
-
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">KJ</div>
-                                            Kouassi Jean
-                                        </div>
-                                    </td>
-                                    <td>kouassi.jean</td>
-                                    <td><span class="badge etudiant">Étudiant</span></td>
-                                    <td><span class="badge actif">Actif</span></td>
-                                    <td>28/07/2026</td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                </thead>
 
 
 
 
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">PK</div>
-                                            Prof. Konan A.
-                                        </div>
-                                    </td>
-                                    <td>konan.prof</td>
-                                    <td><span class="badge professeur">Professeur</span></td>
-                                    <td><span class="badge actif">Actif</span></td>
-                                    <td>20/07/2026</td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <tbody id="listeUsers">
+
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="cellule_personne">
+                                                <div class="avatar_personne">KJ</div>
+                                                Kouassi Jean
+                                            </div>
+                                        </td>
+                                        <td>kouassi.jean</td>
+                                        <td><span class="badge etudiant">Étudiant</span></td>
+                                        <td><span class="badge actif">Actif</span></td>
+                                        <td>28/07/2026</td>
+                                        <td>
+                                            <div class="actions_ligne">
+                                                <button class="btn_action modifier"><i
+                                                        class="fa-solid fa-pen"></i></button>
+                                                <button class="btn_action supprimer"><i
+                                                        class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
 
 
-                                <tr>
-                                    <td>3</td>
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">AP</div>
-                                            Admin Principal
-                                        </div>
-                                    </td>
-                                    <td>admin</td>
-                                    <td><span class="badge administrateur">Administrateur</span></td>
-                                    <td><span class="badge actif">Actif</span></td>
-                                    <td>01/07/2026</td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="cellule_personne">
+                                                <div class="avatar_personne">PK</div>
+                                                Prof. Konan A.
+                                            </div>
+                                        </td>
+                                        <td>konan.prof</td>
+                                        <td><span class="badge professeur">Professeur</span></td>
+                                        <td><span class="badge actif">Actif</span></td>
+                                        <td>20/07/2026</td>
+                                        <td>
+                                            <div class="actions_ligne">
+                                                <button class="btn_action modifier"><i
+                                                        class="fa-solid fa-pen"></i></button>
+                                                <button class="btn_action supprimer"><i
+                                                        class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
 
-                            </tbody>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>
+                                            <div class="cellule_personne">
+                                                <div class="avatar_personne">AP</div>
+                                                Admin Principal
+                                            </div>
+                                        </td>
+                                        <td>admin</td>
+                                        <td><span class="badge administrateur">Administrateur</span></td>
+                                        <td><span class="badge actif">Actif</span></td>
+                                        <td>01/07/2026</td>
+                                        <td>
+                                            <div class="actions_ligne">
+                                                <button class="btn_action modifier"><i
+                                                        class="fa-solid fa-pen"></i></button>
+                                                <button class="btn_action supprimer"><i
+                                                        class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
-                        </table>
+
+                                </tbody>
 
 
-                        <div class="pied_tableau">
+                            </table>
 
-                            <div class="compteur_tableau">Affichage de 1 à 3 sur 57 utilisateurs</div>
 
-                            <div class="pagination">
-                                <button class="btn_page active">1</button>
-                                <button class="btn_page">2</button>
-                                <button class="btn_page">3</button>
+
+
+                            <!-- bouton pour cacher le reste de la liste -->
+
+                            <div class="pied_tableau">
+
+                                <div class="compteur_tableau">Affichage de 1 à 3 sur 57 utilisateurs</div>
+
+                                <div class="pagination">
+                                    <button class="btn_page active">1</button>
+                                    <button class="btn_page">2</button>
+                                    <button class="btn_page">3</button>
+                                </div>
+
                             </div>
 
                         </div>
 
-                    </div>
-
-                </div>
 
 
 
 
-                <!-- // FOUMULAIRE D'ENREGISTREMENT UTILISTAEUR -->
 
-                <div class="panneau_formulaire">
+                        <!-- // FOUMULAIRE D'ENREGISTREMENT UTILISTAEUR -->
 
-
-                    <div class="titre_formulaire">Ajouter / Modifier un utilisateur</div>
-
-                    <div class="sous_titre_formulaire">Informations personnelles</div>
+                        <div class="panneau_formulaire">
 
 
-                    <!-- // champs de formulaire Nom complet -->
+                            <div class="titre_formulaire">Ajouter / Modifier un utilisateur</div>
 
-                    <div class="groupe_champ">
-
-                        <label class="etiquette_champ">Nom complet <span class="obligatoire">*</span></label>
-                        <input type="text" class="champ_texte" id="nomUser" placeholder="Entrez le nom complet">
-
-                    </div>
+                            <div class="sous_titre_formulaire">Informations personnelles</div>
 
 
-                    <!-- // champs de formulaire Username -->
+                            <!-- // champs de formulaire Nom complet -->
 
-                    <div class="groupe_champ">
+                            <div class="groupe_champ">
 
-                        <label class="etiquette_champ">Nom d'utilisateur <span class="obligatoire">*</span></label>
-                        <input type="text" class="champ_texte" id="usernameUser"
-                            placeholder="Entrez le nom d'utilisateur">
+                                <label class="etiquette_champ">Nom complet <span class="obligatoire">*</span></label>
+                                <input type="text" class="champ_texte" id="nomUser" placeholder="Entrez le nom complet">
 
-                    </div>
-
-
-                    <!-- // SELECTION DE ROLE -->
-
-                    <div class="groupe_champ">
+                            </div>
 
 
-                        <label class="etiquette_champ">Rôle <span class="obligatoire">*</span></label>
+                            <!-- // champs de formulaire Username -->
 
-                        <select class="champ_select" id="roleUser">
+                            <div class="groupe_champ">
 
-                            <option>Sélectionnez un rôle</option>
-                            <option value="admin">Administrateur</option>
-                            <option value="etudiant">Étudiant</option>
-                            <option value="professeur">Professeur</option>
-                            
+                                <label class="etiquette_champ">Nom d'utilisateur <span
+                                        class="obligatoire">*</span></label>
+                                <input type="text" class="champ_texte" id="usernameUser"
+                                    placeholder="Entrez le nom d'utilisateur">
 
-                        </select>
-
-
-                    </div>
+                            </div>
 
 
+                            <!-- // SELECTION DE ROLE -->
 
-                    <!-- champs de formulaire password de l'utilisateur -->
+                            <div class="groupe_champ">
 
-                    <div class="groupe_champ">
 
-                        <label class="etiquette_champ">Mot de passe</label>
+                                <label class="etiquette_champ">Rôle <span class="obligatoire">*</span></label>
 
-                        <div class="zone_mdp">
+                                <select class="champ_select" id="roleUser">
 
-                            <input type="password" class="champ_texte" id="passwordUser"
-                                placeholder="Laisser vide pour ne pas changer">
-                            <i class="fa-regular fa-eye-slash"></i>
+                                    <option>Sélectionnez un rôle</option>
+                                    <option value="admin">Administrateur</option>
+                                    <option value="etudiant">Étudiant</option>
+                                    <option value="professeur">Professeur</option>
+
+
+                                </select>
+
+
+                            </div>
+
+
+
+                            <!-- champs de formulaire password de l'utilisateur -->
+
+                            <div class="groupe_champ">
+
+                                <label class="etiquette_champ">Mot de passe</label>
+
+                                <div class="zone_mdp">
+
+                                    <input type="password" class="champ_texte" id="passwordUser"
+                                        placeholder="Laisser vide pour ne pas changer">
+                                    <i class="fa-regular fa-eye-slash"></i>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Champ de l'activiter de l'utilisateur  -->
+                            <div class="groupe_champ">
+
+                                <label class="etiquette_champ">Statut</label>
+
+                                <select class="champ_select">
+
+                                    <option>Actif</option>
+                                    <option>Inactif</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="pied_formulaire">
+
+                                <button class="btn_annuler">Annuler</button>
+                                <button class="btn_enregistrer" id="enregistreUser">Enregistrer</button>
+
+                            </div>
+
 
                         </div>
 
                     </div>
 
-
-                    <!-- Champ de l'activiter de l'utilisateur  -->
-                    <div class="groupe_champ">
-
-                        <label class="etiquette_champ">Statut</label>
-
-                        <select class="champ_select">
-
-                            <option>Actif</option>
-                            <option>Inactif</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="pied_formulaire">
-
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer" id="enregistreUser">Enregistrer</button>
-
-                    </div>
-
-
                 </div>
-
-
-            </div>
 
 
         </section>
 
+
+
+        <!-- Formulaire cacher de modification du user -->
+
+        <div class="formulaireCacherUser">
+
+            <div id="formModifUser" style="display: none;">
+
+                <h3>Modifier l'utilisateur</h3>
+
+                <div>
+
+                    <label>Nom</label>
+                    <input type="text" id="modifNomUser" placeholder="Nom" />
+
+                </div>
+
+                <div class="">
+
+                    <label for="">Username</label>
+                    <input type="text" id="modifUsernameUser" placeholder="Username" />
+                </div>
+
+
+                <div class="roleupdate">
+
+                    <span class="updateRole">Role</span>
+
+                    <select id="modifRole">
+
+                        <option value="admin">Admin</option>
+                        <option value="professeur">Professeur</option>
+                        <option value="etudiant">Étudiant</option>
+
+                    </select>
+
+                </div>
+
+
+                <button id="btnSauvegarder">Sauvegarder</button>
+                <button id="btnAnnuler">Annuler</button>
+
+            </div>
+
+        </div>
 
 
 

@@ -1,5 +1,6 @@
 
 
+
 protegePages('admin');
 
 
@@ -128,6 +129,17 @@ document.getElementById('btn_non_justifie').addEventListener('click', function (
 // Chargement de la liste dans la bd user
 
 
+
+// const zone_gestion = document.querySelector(".zone_gestion");
+// zone_gestion.style.display = "grid";
+// zone_gestion.style.gridTemplateTolumns = "1fr 340px";
+// zone_gestion.style.alignItems = "flex-start";
+// // const gestionUser = document.querySelector(".gestionUser");
+// // gestionUser.style.display = "flex";
+
+
+
+
 const chargerUser = async () => {
 
     const token = localStorage.getItem("token");
@@ -155,22 +167,113 @@ const chargerUser = async () => {
             <td>${user.username}</td>
             <td>${user.role}</td>
             <td>
-                <button class="btn_action modifierUser"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn_action supprimerUser"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn_action btn_modiUsers"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn_action btn_supprimerUser"><i class="fa-solid fa-trash"></i></button>
   
             </td>
         
         `;
 
+
+        // recupération des bouton et afichage du menu cahé de la modification
+
+        const btnModif = ligne.querySelector(".btn_modiUsers");
+        const btnSprim = ligne.querySelector(".btn_supprimerUser");
+
+
+
+        // Suupprimer un utilisateir 
+        btnSprim.addEventListener('click', async () => {
+
+            const token = localStorage.getItem("token");
+
+            const reponse = await fetch(`http://localhost:3000/api/users/${user.id}`, {
+
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + token }
+            });
+
+            const data = await reponse.json();
+
+            chargerUser();
+        });
+
+
+
+        //Modifier un utilisateur
+
+        btnModif.addEventListener('click', async (e) => {
+
+
+            document.getElementById("modifNomUser").value = user.nom;
+            document.getElementById("modifUsernameUser").value = user.username;
+            document.getElementById("modifRole").value = user.role;
+
+
+
+            document.querySelector(".formulaireCacherUser").dataset.userId = user.id;
+
+            const recup = e.target.getBoundingClientRect();
+            const formulaire = document.getElementById("formModifUser").style.display = "block";
+
+
+            // Ces deux lignes manquaient
+            formulaire.style.top = `${rect.top + window.scrollY - formulaire.offsetHeight - 10}px`;
+            formulaire.style.left = `${rect.left + window.scrollX - formulaire.offsetWidth + 30}px`;
+
+            formulaire.style.display = "block";
+
+        });
+
+
         tbody.append(ligne);
 
-    })
+    });
+
+
+
+    // Formulaire caché de modification
+
+    const btnAnnuler = document.getElementById("btnAnnuler");
+    const btnSauvegarder = document.getElementById("btnSauvegarder");
+
+    // Fermer sans sauvegarder
+    btnAnnuler.addEventListener("click", () => {
+        document.getElementById("formModifUser").style.display = "none";
+    });
+
+
+
+    // Sauvegarder de la modification
+    btnSauvegarder.addEventListener("click", async () => {
+
+        const id = document.querySelector(".formulaireCacherUser").dataset.userId;
+        const nom = document.getElementById("modifNomUser").value;
+        const username = document.getElementById("modifUsernameUser").value;
+        const role = document.getElementById("modifRole").value;
+        const token = localStorage.getItem("token");
+
+        const reponse = await fetch(`http://localhost:3000/api/users/${id}`, {
+
+            method: "PUT",
+            headers: {
+
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+
+            body: JSON.stringify({ nom, username, role })
+
+        });
+
+        const data = await reponse.json();
+        document.getElementById("formModifUser").style.display = "none";
+
+        chargerUser();
+    });
+
 
 };
-
-
-
-
 
 
 
