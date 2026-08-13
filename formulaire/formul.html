@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier l'utilisateur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Formulaire caché de modification du user -->
+    <div id="overlayModifUser">
+
+        <div id="formModifUser">
+
+            <div class="modal-header">
+
+                <h3>Modifier l'utilisateur</h3>
+                <button id="btnFermerModif" aria-label="Fermer">&#x2715;</button>
+
+            </div>
+
+            <div class="champ">
+                <label for="modifNomUser">Nom</label>
+                <input type="text" id="modifNomUser" placeholder="Nom">
+            </div>
+
+
+            <div class="champ">
+
+                <label for="modifUsernameUser">Username</label>
+                <input type="text" id="modifUsernameUser" placeholder="Username">
+
+            </div>
+
+
+            <div class="champ">
+
+                <label for="modifRole">Rôle</label>
+                <select id="modifRole">
+
+                    <option value="admin">Admin</option>
+                    <option value="professeur">Professeur</option>
+                    <option value="etudiant">Étudiant</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-actions">
+                
+                <button id="btnAnnuler" type="button">Annuler</button>
+                <button id="btnSauvegarder" type="button">Sauvegarder</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

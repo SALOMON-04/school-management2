@@ -167,9 +167,14 @@ const chargerUser = async () => {
             <td>${user.username}</td>
             <td>${user.role}</td>
             <td>
-                <button class="btn_action btn_modiUsers"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn_action btn_supprimerUser"><i class="fa-solid fa-trash"></i></button>
-  
+
+                <div class="actions_ligne">
+
+                    <button class="btn_action modifier btn_modiUsers"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn_action supprimer btn_supprimerUser"><i class="fa-solid fa-trash"></i></button>
+                    
+                </div>
+
             </td>
         
         `;
@@ -211,17 +216,10 @@ const chargerUser = async () => {
 
 
 
-            document.querySelector(".formulaireCacherUser").dataset.userId = user.id;
+            const overlay = document.querySelector(".formulaireCacherUser");
+            overlay.dataset.userId = user.id;
+            overlay.style.display = "flex";
 
-            const recup = e.target.getBoundingClientRect();
-            const formulaire = document.getElementById("formModifUser").style.display = "block";
-
-
-            // Ces deux lignes manquaient
-            formulaire.style.top = `${rect.top + window.scrollY - formulaire.offsetHeight - 10}px`;
-            formulaire.style.left = `${rect.left + window.scrollX - formulaire.offsetWidth + 30}px`;
-
-            formulaire.style.display = "block";
 
         });
 
@@ -236,22 +234,42 @@ const chargerUser = async () => {
 
     const btnAnnuler = document.getElementById("btnAnnuler");
     const btnSauvegarder = document.getElementById("btnSauvegarder");
+    const btnFermerModif = document.getElementById("btnFermerModif");
+
+
 
     // Fermer sans sauvegarder
     btnAnnuler.addEventListener("click", () => {
-        document.getElementById("formModifUser").style.display = "none";
+        document.querySelector(".formulaireCacherUser").style.display = "none";
     });
+
+
+    btnFermerModif.addEventListener("click", () => {
+
+        document.getElementById(".formulaireCacherUser").style.display = "none";
+    })
+
+    // Fermer en cliquant sur le fond sombre
+    document.querySelector(".formulaireCacherUser").addEventListener("click", (e) => {
+        if (e.target.id === ".formulaireCacherUser") {
+            document.getElementById(".formulaireCacherUser").style.display = "none";
+        }
+    });
+
+
 
 
 
     // Sauvegarder de la modification
     btnSauvegarder.addEventListener("click", async () => {
 
+
         const id = document.querySelector(".formulaireCacherUser").dataset.userId;
         const nom = document.getElementById("modifNomUser").value;
         const username = document.getElementById("modifUsernameUser").value;
         const role = document.getElementById("modifRole").value;
         const token = localStorage.getItem("token");
+
 
         const reponse = await fetch(`http://localhost:3000/api/users/${id}`, {
 
@@ -265,6 +283,8 @@ const chargerUser = async () => {
             body: JSON.stringify({ nom, username, role })
 
         });
+
+
 
         const data = await reponse.json();
         document.getElementById("formModifUser").style.display = "none";

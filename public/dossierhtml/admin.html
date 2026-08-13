@@ -847,29 +847,35 @@
 
         <!-- Formulaire cacher de modification du user -->
 
-        <div class="formulaireCacherUser">
+        <div class="formulaireCacherUser" style="display: none;">
 
-            <div id="formModifUser" style="display: none;">
+            <div id="formModifUser" >
 
-                <h3>Modifier l'utilisateur</h3>
 
-                <div>
+
+                <div class="modal-header">
+                    <h3>Modifier l'utilisateur</h3>
+                    <button id="btnFermerModif" aria-label="Fermer">&#x2715;</button>
+                </div>
+
+                <div class="modif">
 
                     <label>Nom</label>
                     <input type="text" id="modifNomUser" placeholder="Nom" />
 
                 </div>
 
-                <div class="">
+
+                <div class="modif">
 
                     <label for="">Username</label>
                     <input type="text" id="modifUsernameUser" placeholder="Username" />
                 </div>
 
 
-                <div class="roleupdate">
+                <div class="modif">
 
-                    <span class="updateRole">Role</span>
+                    <label for="modifRole">Rôle</label>
 
                     <select id="modifRole">
 
@@ -882,8 +888,12 @@
                 </div>
 
 
-                <button id="btnSauvegarder">Sauvegarder</button>
-                <button id="btnAnnuler">Annuler</button>
+                <div class="actionModif">
+
+                    <button id="btnSauvegarder">Sauvegarder</button>
+                    <button id="btnAnnuler">Annuler</button>
+
+                </div>
 
             </div>
 
