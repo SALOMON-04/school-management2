@@ -1,0 +1,66 @@
+## AUTH — /api/auth
+- POST /api/auth/login → Public → Connexion (identifiant ou matricule + password) → renvoie { id, nom, role, token }
+
+## USERS — /api/users
+- GET /api/users → admin → Liste tous les utilisateurs
+- GET /api/users/:id → admin → Un utilisateur précis
+- POST /api/users → admin → Créer { nom, role, username, password }
+- PUT /api/users/:id → admin → Modifier { nom, role, username }
+- DELETE /api/users/:id → admin → Supprimer
+
+## STUDENTS — /api/students
+- POST /api/students → admin → Créer { matricule, nom, prenom, age, classe, username, password }
+- GET /api/students → admin, professeur → Liste tous les étudiants
+- GET /api/students/matricule/:matricule → admin → Recherche par matricule
+- GET /api/students/:id → admin, professeur → Un étudiant précis
+- PUT /api/students/:id → admin → Modifier
+- DELETE /api/students/:id → admin → Supprimer
+
+## TEACHERS — /api/teachers
+- POST /api/teachers → admin → Créer { nom, subject_id, username, password }
+- GET /api/teachers → admin → Liste tous les profs
+- GET /api/teachers/matiere/:matiere → admin → Profs d'une matière
+- GET /api/teachers/:id → admin → Un prof précis
+- GET /api/teachers/user/:user_id → admin, professeur (prof: ses propres infos seulement) → Un prof par user_id
+- PUT /api/teachers/:id → admin → Modifier
+- DELETE /api/teachers/:id → admin → Supprimer
+
+## SUBJECTS — /api/subjects
+- POST /api/subjects → admin → Créer { nom }
+- GET /api/subjects → admin, professeur, etudiant → Liste toutes les matières
+- GET /api/subjects/:id → admin → Une matière précise
+- PUT /api/subjects/:id → admin → Modifier
+- PUT /api/subjects/subject_id/:subject_id/teacher_id/:teacher_id → admin → Affecter un prof
+- DELETE /api/subjects/:id → admin → Supprimer
+
+## GRADES — /api/grades
+- POST /api/grades → admin, professeur → Ajouter { student_id, subject_id, note }
+- GET /api/grades → admin → Toutes les notes
+- GET /api/grades/studentId/:studentId/subjectId/:subjectId → admin, professeur, etudiant (ses propres notes) → Notes d'un étudiant/matière
+- GET /api/grades/studentId/:studentId/subjectId/:subjectId/moyenne → admin, professeur, etudiant (sa moyenne) → Moyenne
+- PUT /api/grades/:id → admin, professeur → Modifier une note
+- DELETE /api/grades/:id → admin → Supprimer
+- GET /api/grades/teacher/:teacher_id → admin, professeur → Notes filtrées par classes du prof
+
+## ABSENCES — /api/absences
+- POST /api/absences → admin, professeur → Ajouter { student_id, status }
+- GET /api/absences → admin → Toutes les absences
+- GET /api/absences/student/:student_id/total → admin, professeur, etudiant (les siennes) → Total non justifiées
+- GET /api/absences/student/:student_id → admin, professeur, etudiant (les siennes) → Détail des absences
+- GET /api/absences/:id → admin → Une absence précise
+- PUT /api/absences/:id → admin, professeur → Modifier { student_id, date, status }
+- DELETE /api/absences/:id → admin → Supprimer
+- GET /api/absences/teacher/:teacher_id → admin, professeur → Absences filtrées par classes du prof
+
+## STATISTIQUES — /api/statistiques
+- GET /api/statistiques/student/:student_id/moyenne → admin, professeur, etudiant (la sienne) → Moyenne générale d'un étudiant
+- GET /api/statistiques/ecole/moyenne → admin → Moyenne générale de l'école
+- GET /api/statistiques/classes/meilleurs → admin, professeur → Meilleur étudiant par classe
+- GET /api/statistiques/users/total → admin → Total utilisateurs
+- GET /api/statistiques/students/total → admin → Total étudiants
+- GET /api/statistiques/professeurs/total → admin → Total professeurs
+
+## TEACHER_CLASSES — /api/teacher-classes
+- POST /api/teacher-classes → admin → Assigner { teacher_id, classe }
+- DELETE /api/teacher-classes/:teacher_id/:classe → admin → Retirer une classe
+- GET /api/teacher-classes/:teacher_id → admin, professeur → Classes assignées à un prof

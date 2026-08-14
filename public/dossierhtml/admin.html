@@ -511,7 +511,7 @@
                     <div>
 
                         <div class="label_carte">Total utilisateurs</div>
-                        <div class="valeur_carte">57</div>
+                        <div class="valeur_carte  statUser">57</div>
                         <div class="legende_carte">Tous les comptes</div>
 
                     </div>
@@ -527,7 +527,7 @@
                     <div>
 
                         <div class="label_carte">Étudiants</div>
-                        <div class="valeur_carte">42</div>
+                        <div class="valeur_carte statUserEtudiant">42</div>
                         <div class="legende_carte">Comptes étudiants</div>
 
                     </div>
@@ -542,7 +542,7 @@
                     <div>
 
                         <div class="label_carte">Professeurs</div>
-                        <div class="valeur_carte">12</div>
+                        <div class="valeur_carte statUserProf">12</div>
                         <div class="legende_carte">Comptes professeurs</div>
 
                     </div>
@@ -558,8 +558,8 @@
                     <div>
 
                         <div class="label_carte">Administrateurs</div>
-                        <div class="valeur_carte">3</div>
-                        <div class="legende_carte">Comptes administrateurs</div>
+                        <div class="valeur_carte statUserAdmin">3</div>
+                        <div class="legende_carte">Comptesadministrateurs</div>
 
                     </div>
 
@@ -579,7 +579,7 @@
 
                     <div class="barre_filtres">
 
-                        <div class="champ_recherche">
+                        <div class="champ_recherche  rechercheUser">
 
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un utilisateur...">
@@ -587,21 +587,13 @@
                         </div>
 
 
-                        <select class="select_filtre">
+                        <select class="select_filtre rechRoleUser">
 
-                            <option>Tous les rôles</option>
-                            <option>Étudiant</option>
+
+                            <option>etudiant</option>
                             <option>Professeur</option>
-                            <option>Administrateur</option>
-
-                        </select>
-
-
-                        <select class="select_filtre">
-
-                            <option>Statut</option>
-                            <option>Actif</option>
-                            <option>Inactif</option>
+                            <option>Admin</option>
+                            <option>Tous les rôles</option>
 
                         </select>
 
@@ -636,78 +628,6 @@
 
                                 <tbody id="listeUsers">
 
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="cellule_personne">
-                                                <div class="avatar_personne">KJ</div>
-                                                Kouassi Jean
-                                            </div>
-                                        </td>
-                                        <td>kouassi.jean</td>
-                                        <td><span class="badge etudiant">Étudiant</span></td>
-                                        <td><span class="badge actif">Actif</span></td>
-                                        <td>28/07/2026</td>
-                                        <td>
-                                            <div class="actions_ligne">
-                                                <button class="btn_action modifier"><i
-                                                        class="fa-solid fa-pen"></i></button>
-                                                <button class="btn_action supprimer"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="cellule_personne">
-                                                <div class="avatar_personne">PK</div>
-                                                Prof. Konan A.
-                                            </div>
-                                        </td>
-                                        <td>konan.prof</td>
-                                        <td><span class="badge professeur">Professeur</span></td>
-                                        <td><span class="badge actif">Actif</span></td>
-                                        <td>20/07/2026</td>
-                                        <td>
-                                            <div class="actions_ligne">
-                                                <button class="btn_action modifier"><i
-                                                        class="fa-solid fa-pen"></i></button>
-                                                <button class="btn_action supprimer"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-
-
-
-                                    <tr>
-                                        <td>3</td>
-                                        <td>
-                                            <div class="cellule_personne">
-                                                <div class="avatar_personne">AP</div>
-                                                Admin Principal
-                                            </div>
-                                        </td>
-                                        <td>admin</td>
-                                        <td><span class="badge administrateur">Administrateur</span></td>
-                                        <td><span class="badge actif">Actif</span></td>
-                                        <td>01/07/2026</td>
-                                        <td>
-                                            <div class="actions_ligne">
-                                                <button class="btn_action modifier"><i
-                                                        class="fa-solid fa-pen"></i></button>
-                                                <button class="btn_action supprimer"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
 
 
 
@@ -849,7 +769,7 @@
 
         <div class="formulaireCacherUser" style="display: none;">
 
-            <div id="formModifUser" >
+            <div id="formModifUser">
 
 
 

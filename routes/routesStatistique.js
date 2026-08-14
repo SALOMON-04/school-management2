@@ -1,5 +1,5 @@
 import express from "express";
-import { studentMoyenne, moyenneEcole, meilleurStudentParClasse, nombreUsers, nombreStudents, nombreTeacher } from "../controleur/controleStatistique.js"; 
+import { studentMoyenne, moyenneEcole, meilleurStudentParClasse, nombreUsers, getStatsUsers, nombreStudents, nombreTeacher } from "../controleur/controleStatistique.js"; 
 
 
 
@@ -27,6 +27,9 @@ router.get("/students/total",  verifierToken, autoriserRoles("admin"), nombreStu
 
 
 router.get("/professeurs/total",  verifierToken, autoriserRoles("admin"), nombreTeacher);
+
+
+router.get("/users/stats", verifierToken, getStatsUsers);
 
 
 export default router;

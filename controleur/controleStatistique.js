@@ -1,3 +1,4 @@
+import db from "../db/database.js";
 import { moyenneGeneraleByStudent, moyenneGeneraleEcole, meilleurEtudiantParClasse, totalUsers, totalStudent, totalProfesseur } from "../services/servicesStatistiques.js";
 import { getStudentById } from "../services/servicesStudents.js";
 
@@ -70,5 +71,18 @@ const nombreTeacher = (req, res) => {
 };
 
 
-export { studentMoyenne, moyenneEcole, meilleurStudentParClasse, nombreUsers, nombreStudents, nombreTeacher };
+
+
+// Statistiques des utilisateurs par rôle
+const getStatsUsers = (req, res) => {
+    const total      = db.prepare("SELECT COUNT(*) as n FROM users").get().n;
+    const etudiants  = db.prepare("SELECT COUNT(*) as n FROM users WHERE role = 'etudiant'").get().n;
+    const professeurs= db.prepare("SELECT COUNT(*) as n FROM users WHERE role = 'professeur'").get().n;
+    const admins     = db.prepare("SELECT COUNT(*) as n FROM users WHERE role = 'admin'").get().n;
+
+    return res.status(200).json({ total, etudiants, professeurs, admins });
+};
+
+
+export { studentMoyenne, moyenneEcole, meilleurStudentParClasse, nombreUsers, getStatsUsers , nombreStudents, nombreTeacher };
 
