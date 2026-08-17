@@ -628,8 +628,7 @@
 
                                 <tbody id="listeUsers">
 
-
-
+                                    <!-- cette partie est directement injecter dans le html depuis le js de la section utilisateur -->
 
                                 </tbody>
 
@@ -822,6 +821,9 @@
 
 
 
+
+
+
         <!-- SECTION ETUDIANT -->
 
         <section id="etudiants" class="page_section" style="display:none">
@@ -963,8 +965,6 @@
                                     <th>Matricule</th>
                                     <th>Nom complet</th>
                                     <th>Classe</th>
-                                    <th>Date de naissance</th>
-                                    <th>Statut</th>
                                     <th>Actions</th>
                                 </tr>
 
@@ -973,68 +973,9 @@
 
 
 
-                            <tbody>
+                            <tbody id="listeStdent">
 
-                                <tr>
-                                    <td>1</td>
-                                    <td>2025L2001</td>
-                                    <td>Kouassi Jean</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>15/05/2004</td>
-                                    <td><span class="badge actif">Actif</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
-
-                                <tr>
-
-                                    <td>2</td>
-                                    <td>2025L2004</td>
-                                    <td>Koné Aminata</td>
-                                    <td><span class="badge classe">L2 Réseaux</span></td>
-                                    <td>18/11/2004</td>
-                                    <td><span class="badge actif">Actif</span></td>
-
-                                    <td>
-
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>3</td>
-                                    <td>2025L2007</td>
-                                    <td>Coulibaly Adama</td>
-                                    <td><span class="badge classe">L2 Réseaux</span></td>
-                                    <td>12/06/2004</td>
-                                    <td><span class="badge inactif">Inactif</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
+                                <!-- cette patie en injecter dans le html depuis la recuperation dans le js -->
 
                             </tbody>
 
@@ -1064,7 +1005,7 @@
                 <div class="panneau_formulaire">
 
 
-                    <div class="titre_formulaire">Ajouter / Modifier un étudiant</div>
+                    <div class="titre_formulaire">Ajouter un étudiant</div>
 
                     <div class="sous_titre_formulaire">Informations personnelles</div>
 
@@ -1072,7 +1013,8 @@
                     <!-- Champs d'enregistrement du matricule -->
                     <div class="groupe_champ">
 
-                        <label class="etiquette_champ">Matricule <span class="obligatoire">*</span></label>
+                        <label class="etiquette_champ" id="matricule">Matricule <span
+                                class="obligatoire">*</span></label>
                         <input type="text" class="champ_texte" id="etudiantMatricule" placeholder="Ex: 2025L2001">
 
                     </div>
@@ -1083,23 +1025,37 @@
 
                         <div class="groupe_champ">
 
-                            <label class="etiquette_champ">Nom <span class="obligatoire">*</span></label>
+                            <label class="etiquette_champ" id="nomStudent">Nom <span
+                                    class="obligatoire">*</span></label>
                             <input type="text" class="champ_texte" id="etudiantNom" placeholder="Entrez le nom">
 
                         </div>
+
+
+                    </div>
+
+
+
+                    <!-- Champs d'enregistrement du Prenom -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" id="prenomStudent">Prénom <span
+                                class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantPrenom" placeholder="Entrez le prénom">
+
+                    </div>
+
 
 
 
                         <!-- Champs d'enregistrement du Prenom -->
                         <div class="groupe_champ">
 
-                            <label class="etiquette_champ">Prénom <span class="obligatoire">*</span></label>
-                            <input type="text" class="champ_texte" id="etudiantPrenom" placeholder="Entrez le prénom">
+                            <label class="etiquette_champ" id="prenomStudent">Ages<span
+                                    class="obligatoire">*</span></label>
+                            <input type="text" class="champ_texte" id="etudiantAge" placeholder="Entrez le prénom">
 
                         </div>
-
-
-                    </div>
 
 
                     <!-- Champs d'enregistrement du classe -->
@@ -1135,9 +1091,21 @@
                     </div>
 
 
+
+                    <!-- Champs d'enregistrement du username -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" id="UsernameStudent">Username<span
+                                class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantUsername" placeholder="Entrez le prénom">
+
+                    </div>
+
+
+
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler " id="btn_annulStudent">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreStudent">Enregistrer</button>
                     </div>
 
 
@@ -1146,6 +1114,100 @@
             </div>
 
         </section>
+
+
+
+        <!-- Formulaire cacher de modification du sudent -->
+
+        <div class="formulaireCacherUser" style="display: none;">
+
+            <div id="formModifEtudiant">
+
+
+
+                <div class="modal-header">
+                    <h3>Modifier Etudiant</h3>
+                    <button id="btnFermerModif" class="btnFermStudent"><i class="fa-solid fa-xmark"
+                            style="color: rgb(0, 0, 0);"></i></button>
+                </div>
+
+                <div class="modif">
+
+                    <label>Matricule</label>
+                    <input type="text" id="modifmatricule" placeholder="Nom" />
+
+                </div>
+
+
+                <div class="modif">
+
+                    <label for="">Nom</label>
+                    <input type="text" id="modifNomStudent" placeholder="Username" />
+                </div>
+
+
+                <div class="modif">
+
+                    <label for="">Prenom</label>
+                    <input type="text" id="modifPrenomStudent" placeholder="Username" />
+                </div>
+
+
+                <div class="modif">
+
+                    <label for="">Ages</label>
+                    <input type="text" id="modifAgesStdent" placeholder="Username" />
+                </div>
+
+
+                <div class="modifclasse">
+
+                    <label for="modifClasse">Classe</label>
+
+                    <select class="champ_select" id="modifStudiantClasse">
+
+                        <option>Sélectionnez une classe</option>
+                        <option>L1 Informatique</option>
+                        <option>L2 Informatique</option>
+                        <option>L2 Réseaux</option>
+                        <option>L3 Sécurité</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="modif">
+
+                    <label for="">Username</label>
+                    <input type="text" id="modifusernameStudent" placeholder="Username" />
+                </div>
+
+
+                <div class="actionModif">
+
+                    <button id="btnSauvegarder" id="modifSauvStudent">Sauvegarder</button>
+                    <button id="btnAnnuler" id="AnnulerStudent">Annuler</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

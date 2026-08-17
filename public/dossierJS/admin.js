@@ -199,18 +199,23 @@ const afficherLignesUsers = (liste) => {
         const ligne = document.createElement("tr");
 
         ligne.innerHTML = `
-            <td>${user.id}</td>
-            <td>${user.nom}</td>
-            <td>${user.username}</td>
-            <td>${user.role}</td>
-            <td>
-                <div class="actions_ligne">
+                <div class="panneau_formulaire">
 
-                    <button class="btn_action modifier btn_modiUsers"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn_action supprimer btn_supprimerUser"><i class="fa-solid fa-trash"></i></button>
-                
+                    <td>${user.id}</td>
+                    <td>${user.nom}</td>
+                    <td>${user.username}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <div class="actions_ligne">
+
+                            <button class="btn_action modifier btn_modiUsers"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn_action supprimer btn_supprimerUser"><i class="fa-solid fa-trash"></i></button>
+                        
+                        </div>
+                    </td>
+
                 </div>
-            </td>
+
         `;
 
 
@@ -462,7 +467,196 @@ enregistreUser.addEventListener("click", async function () {
 
 
 
+// RECUPERATION DE LA SECTION ETUDIANTE
 
+
+
+let tousLesStudent = [];
+
+
+
+const chargerStudent = async () => {
+
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/students", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const student = await reponse.json();
+
+    tousLesStudent = student;
+
+    
+    afficherLignesStudents(tousLesStudent);
+};
+
+
+
+
+
+
+// fonction de recharge de la liste des utilisateur avec les bouton d'action modif et suprim
+
+
+const afficherLignesStudents = (liste) => {
+
+    const tbody = document.getElementById("listeStdent");
+
+    tbody.innerHTML = "";
+
+    liste.forEach(function (student) {
+
+        const ligne = document.createElement("tr");
+
+        ligne.innerHTML = `
+                <div class="panneau_formulaire">
+
+                    <td>${student.id}</td>
+                    <td>${student.matricule}</td>
+                    <td>${student.nom}</td>
+                    <td>${student.prenom}</td>
+                    <td>${student.age}</td>
+                    <td>${student.classe}</td>
+                    <td>${student.username}</td>
+
+                    <td>
+
+                        <div class="actions_ligne">
+
+                            <button class="btn_action modifier " ><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn_action supprimer " ><i class="fa-solid fa-trash"></i></button>
+                        
+                        </div>
+
+                    </td>
+
+                </div>
+
+        `;
+
+
+
+        // Recuperation des bouton du formulaire cahé de modification
+
+        const btnModif = ligne.querySelector("modifier");
+        const btnSprim = ligne.querySelector("supprimer");
+
+
+
+        // Supprimer un utilisateur
+        btnSprim.addEventListener("click", async () => {
+
+            const token = localStorage.getItem("token");
+
+            const reponse = await fetch(`http://localhost:3000/api/students/${student.id}`, {
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + token }
+            });
+
+            const data = await reponse.json();
+
+            chargerStudent();
+            // chargerStats() a faire pour les etudiant
+        });
+
+
+
+
+        // Modifier : ouvre le formulaire caché pré-rempli
+        btnModif.addEventListener("click", () => {
+
+            document.getElementById("modifmatricule").value = etudent.matricule;
+            document.getElementById("modifNomStudent").value = etudent.nom;
+            document.getElementById("modifPrenomStudent").value = etudent.prenom;
+            document.getElementById("modifAgesStdent").value = etudent.age;
+            document.getElementById("modifStudiantClasse").value = user.classe;
+            document.getElementById("modifusernameStudent").value = etudent.username;
+
+            const overlay = document.querySelector(".formulaireCacherUser");
+            overlay.dataset.userId = user.id;
+            overlay.style.display = "flex";
+        });
+
+        tbody.append(ligne);
+    });
+};
+
+
+
+
+
+
+
+// Recuperation des boutoon de modification du menu cacher de l'utilisateur
+
+
+const modifAnnulStdent = document.getElementById("AnnulerStudent");
+const modifSauvStudent = document.getElementById("modifSauvStudent");
+const btnFermEtudiant = document.querySelector("btnFermStudent");
+
+
+// Fermer sans sauvegarder
+modifAnnulStdent.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherUser").style.display = "none";
+});
+
+
+
+btnFermerModif.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherUser").style.display = "none";
+});
+
+
+// Fermer en cliquant sur le fond sombre
+document.querySelector(".formulaireCacherUser").addEventListener("click", (e) => {
+
+    if (e.target.classList.contains("formulaireCacherUser")) {
+        document.querySelector(".formulaireCacherUser").style.display = "none";
+    }
+
+});
+
+
+
+
+
+// Sauvegarder la modification
+modifSauvStudent.addEventListener("click", async () => {
+
+    const id = document.querySelector(".formulaireCacherUser").dataset.userId;
+    const maticule = document.getElementById("modifmatricule").value;
+    const nom = document.getElementById("modifNomStudent").value;
+    const prenom = document.getElementById("modifPrenomStudent").value;
+    const classe = document.getElementById("modifStudiantClasse").value;
+    const username = document.getElementById("modifPrenomStudent").value;
+    const token = localStorage.getItem("token");
+
+
+    const reponse = await fetch(`http://localhost:3000/api/sudents/${id}`, {
+
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+
+        body: JSON.stringify({ matricule, nom, prenom, classe, username})
+
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        alert("Erreur : " + (data.error || data.erreur));
+        return;
+    }
+
+    alert("Utilisateur modifié avec succès !");
+    document.querySelector(".formulaireCacherUser").style.display = "none";
+
+    chargerStudent();
+});
 
 
 
@@ -471,4 +665,5 @@ enregistreUser.addEventListener("click", async function () {
 // Chargement de la liste des utilisateur dans la bd
 
 chargerUser();
-chargerStats()
+chargerStudent();
+chargerStats();
