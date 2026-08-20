@@ -148,9 +148,9 @@ const chargerStats = async () => {
 
     const stats = await reponse.json();
 
-    statUser.textContent  = stats.total;
+    statUser.textContent = stats.total;
     statUserEtudiant.textContent = stats.etudiants;
-    statUserProf .textContent = stats.professeurs;
+    statUserProf.textContent = stats.professeurs;
     statUserAdmin.textContent = stats.admins;
 };
 
@@ -471,8 +471,13 @@ enregistreUser.addEventListener("click", async function () {
 
 
 
-let tousLesStudent = [];
+//stat et recherche de etudiant 
 
+
+//charger la base de donner des etudiant
+
+
+let tousLesStudent = [];
 
 
 const chargerStudent = async () => {
@@ -487,10 +492,58 @@ const chargerStudent = async () => {
 
     tousLesStudent = student;
 
-    
     afficherLignesStudents(tousLesStudent);
 };
 
+
+
+
+
+// Stats
+const statTotalStudent = document.querySelector(".statTotalStudent");
+const statStudentActif = document.querySelector(".statStudentActif");
+const statStudentNew = document.querySelector(".statStudentNew");
+const statStudentInactif = document.querySelector(".statStudentInactif");
+
+
+
+const chargerStatsStudent = async () => {
+
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/students/stats", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const stats = await reponse.json();
+
+    document.querySelector(".statTotalStudent").textContent = stats.total;
+
+
+};
+
+
+
+
+
+
+// Recherche par nom
+document.querySelector(".rechercheStudent input").addEventListener("input", function () {
+    const texte = this.value.toLowerCase();
+    const resultat = tousLesStudent.filter(s => s.nom.toLowerCase().includes(texte));
+    afficherLignesStudents(resultat);
+});
+
+// Filtre par classe
+document.querySelector(".rechClasseStudent").addEventListener("change", function () {
+    const texte = this.value.toLowerCase();
+    if (texte === "toutes les classes") {
+        afficherLignesStudents(tousLesStudent);
+        return;
+    }
+    const resultat = tousLesStudent.filter(s => s.classe.toLowerCase().includes(texte));
+    afficherLignesStudents(resultat);
+});
 
 
 
@@ -518,7 +571,7 @@ const afficherLignesStudents = (liste) => {
                     <td>${student.prenom}</td>
                     <td>${student.age}</td>
                     <td>${student.classe}</td>
-                    <td>${student.username}</td>
+                    
 
                     <td>
 
@@ -539,8 +592,8 @@ const afficherLignesStudents = (liste) => {
 
         // Recuperation des bouton du formulaire cahé de modification
 
-        const btnModif = ligne.querySelector("modifier");
-        const btnSprim = ligne.querySelector("supprimer");
+        const btnModif = ligne.querySelector(".modifier");
+        const btnSprim = ligne.querySelector(".supprimer");
 
 
 
@@ -557,7 +610,7 @@ const afficherLignesStudents = (liste) => {
             const data = await reponse.json();
 
             chargerStudent();
-            // chargerStats() a faire pour les etudiant
+            chargerStatsStudent();
         });
 
 
@@ -566,15 +619,16 @@ const afficherLignesStudents = (liste) => {
         // Modifier : ouvre le formulaire caché pré-rempli
         btnModif.addEventListener("click", () => {
 
-            document.getElementById("modifmatricule").value = etudent.matricule;
-            document.getElementById("modifNomStudent").value = etudent.nom;
-            document.getElementById("modifPrenomStudent").value = etudent.prenom;
-            document.getElementById("modifAgesStdent").value = etudent.age;
-            document.getElementById("modifStudiantClasse").value = user.classe;
-            document.getElementById("modifusernameStudent").value = etudent.username;
+            document.getElementById("modifmatricule").value = student.matricule;
+            document.getElementById("modifNomStudent").value = student.nom;
+            document.getElementById("modifPrenomStudent").value = student.prenom;
+            document.getElementById("modifAgesStdent").value = student.age;
+            document.getElementById("modifStudiantClasse").value = student.classe;
+            document.getElementById("modifusernameStudent").value = student.username;
 
-            const overlay = document.querySelector(".formulaireCacherUser");
-            overlay.dataset.userId = user.id;
+
+            const overlay = document.querySelector(".formulaireCacherStudent");
+            overlay.dataset.studentId = student.id;
             overlay.style.display = "flex";
         });
 
@@ -593,26 +647,26 @@ const afficherLignesStudents = (liste) => {
 
 const modifAnnulStdent = document.getElementById("AnnulerStudent");
 const modifSauvStudent = document.getElementById("modifSauvStudent");
-const btnFermEtudiant = document.querySelector("btnFermStudent");
+const btnFermEtu = document.querySelector(".btn_fermStudent");
 
 
 // Fermer sans sauvegarder
 modifAnnulStdent.addEventListener("click", () => {
-    document.querySelector(".formulaireCacherUser").style.display = "none";
+    document.querySelector(".formulaireCacherStudent").style.display = "none";
 });
 
 
 
-btnFermerModif.addEventListener("click", () => {
-    document.querySelector(".formulaireCacherUser").style.display = "none";
+btnFermEtu.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherStudent").style.display = "none";
 });
 
 
 // Fermer en cliquant sur le fond sombre
-document.querySelector(".formulaireCacherUser").addEventListener("click", (e) => {
+document.querySelector(".formulaireCacherStudent").addEventListener("click", (e) => {
 
-    if (e.target.classList.contains("formulaireCacherUser")) {
-        document.querySelector(".formulaireCacherUser").style.display = "none";
+    if (e.target.classList.contains("formulaireCacherStudent")) {
+        document.querySelector(".formulaireCacherStudent").style.display = "none";
     }
 
 });
@@ -624,16 +678,17 @@ document.querySelector(".formulaireCacherUser").addEventListener("click", (e) =>
 // Sauvegarder la modification
 modifSauvStudent.addEventListener("click", async () => {
 
-    const id = document.querySelector(".formulaireCacherUser").dataset.userId;
-    const maticule = document.getElementById("modifmatricule").value;
+    const id = document.querySelector(".formulaireCacherStudent").dataset.studentId;
+    const matricule = document.getElementById("modifmatricule").value;
     const nom = document.getElementById("modifNomStudent").value;
     const prenom = document.getElementById("modifPrenomStudent").value;
+    const age = document.getElementById("modifAgesStdent").value;
     const classe = document.getElementById("modifStudiantClasse").value;
-    const username = document.getElementById("modifPrenomStudent").value;
+    const username = document.getElementById("modifusernameStudent").value;
     const token = localStorage.getItem("token");
 
 
-    const reponse = await fetch(`http://localhost:3000/api/sudents/${id}`, {
+    const reponse = await fetch(`http://localhost:3000/api/students/${id}`, {
 
         method: "PUT",
         headers: {
@@ -641,7 +696,7 @@ modifSauvStudent.addEventListener("click", async () => {
             "Authorization": "Bearer " + token
         },
 
-        body: JSON.stringify({ matricule, nom, prenom, classe, username})
+        body: JSON.stringify({ matricule, nom, prenom, age, classe, username })
 
     });
 
@@ -653,10 +708,97 @@ modifSauvStudent.addEventListener("click", async () => {
     }
 
     alert("Utilisateur modifié avec succès !");
-    document.querySelector(".formulaireCacherUser").style.display = "none";
+    document.querySelector(".formulaireCacherStudent").style.display = "none";
 
     chargerStudent();
+    chargerStatsStudent();
 });
+
+
+
+
+
+// Ajouter un etudiant
+
+
+
+const btn_enregistreStudent = document.getElementById("btn_enregistreStudent");
+
+btn_enregistreStudent.addEventListener("click", async function () {
+
+    const token = localStorage.getItem("token");
+    const matricule = document.getElementById("etudiantMatricule").value;
+    const nom = document.getElementById("etudiantNom").value;
+    const prenom = document.getElementById("etudiantPrenom").value;
+    const age = document.getElementById("etudiantAge").value;
+    const classe = document.getElementById("etudiantClasse").value;
+    const username = document.getElementById("etudiantUsername").value;
+    const password = document.getElementById("etudiantPassword").value;
+
+    if (!matricule.trim() || !nom.trim() || !prenom.trim() || !age.trim() || !classe.trim() || !username.trim()) {
+        return alert("Tous les champs de création de l'étudiant sont obligatoires");
+    };
+
+    const reponse = await fetch("http://localhost:3000/api/students", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ matricule, nom, prenom, age, classe, status, username, password })
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        console.log("Erreur :", data.error || data.erreur);
+        return;
+    };
+
+    alert(`Étudiant ${data.nom} ${data.prenom} ajouté avec succès`);
+
+    document.getElementById("etudiantMatricule").value = "";
+    document.getElementById("etudiantNom").value = "";
+    document.getElementById("etudiantPrenom").value = "";
+    document.getElementById("etudiantAge").value = "";
+    document.getElementById("etudiantClasse").value = "";
+    document.getElementById("etudiantUsername").value = "";
+
+    chargerStudent();
+    chargerStatsStudent()
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -665,5 +807,6 @@ modifSauvStudent.addEventListener("click", async () => {
 // Chargement de la liste des utilisateur dans la bd
 
 chargerUser();
-chargerStudent();
 chargerStats();
+chargerStudent();
+chargerStatsStudent();

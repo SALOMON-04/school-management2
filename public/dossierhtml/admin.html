@@ -860,8 +860,8 @@
 
                     <div>
 
-                        <div class="label_carte">Total étudiants</div>
-                        <div class="valeur_carte">142</div>
+                        <div class="label_carte ">Total étudiants</div>
+                        <div class="valeur_carte  statTotalStudent">142</div>
                         <div class="legende_carte">Tous les étudiants</div>
 
                     </div>
@@ -878,7 +878,7 @@
                     <div>
 
                         <div class="label_carte">Étudiants actifs</div>
-                        <div class="valeur_carte">136</div>
+                        <div class="valeur_carte  statStudentActift">136</div>
                         <div class="legende_carte">Comptes actifs</div>
 
                     </div>
@@ -894,7 +894,7 @@
 
                     <div>
                         <div class="label_carte">Nouveaux étudiants</div>
-                        <div class="valeur_carte">23</div>
+                        <div class="valeur_carte   statStudentNew">23</div>
                         <div class="legende_carte">Cette année</div>
                     </div>
 
@@ -908,7 +908,7 @@
 
                     <div>
                         <div class="label_carte">Étudiants inactifs</div>
-                        <div class="valeur_carte">6</div>
+                        <div class="valeur_carte  statStudentInactif">6</div>
                         <div class="legende_carte">Comptes inactifs</div>
                     </div>
 
@@ -926,24 +926,18 @@
                     <div class="barre_filtres">
 
 
-                        <div class="champ_recherche">
+                        <div class="champ_recherche  rechercheStudent">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un étudiant...">
                         </div>
 
 
-                        <select class="select_filtre">
+                        <select class="select_filtre  rechClasseStudent">
                             <option>Toutes les classes</option>
                             <option>L1 Informatique</option>
                             <option>L2 Informatique</option>
                             <option>L2 Réseaux</option>
                             <option>L3 Sécurité</option>
-                        </select>
-
-                        <select class="select_filtre">
-                            <option>Statut</option>
-                            <option>Actif</option>
-                            <option>Inactif</option>
                         </select>
 
                         <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
@@ -963,8 +957,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Matricule</th>
-                                    <th>Nom complet</th>
-                                    <th>Classe</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Age</th>
+                                    <th>Classes</th>
                                     <th>Actions</th>
                                 </tr>
 
@@ -1048,14 +1044,37 @@
 
 
 
-                        <!-- Champs d'enregistrement du Prenom -->
-                        <div class="groupe_champ">
+                    <!-- Champs d'enregistrement du Prenom -->
+                    <div class="groupe_champ">
 
-                            <label class="etiquette_champ" id="prenomStudent">Ages<span
-                                    class="obligatoire">*</span></label>
-                            <input type="text" class="champ_texte" id="etudiantAge" placeholder="Entrez le prénom">
+                        <label class="etiquette_champ" id="prenomStudent">Ages<span class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantAge" placeholder="Entrez le prénom">
 
-                        </div>
+                    </div>
+
+
+
+                    <!-- Champs d'enregistrement du username -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" id="UsernameStudent">Username<span
+                                class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantUsername" placeholder="Entrez le prénom">
+
+                    </div>
+
+
+
+
+                    <!-- Champs d'enregistrement du username -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ" id="UsernameStudent">Mot de passe<span
+                                class="obligatoire">*</span></label>
+                        <input type="text" class="champ_texte" id="etudiantPassword" placeholder="Entrez le prénom">
+
+                    </div>
+
 
 
                     <!-- Champs d'enregistrement du classe -->
@@ -1076,31 +1095,6 @@
                     </div>
 
 
-                    <!-- champ du status de l'etudiant dans l'ecole -->
-                    <div class="groupe_champ">
-
-                        <label class="etiquette_champ">Statut <span class="obligatoire">*</span></label>
-
-                        <select class="champ_select" id="etudiantStatus">
-
-                            <option>Actif</option>
-                            <option>Inactif</option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <!-- Champs d'enregistrement du username -->
-                    <div class="groupe_champ">
-
-                        <label class="etiquette_champ" id="UsernameStudent">Username<span
-                                class="obligatoire">*</span></label>
-                        <input type="text" class="champ_texte" id="etudiantUsername" placeholder="Entrez le prénom">
-
-                    </div>
-
 
 
                     <div class="pied_formulaire">
@@ -1119,7 +1113,7 @@
 
         <!-- Formulaire cacher de modification du sudent -->
 
-        <div class="formulaireCacherUser" style="display: none;">
+        <div class="formulaireCacherStudent" style="display: none;">
 
             <div id="formModifEtudiant">
 
@@ -1127,7 +1121,7 @@
 
                 <div class="modal-header">
                     <h3>Modifier Etudiant</h3>
-                    <button id="btnFermerModif" class="btnFermStudent"><i class="fa-solid fa-xmark"
+                    <button class="btn_fermStudent"><i class="fa-solid fa-xmark"
                             style="color: rgb(0, 0, 0);"></i></button>
                 </div>
 
@@ -1181,13 +1175,14 @@
 
                     <label for="">Username</label>
                     <input type="text" id="modifusernameStudent" placeholder="Username" />
+
                 </div>
 
 
                 <div class="actionModif">
 
-                    <button id="btnSauvegarder" id="modifSauvStudent">Sauvegarder</button>
-                    <button id="btnAnnuler" id="AnnulerStudent">Annuler</button>
+                    <button id="modifSauvStudent">Sauvegarder</button>
+                    <button id="AnnulerStudent">Annuler</button>
 
                 </div>
 
@@ -1320,15 +1315,6 @@
 
 
 
-                        <select class="select_filtre">
-
-                            <option>Statut</option>
-                            <option>Actif</option>
-                            <option>Inactif</option>
-
-                        </select>
-
-
                         <button class="btn_reinitialiser"><i class="fa-solid fa-rotate-right"></i>
                             Réinitialiser</button>
 
@@ -1348,9 +1334,8 @@
                                     <th>#</th>
                                     <th>Nom complet</th>
                                     <th>Matière</th>
-                                    <th>Nom d'utilisateur</th>
-                                    <th>Statut</th>
-                                    <th>Date de création</th>
+                                    <th>Username</th>
+                                    <th></th>
                                     <th>Actions</th>
 
                                 </tr>
@@ -1361,91 +1346,7 @@
                             <tbody>
 
 
-                                <tr>
-
-                                    <td>1</td>
-
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">KJ</div>
-                                            Kouassi Jean
-                                        </div>
-
-                                    </td>
-
-                                    <td><span class="badge classe">Mathématiques</span></td>
-                                    <td>kouassi.jean</td>
-                                    <td><span class="badge actif">Actif</span></td>
-                                    <td>28/07/2026</td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
-
-
-
-                                <tr>
-
-                                    <td>2</td>
-
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">YS</div>
-                                            Yao Serge
-                                        </div>
-                                    </td>
-
-                                    <td><span class="badge classe">Informatique</span></td>
-                                    <td>yao.serge</td>
-                                    <td><span class="badge actif">Actif</span></td>
-                                    <td>27/07/2026</td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
-
-
-
-                                <tr>
-
-                                    <td>3</td>
-
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">CA</div>
-                                            Coulibaly Adama
-                                        </div>
-                                    </td>
-
-                                    <td><span class="badge classe">SVT</span></td>
-                                    <td>coulibaly.adama</td>
-                                    <td><span class="badge inactif">Inactif</span></td>
-                                    <td>24/07/2026</td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
+                              <!-- Cette partie est injecter dans le html depuis les js -->
 
 
                             </tbody>
@@ -1560,6 +1461,12 @@
         </section>
 
 
+
+
+
+
+
+        
 
         <!-- SECTION MATIERES -->
 

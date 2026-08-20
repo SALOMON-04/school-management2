@@ -1,6 +1,7 @@
 import express from "express";
-import { creationStudent, seachStudent, seachStudentsId, seachStudentsMatricule, modifStudent, supprimeStudent } from "../controleur/controleStudents.js";
+import { creationStudent, seachStudent, seachStudentsId, seachStudentsMatricule,modifStudent, supprimeStudent } from "../controleur/controleStudents.js";
 
+import { getStatsStudents } from "../controleur/controleStatistique.js";
 
 import { verifierToken } from "../middleweaes/middleAuth.js";
 import { autoriserRoles } from "../middleweaes/middleRoles.js";
@@ -22,6 +23,9 @@ router.get("/",  verifierToken, autoriserRoles("admin", "professeur"), seachStud
 router.get("/matricule/:matricule",  verifierToken, autoriserRoles("admin"), seachStudentsMatricule);
 
 
+router.get("/stats",    verifierToken,  getStatsStudents);
+
+
 router.get("/:id",  verifierToken, autoriserRoles("admin", "professeur"), seachStudentsId);
 
 
@@ -29,6 +33,8 @@ router.put("/:id",  verifierToken, autoriserRoles("admin"), modifStudent);
 
 
 router.delete("/:id",  verifierToken, autoriserRoles("admin"), supprimeStudent);
+
+
 
 
 export default router;
