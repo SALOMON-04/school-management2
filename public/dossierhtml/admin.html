@@ -1314,7 +1314,7 @@
                     </div>
 
 
-                    <!-- Liste des different utilisateur  -->
+                    <!-- Liste des different Profésseur enregisté -->
                     <div class="panneau_tableau">
 
                         <table class="tableau_gestion">
@@ -1366,7 +1366,7 @@
 
 
 
-                <!-- FORMULAIRE DE CREATION D4UN PROF -->
+                <!-- FORMULAIRE DE CREATION D'UN PROF -->
                 <div class="panneau_formulaire">
 
 
@@ -1440,7 +1440,7 @@
 
                     <div class="pied_formulaire">
                         <button class="btn_annuler  btn_annulProf">Annuler</button>
-                        <button class="btn_enregistrer"   id="btn_enregistreProf">Enregistrer</button>
+                        <button class="btn_enregistrer" id="btn_enregistreProf">Enregistrer</button>
                     </div>
 
 
@@ -1471,7 +1471,7 @@
                 <div class="modif">
                     <label>Matière</label>
                     <select id="modifMatiereProf" class="champ_select">
-                        
+
                     </select>
                 </div>
 
@@ -1523,7 +1523,7 @@
 
                     <div>
                         <div class="label_carte">Total matières</div>
-                        <div class="valeur_carte">16</div>
+                        <div class="valeur_carte  statTotalMatiere">16</div>
                         <div class="legende_carte">Toutes matières</div>
                     </div>
 
@@ -1537,7 +1537,7 @@
 
                     <div>
                         <div class="label_carte">Assignées</div>
-                        <div class="valeur_carte">13</div>
+                        <div class="valeur_carte  statMatiereAssignee">13</div>
                         <div class="legende_carte">Avec un professeur</div>
                     </div>
 
@@ -1551,7 +1551,7 @@
 
                     <div>
                         <div class="label_carte">Non assignées</div>
-                        <div class="valeur_carte">3</div>
+                        <div class="valeur_carte  statMatiereNonAssignee">3</div>
                         <div class="legende_carte">Sans professeur</div>
                     </div>
 
@@ -1561,8 +1561,13 @@
             </div>
 
 
+
+
+
             <!-- liste des matière enregistré et le prof principal -->
             <div class="zone_gestion">
+
+
 
                 <div>
 
@@ -1584,75 +1589,9 @@
 
 
 
-                            <tbody>
+                            <tbody id="listeMatieres">
 
-                                <tr>
-
-                                    <td>1</td>
-
-                                    <td>Français</td>
-
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">TF</div>
-                                            Traoré Fatou
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Mathématiques</td>
-
-                                    <td>
-                                        <div class="cellule_personne">
-                                            <div class="avatar_personne">KJ</div>
-                                            Kouassi Jean
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
-
-
-
-                                <tr>
-
-                                    <td>3</td>
-                                    <td>Anglais</td>
-
-                                    <td><span class="badge attention">Non assigné</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-
-                                </tr>
+                                <!-- Cette partie sera injecter depui le js dans la recuperation de la matière -->
 
 
                             </tbody>
@@ -1678,6 +1617,7 @@
 
 
                 </div>
+
 
 
                 <!-- formulaires de création de la matière -->
@@ -1708,8 +1648,8 @@
 
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler btn_annulMatiere">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreMatiere">Enregistrer</button>
                     </div>
 
 
@@ -1719,6 +1659,56 @@
 
 
         </section>
+
+
+
+        <!-- Formulaire caché de modification de la matière -->
+        <div class="formulaireCacherMatiere" style="display: none;">
+
+            <div id="formModifMatiere">
+
+                <div class="modal-header">
+
+                    <h3>Modifier la matière</h3>
+                    <button class="btn_fermMatiere"><i class="fa-solid fa-xmark"></i></button>
+
+                </div>
+
+                <div class="modif">
+
+                    <label>Nom de la matière</label>
+                    <input type="text" id="modifNomMatiere" placeholder="Entrez le nom" />
+
+                </div>
+
+                <div class="modif">
+
+                    <label>Professeur assigné</label>
+                    <select id="modifProfMatiere" class="champ_select">
+                        <!-- rempli dynamiquement depuis la BD -->
+                    </select>
+
+                </div>
+
+                <div class="actionModif">
+
+                    <button id="modifSauvMatiere">Sauvegarder</button>
+                    <button id="AnnulerMatiere">Annuler</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
 
 
 

@@ -9,7 +9,7 @@ import { createUser } from "./servicesUsers.js";
 const createTeacher = async (nom, subject_id, username, password) => {
 
     // INSERT LES INFO DU PROFDANS LA TABLE DES UITILISATEURS
-    const user_id =   await createUser(nom, "professeur", username, password);
+    const user_id = await createUser(nom, "professeur", username, password);
 
 
     if (user_id?.erreur) return user_id; // Propagation de l'erreur vers le menu
@@ -37,8 +37,10 @@ const createTeacher = async (nom, subject_id, username, password) => {
 
 const getAllTeacher = () => {
     return db.prepare(`
-            SELECT * FROM teachers
-        `).all();
+        SELECT teachers.*, subjects.nom as matiere
+        FROM teachers
+        LEFT JOIN subjects ON teachers.subject_id = subjects.id
+    `).all();
 };
 
 

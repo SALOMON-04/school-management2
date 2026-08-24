@@ -854,7 +854,7 @@ rechercheProf.addEventListener("input", function () {
     const texte = this.value.toLowerCase();
 
     const resultat = tousLesProf.filter(function (prof) {
-        return (prof.nom || "").toLowerCase().includes(texte);
+        return (teachers.nom || "").toLowerCase().includes(texte);
     });
 
     afficherLignesProf(resultat);
@@ -871,7 +871,7 @@ rechMatiereProf.addEventListener("change", function () {
     };
 
     const resultat = tousLesProf.filter(function (prof) {
-        return (prof.matiere || "").toLowerCase().includes(texte);
+        return (teachers.matiere || "").toLowerCase().includes(texte);
     });
 
     afficherLignesProf(resultat);
@@ -914,20 +914,23 @@ const afficherLignesProf = (liste) => {
         const ligne = document.createElement("tr");
 
         ligne.innerHTML = `
+
             <td>${teachers.id}</td>
             <td>${teachers.nom}</td>
             <td>${teachers.matiere || "Non assignée"}</td>
-            <td>${teachers.username || ""}</td>
+            
             <td>
                 <div class="actions_ligne">
                     <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
                     <button class="btn_action supprimer"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </td>
+
         `;
 
         const btnModif = ligne.querySelector(".modifier");
         const btnSprim = ligne.querySelector(".supprimer");
+
 
         // Supprimer un professeur
         btnSprim.addEventListener("click", async () => {
@@ -960,12 +963,16 @@ const afficherLignesProf = (liste) => {
 
             // Remplir le select
             const select = document.getElementById("modifMatiereProf");
+
             select.innerHTML = "";
+
             matieres.forEach(function (matiere) {
+
                 const option = document.createElement("option");
                 option.value = matiere.id;
                 option.textContent = matiere.nom;
                 select.appendChild(option);
+
             });
 
             // Pré-sélectionner la matière actuelle
@@ -977,6 +984,7 @@ const afficherLignesProf = (liste) => {
             const overlay = document.querySelector(".formulaireCacherProf");
             overlay.dataset.teacherId = teachers.id;
             overlay.style.display = "flex";
+
         });
 
 
@@ -1013,6 +1021,7 @@ document.querySelector(".formulaireCacherProf").addEventListener("click", (e) =>
 
 // Sauvegarder la modification
 modifSauvProf.addEventListener("click", async () => {
+
     const id = document.querySelector(".formulaireCacherProf").dataset.teacherId;
     const nom = document.getElementById("modifNomProf").value;
     const subject_id = document.getElementById("modifMatiereProf").value;
@@ -1110,6 +1119,332 @@ btn_annulProf.addEventListener("click", function () {
 
 
 
+// RECUPERATION DE LA SECTION MATIERE
+
+
+
+// Stats
+const statTotalMatiere = document.querySelector(".statTotalMatiere");
+const statMatiereAssignee = document.querySelector(".statMatiereAssignee");
+const statMatiereNonAssignee = document.querySelector(".statMatiereNonAssignee");
+
+
+
+const chargerStatsMatiere = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/statis/matieres/stats", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const stats = await reponse.json();
+
+    document.querySelector(".statTotalMatiere").textContent = stats.total;
+};
+
+
+
+// // Recherche par nom
+// const echercheMatiere = document.querySelector(".echercheMatiere input");
+// const rechProfMatiere= document.querySelector(".rechProfMatiere");
+
+// rechercheProf.addEventListener("input", function () {
+//     const texte = this.value.toLowerCase();
+
+//     const resultat = tousLesProf.filter(function (prof) {
+//         return (teachers.nom || "").toLowerCase().includes(texte);
+//     });
+
+//     afficherLignesProf(resultat);
+// });
+
+
+// // Recherche par matière
+// rechMatiereProf.addEventListener("change", function () {
+//     const texte = this.value.toLowerCase();
+
+//     if (texte === "toutes les matières") {
+//         afficherLignesProf(tousLesProf);
+//         return;
+//     };
+
+//     const resultat = tousLesProf.filter(function (prof) {
+//         return (teachers.matiere || "").toLowerCase().includes(texte);
+//     });
+
+//     afficherLignesProf(resultat);
+// });
+
+
+
+
+
+// chargement des element de la base de donner vers l'interface grafique
+
+let tousLesMatiere = [];
+
+const chargerMartiere = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/subjects", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const matiere = await reponse.json();
+
+    tousLesMatiere = matiere;
+
+    afficherLignesMatiere(tousLesMatiere);
+};
+
+
+
+// Afficher les listes des professeurs
+const afficherLignesMatiere = (liste) => {
+
+    const tbody = document.getElementById("listeMatieres");
+
+    tbody.innerHTML = "";
+
+    liste.forEach(function (subjects) {
+
+        const ligne = document.createElement("tr");
+
+        ligne.innerHTML = `
+
+            <td>${subjects.id}</td>
+            <td>${subjects.nom}</td>
+            <td>${subjects.teachers || "Non assignée"}</td>
+            
+            <td>
+                <div class="actions_ligne">
+                    <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn_action supprimer"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </td>
+
+        `;
+
+        const btnModif = ligne.querySelector(".modifier");
+        const btnSprim = ligne.querySelector(".supprimer");
+
+
+        // Supprimer un professeur
+        btnSprim.addEventListener("click", async () => {
+            const token = localStorage.getItem("token");
+
+            const reponse = await fetch(`http://localhost:3000/api/subjects/${subjects.id}`, {
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + token }
+            });
+
+            const data = await reponse.json();
+
+            chargerMartiere();
+            chargerStatsMatiere();
+        });
+
+
+
+        // Modifier — ouvre le formulaire caché pré-rempli
+
+        btnModif.addEventListener("click", async () => {
+
+            const token = localStorage.getItem("token");
+
+            // Charger les matières depuis la BD
+            const reponse = await fetch("http://localhost:3000/api/teachers", {
+                headers: { "Authorization": "Bearer " + token }
+            });
+            const matieres = await reponse.json();
+
+            // Remplir le select
+            const select = document.getElementById("modifMatiereProf");
+
+            select.innerHTML = "";
+
+            matieres.forEach(function (professeur) {
+
+                const option = document.createElement("option");
+                option.value = professeur.id;
+                option.textContent = professeur.nom;
+                select.appendChild(option);
+
+            });
+
+            // Pré-sélectionner la matière actuelle
+            select.value = subjects.teachers_id;
+
+            // Remplir les autres champs
+            document.getElementById("modifNomMatiere").value = subjects.nom;
+
+            const overlay = document.querySelector(".formulaireCacherMatiere");
+            overlay.dataset.subjectId = subjects.id;
+            overlay.style.display = "flex";
+
+        });
+
+
+
+        tbody.append(ligne);
+    });
+};
+
+
+
+
+
+
+
+
+
+// Boutons du formulaire caché de modification
+const AnnulerMatiere = document.getElementById("AnnulerMatiere");
+const modifSauvMatiere = document.getElementById("modifSauvMatiere");
+const btnFermMatiere = document.querySelector(".btn_fermMatiere");
+
+// Fermer sans sauvegarder
+AnnulerMatiere.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherMatiere").style.display = "none";
+});
+
+btnFermMatiere.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherMatiere").style.display = "none";
+});
+
+// Fermer en cliquant sur le fond sombre
+document.querySelector(".formulaireCacherMatiere").addEventListener("click", (e) => {
+    if (e.target.classList.contains("formulaireCacherMatiere")) {
+        document.querySelector(".formulaireCacherMatiere").style.display = "none";
+    }
+});
+
+
+
+// Sauvegarder la modification
+modifSauvMatiere.addEventListener("click", async () => {
+
+    const id = document.querySelector(".formulaireCacherMatiere").dataset.subjectId;
+    const nom = document.getElementById("modifNomMatiere").value;
+    const teacher_id = document.getElementById("modifProfMatiere").value;
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch(`http://localhost:3000/api/subjects/${id}`, {
+
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ nom, teacher_id })
+
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        alert("Erreur : " + (data.error || data.erreur));
+        return;
+    }
+
+    alert("Matière modifié avec succès !");
+    document.querySelector(".formulaireCacherMatiere").style.display = "none";
+
+    chargerMartiere();
+    chargerStatsMatiere();
+});
+
+
+
+
+
+
+// Ajouter un professeur
+const btn_enregistreMatiere = document.getElementById("btn_enregistreMatiere");
+
+btn_enregistreMatiere.addEventListener("click", async function () {
+
+    const token = localStorage.getItem("token");
+    const nom = document.getElementById("nomMatiere").value;
+    const teacherId = document.getElementById("idProfesseur").value;
+
+
+    if (!nom.trim() || !teacherId.trim()) {
+        return alert("Tous les champs de création de la matiere sont obligatoires");
+    };
+
+    const reponse = await fetch("http://localhost:3000/api/subjects", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+
+        body: JSON.stringify({ nom, teacherId })
+
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        console.log("Erreur :", data.error || data.erreur);
+        return;
+    };
+
+    alert(`Professeur ${data.nom} ajouté avec succès`);
+
+    document.getElementById("nomMatiere").value = "";
+    document.getElementById("idProfesseur").value = "";
+
+
+    chargerMartiere();
+    chargerStatsMatiere();
+});
+
+
+// Bouton annuler du formulaire d'ajout
+
+const btn_annulMatiere = document.querySelector(".btn_annulMatiere")
+
+btn_annulMatiere.addEventListener("click", function () {
+
+    document.getElementById("nomMatiere").value = "";
+    document.getElementById("idProfesseur").value = "";
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1120,4 +1455,6 @@ chargerStats();
 chargerStudent();
 chargerStatsStudent();
 chargerProf();
-chargerStatsProf()
+chargerStatsProf();
+chargerMartiere();
+chargerStatsMatiere();
