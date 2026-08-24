@@ -877,9 +877,9 @@
 
                     <div>
 
-                        <div class="label_carte">Étudiants actifs</div>
-                        <div class="valeur_carte  statStudentActift">136</div>
-                        <div class="legende_carte">Comptes actifs</div>
+                        <div class="label_carte">Etudiant inscrit</div>
+                        <div class="valeur_carte  statClasseStudent">136</div>
+                        <div class="legende_carte">Classes enrégistrées</div>
 
                     </div>
 
@@ -907,9 +907,9 @@
                     <div class="icone_carte rouge"><i class="fa-solid fa-user-xmark"></i></div>
 
                     <div>
-                        <div class="label_carte">Étudiants inactifs</div>
-                        <div class="valeur_carte  statStudentInactif">6</div>
-                        <div class="legende_carte">Comptes inactifs</div>
+                        <div class="label_carte">Moyenne de l'établissement</div>
+                        <div class="valeur_carte  statMoyenneStudent">6</div>
+                        <div class="legende_carte">Moyenne générale</div>
                     </div>
 
                 </div>
@@ -926,7 +926,7 @@
                     <div class="barre_filtres">
 
 
-                        <div class="champ_recherche  rechercheStudent">
+                        <div class="champ_recherche  rechercheStudent  rechMatriculeStudent">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un étudiant...">
                         </div>
@@ -1111,7 +1111,7 @@
 
 
 
-        <!-- Formulaire cacher de modification du sudent -->
+        <!-- Formulaire cacher de modification du student -->
 
         <div class="formulaireCacherStudent" style="display: none;">
 
@@ -1154,7 +1154,7 @@
                 </div>
 
 
-                <div class="modifclasse">
+                <div class="modif">
 
                     <label for="modifClasse">Classe</label>
 
@@ -1167,14 +1167,6 @@
                         <option>L3 Sécurité</option>
 
                     </select>
-
-                </div>
-
-
-                <div class="modif">
-
-                    <label for="">Username</label>
-                    <input type="text" id="modifusernameStudent" placeholder="Username" />
 
                 </div>
 
@@ -1235,7 +1227,7 @@
 
                     <div>
                         <div class="label_carte">Total professeurs</div>
-                        <div class="valeur_carte">58</div>
+                        <div class="valeur_carte  statTotalProf ">58</div>
                         <div class="legende_carte">Tous les professeurs</div>
                     </div>
 
@@ -1249,7 +1241,7 @@
 
                     <div>
                         <div class="label_carte">Professeurs actifs</div>
-                        <div class="valeur_carte">54</div>
+                        <div class="valeur_carte  statProfMatiere">54</div>
                         <div class="legende_carte">En activité</div>
                     </div>
 
@@ -1263,7 +1255,7 @@
 
                     <div>
                         <div class="label_carte">Nouveaux professeurs</div>
-                        <div class="valeur_carte">6</div>
+                        <div class="valeur_carte  statProfNouveaux">6</div>
                         <div class="legende_carte">Cette année</div>
                     </div>
 
@@ -1277,7 +1269,7 @@
 
                     <div>
                         <div class="label_carte">Professeurs inactifs</div>
-                        <div class="valeur_carte">4</div>
+                        <div class="valeur_carte  statProfInactif">4</div>
                         <div class="legende_carte">Comptes désactivés</div>
                     </div>
 
@@ -1296,7 +1288,7 @@
                     <div class="barre_filtres">
 
 
-                        <div class="champ_recherche">
+                        <div class="champ_recherche   rechercheProf">
 
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un professeur...">
@@ -1304,7 +1296,7 @@
                         </div>
 
 
-                        <select class="select_filtre">
+                        <select class="select_filtre  rechMatiereProf">
 
                             <option>Toutes les matières</option>
                             <option>Mathématiques</option>
@@ -1334,8 +1326,6 @@
                                     <th>#</th>
                                     <th>Nom complet</th>
                                     <th>Matière</th>
-                                    <th>Username</th>
-                                    <th></th>
                                     <th>Actions</th>
 
                                 </tr>
@@ -1343,10 +1333,10 @@
                             </thead>
 
 
-                            <tbody>
+                            <tbody id="listeProf">
 
 
-                              <!-- Cette partie est injecter dans le html depuis les js -->
+                                <!-- Cette partie est injecter dans le html depuis les js -->
 
 
                             </tbody>
@@ -1376,7 +1366,7 @@
 
 
 
-                <!-- Formulaire de création d'un prof -->
+                <!-- FORMULAIRE DE CREATION D4UN PROF -->
                 <div class="panneau_formulaire">
 
 
@@ -1449,8 +1439,8 @@
 
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler  btn_annulProf">Annuler</button>
+                        <button class="btn_enregistrer"   id="btn_enregistreProf">Enregistrer</button>
                     </div>
 
 
@@ -1462,11 +1452,46 @@
 
 
 
+        <!-- Formulaire caché de modification du professeur -->
+
+        <div class="formulaireCacherProf" style="display: none;">
+
+            <div id="formModifProf">
+
+                <div class="modal-header">
+                    <h3>Modifier Professeur</h3>
+                    <button class="btn_fermProf"><i class="fa-solid fa-xmark" style="color: rgb(0, 0, 0);"></i></button>
+                </div>
+
+                <div class="modif">
+                    <label>Nom</label>
+                    <input type="text" id="modifNomProf" placeholder="Entrez le nom" />
+                </div>
+
+                <div class="modif">
+                    <label>Matière</label>
+                    <select id="modifMatiereProf" class="champ_select">
+                        
+                    </select>
+                </div>
+
+                <div class="actionModif">
+                    <button id="modifSauvProf">Sauvegarder</button>
+                    <button id="AnnulerProf">Annuler</button>
+                </div>
+
+            </div>
+
+        </div>
 
 
 
 
-        
+
+
+
+
+
 
         <!-- SECTION MATIERES -->
 

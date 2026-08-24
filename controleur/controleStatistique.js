@@ -90,8 +90,10 @@ const getStatsUsers = (req, res) => {
 const getStatsStudents = (req, res) => {
 
     const total = db.prepare("SELECT COUNT(*) as n FROM students").get().n;
+    const classes = db.prepare("SELECT COUNT(DISTINCT classe) as n FROM students").get().n;
+    const moyenne = db.prepare("SELECT ROUND(AVG(note), 2) as moy FROM grades").get().moy;
 
-    return res.status(200).json({ total });
+    return res.status(200).json({ total, classes, moyenne });
 };
 
 // Stats professeurs
@@ -99,7 +101,7 @@ const getStatsProfesseurs = (req, res) => {
 
     const total = db.prepare("SELECT COUNT(*) as n FROM teachers").get().n;
 
-    return res.status(200).json({ total});
+    return res.status(200).json({ total });
 };
 
 // Stats matières

@@ -518,6 +518,8 @@ const chargerStatsStudent = async () => {
     const stats = await reponse.json();
 
     document.querySelector(".statTotalStudent").textContent = stats.total;
+    document.querySelector(".statClasseStudent").textContent = stats.classes;
+    document.querySelector(".statMoyenneStudent").textContent = stats.moyenne !== null ? `${stats.moyenne}/20` : "N/A";
 
 
 };
@@ -544,6 +546,50 @@ document.querySelector(".rechClasseStudent").addEventListener("change", function
     const resultat = tousLesStudent.filter(s => s.classe.toLowerCase().includes(texte));
     afficherLignesStudents(resultat);
 });
+
+
+
+// Utilisation de la zone de recherche pour chaque element 
+
+const rechercheStudent = document.querySelector(".rechercheStudent input");
+const rechClasseStudent = document.querySelector(".rechClasseStudent");
+
+
+
+
+rechercheStudent.addEventListener("input", function () {
+
+    const texte = this.value.toLowerCase();
+
+    const resultat = tousLesStudent.filter(function (student) {
+        return (student.nom || "").toLowerCase().includes(texte) || (student.matricule || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesStudents(resultat);
+});
+
+
+
+rechClasseStudent.addEventListener("input", function () {
+
+    const texte = this.value.toLowerCase();
+
+    if (texte === "tous les classes") {
+        afficherLignesUsers(tousLesStudent);
+        return;
+    };
+
+    const resultat = tousLesStudent.filter(function (student) {
+        return student.classe.toLowerCase().includes(texte);
+    });
+
+    afficherLignesStudents(resultat);
+});
+
+
+// Recherche d'un etudiant par sont matricule 
+
+
 
 
 
@@ -624,7 +670,7 @@ const afficherLignesStudents = (liste) => {
             document.getElementById("modifPrenomStudent").value = student.prenom;
             document.getElementById("modifAgesStdent").value = student.age;
             document.getElementById("modifStudiantClasse").value = student.classe;
-            document.getElementById("modifusernameStudent").value = student.username;
+
 
 
             const overlay = document.querySelector(".formulaireCacherStudent");
@@ -684,7 +730,6 @@ modifSauvStudent.addEventListener("click", async () => {
     const prenom = document.getElementById("modifPrenomStudent").value;
     const age = document.getElementById("modifAgesStdent").value;
     const classe = document.getElementById("modifStudiantClasse").value;
-    const username = document.getElementById("modifusernameStudent").value;
     const token = localStorage.getItem("token");
 
 
@@ -776,20 +821,284 @@ btn_enregistreStudent.addEventListener("click", async function () {
 
 
 
+// RECUPERATION DE LA SECTION PROFESSEUR
+
+
+
+// Stats
+const statTotalProf = document.querySelector(".statTotalProf");
+const statProfMatiere = document.querySelector(".statProfMatiere");
+const statProfNouveaux = document.querySelector(".statProfNouveaux");
+const statProfInactif = document.querySelector(".statProfInactif");
+
+
+const chargerStatsProf = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/statis/professeurs/stats", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const stats = await reponse.json();
+
+    document.querySelector(".statTotalProf").textContent = stats.total;
+};
+
+
+
+// Recherche par nom
+const rechercheProf = document.querySelector(".rechercheProf input");
+const rechMatiereProf = document.querySelector(".rechMatiereProf");
+
+rechercheProf.addEventListener("input", function () {
+    const texte = this.value.toLowerCase();
+
+    const resultat = tousLesProf.filter(function (prof) {
+        return (prof.nom || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesProf(resultat);
+});
+
+
+// Recherche par matière
+rechMatiereProf.addEventListener("change", function () {
+    const texte = this.value.toLowerCase();
+
+    if (texte === "toutes les matières") {
+        afficherLignesProf(tousLesProf);
+        return;
+    };
+
+    const resultat = tousLesProf.filter(function (prof) {
+        return (prof.matiere || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesProf(resultat);
+});
 
 
 
 
 
 
+// chargement des element de la base de donner vers l'interface grafique
+
+let tousLesProf = [];
+
+const chargerProf = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/teachers", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const prof = await reponse.json();
+
+    tousLesProf = prof;
+
+    afficherLignesProf(tousLesProf);
+};
+
+
+
+// Afficher les listes des professeurs
+const afficherLignesProf = (liste) => {
+
+    const tbody = document.getElementById("listeProf");
+
+    tbody.innerHTML = "";
+
+    liste.forEach(function (teachers) {
+
+        const ligne = document.createElement("tr");
+
+        ligne.innerHTML = `
+            <td>${teachers.id}</td>
+            <td>${teachers.nom}</td>
+            <td>${teachers.matiere || "Non assignée"}</td>
+            <td>${teachers.username || ""}</td>
+            <td>
+                <div class="actions_ligne">
+                    <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn_action supprimer"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+        const btnModif = ligne.querySelector(".modifier");
+        const btnSprim = ligne.querySelector(".supprimer");
+
+        // Supprimer un professeur
+        btnSprim.addEventListener("click", async () => {
+            const token = localStorage.getItem("token");
+
+            const reponse = await fetch(`http://localhost:3000/api/teachers/${teachers.id}`, {
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + token }
+            });
+
+            const data = await reponse.json();
+
+            chargerProf();
+            chargerStatsProf();
+        });
+
+
+
+        // Modifier — ouvre le formulaire caché pré-rempli
+
+        btnModif.addEventListener("click", async () => {
+
+            const token = localStorage.getItem("token");
+
+            // Charger les matières depuis la BD
+            const reponse = await fetch("http://localhost:3000/api/subjects", {
+                headers: { "Authorization": "Bearer " + token }
+            });
+            const matieres = await reponse.json();
+
+            // Remplir le select
+            const select = document.getElementById("modifMatiereProf");
+            select.innerHTML = "";
+            matieres.forEach(function (matiere) {
+                const option = document.createElement("option");
+                option.value = matiere.id;
+                option.textContent = matiere.nom;
+                select.appendChild(option);
+            });
+
+            // Pré-sélectionner la matière actuelle
+            select.value = teachers.subject_id;
+
+            // Remplir les autres champs
+            document.getElementById("modifNomProf").value = teachers.nom;
+
+            const overlay = document.querySelector(".formulaireCacherProf");
+            overlay.dataset.teacherId = teachers.id;
+            overlay.style.display = "flex";
+        });
+
+
+
+        tbody.append(ligne);
+    });
+};
+
+
+
+
+// Boutons du formulaire caché de modification
+const modifAnnulProf = document.getElementById("AnnulerProf");
+const modifSauvProf = document.getElementById("modifSauvProf");
+const btnFermProf = document.querySelector(".btn_fermProf");
+
+// Fermer sans sauvegarder
+modifAnnulProf.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherProf").style.display = "none";
+});
+
+btnFermProf.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherProf").style.display = "none";
+});
+
+// Fermer en cliquant sur le fond sombre
+document.querySelector(".formulaireCacherProf").addEventListener("click", (e) => {
+    if (e.target.classList.contains("formulaireCacherProf")) {
+        document.querySelector(".formulaireCacherProf").style.display = "none";
+    }
+});
+
+
+
+// Sauvegarder la modification
+modifSauvProf.addEventListener("click", async () => {
+    const id = document.querySelector(".formulaireCacherProf").dataset.teacherId;
+    const nom = document.getElementById("modifNomProf").value;
+    const subject_id = document.getElementById("modifMatiereProf").value;
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch(`http://localhost:3000/api/teachers/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ nom, subject_id })
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        alert("Erreur : " + (data.error || data.erreur));
+        return;
+    }
+
+    alert("Professeur modifié avec succès !");
+    document.querySelector(".formulaireCacherProf").style.display = "none";
+
+    chargerProf();
+    chargerStatsProf();
+});
 
 
 
 
 
+// Ajouter un professeur
+const btn_enregistreProf = document.getElementById("btn_enregistreProf");
+
+btn_enregistreProf.addEventListener("click", async function () {
+    const token = localStorage.getItem("token");
+    const nom = document.getElementById("nomProf").value;
+    const matiere = document.getElementById("profMatiere").value;
+    const username = document.getElementById("profUsername").value;
+    const password = document.getElementById("profPassword").value;
+
+    if (!nom.trim() || !matiere.trim() || !username.trim() || !password.trim()) {
+        return alert("Tous les champs de création du professeur sont obligatoires");
+    };
+
+    const reponse = await fetch("http://localhost:3000/api/teachers", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ nom, matiere, username, password })
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        console.log("Erreur :", data.error || data.erreur);
+        return;
+    };
+
+    alert(`Professeur ${data.nom} ajouté avec succès`);
+
+    document.getElementById("nomProf").value = "";
+    document.getElementById("profMatiere").value = "";
+    document.getElementById("profUsername").value = "";
+    document.getElementById("profPassword").value = "";
+
+    chargerProf();
+    chargerStatsProf();
+});
 
 
+// Bouton annuler du formulaire d'ajout
 
+const btn_annulProf = document.querySelector(".btn_annulProf")
+
+btn_annulProf.addEventListener("click", function () {
+
+    document.getElementById("nomProf").value = "";
+    document.getElementById("profMatiere").value = "";
+    document.getElementById("profUsername").value = "";
+    document.getElementById("profPassword").value = "";
+
+});
 
 
 
@@ -810,3 +1119,5 @@ chargerUser();
 chargerStats();
 chargerStudent();
 chargerStatsStudent();
+chargerProf();
+chargerStatsProf()
