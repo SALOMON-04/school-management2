@@ -27,9 +27,11 @@ const createSubject = (nom) => {
 //LISTE DES MATIERES
 
 const getAllSubjects = () => {
-  return db.prepare(`
-            SELECT * FROM subjects
-     `,).all();
+    return db.prepare(`
+        SELECT subjects.*, teachers.nom as teacher_nom
+        FROM subjects
+        LEFT JOIN teachers ON subjects.teacher_id = teachers.id
+    `).all();
 };
 
 
@@ -66,7 +68,7 @@ const affectTeacherSubject = (subjectId, teacherId) => {
 const updateASubject = (id, data) =>{
 
   const updateMatiere = db.prepare(`
-      UPDATE subjects  SET nom = ? 
+      UPDATE subjects  SET nom = ?, teacher_id= ?
       WHERE id = ?
     `)
 

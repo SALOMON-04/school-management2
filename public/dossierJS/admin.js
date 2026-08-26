@@ -1144,37 +1144,6 @@ const chargerStatsMatiere = async () => {
 
 
 
-// // Recherche par nom
-// const echercheMatiere = document.querySelector(".echercheMatiere input");
-// const rechProfMatiere= document.querySelector(".rechProfMatiere");
-
-// rechercheProf.addEventListener("input", function () {
-//     const texte = this.value.toLowerCase();
-
-//     const resultat = tousLesProf.filter(function (prof) {
-//         return (teachers.nom || "").toLowerCase().includes(texte);
-//     });
-
-//     afficherLignesProf(resultat);
-// });
-
-
-// // Recherche par matière
-// rechMatiereProf.addEventListener("change", function () {
-//     const texte = this.value.toLowerCase();
-
-//     if (texte === "toutes les matières") {
-//         afficherLignesProf(tousLesProf);
-//         return;
-//     };
-
-//     const resultat = tousLesProf.filter(function (prof) {
-//         return (teachers.matiere || "").toLowerCase().includes(texte);
-//     });
-
-//     afficherLignesProf(resultat);
-// });
-
 
 
 
@@ -1214,7 +1183,7 @@ const afficherLignesMatiere = (liste) => {
 
             <td>${subjects.id}</td>
             <td>${subjects.nom}</td>
-            <td>${subjects.teachers || "Non assignée"}</td>
+            <td>${subjects.teacher_nom || "Non assignée"}</td>
             
             <td>
                 <div class="actions_ligne">
@@ -1259,7 +1228,7 @@ const afficherLignesMatiere = (liste) => {
             const matieres = await reponse.json();
 
             // Remplir le select
-            const select = document.getElementById("modifMatiereProf");
+            const select = document.getElementById("modifProfMatiere");
 
             select.innerHTML = "";
 
@@ -1273,7 +1242,7 @@ const afficherLignesMatiere = (liste) => {
             });
 
             // Pré-sélectionner la matière actuelle
-            select.value = subjects.teachers_id;
+            select.value = subjects.teacher_id;
 
             // Remplir les autres champs
             document.getElementById("modifNomMatiere").value = subjects.nom;
@@ -1366,10 +1335,10 @@ btn_enregistreMatiere.addEventListener("click", async function () {
 
     const token = localStorage.getItem("token");
     const nom = document.getElementById("nomMatiere").value;
-    const teacherId = document.getElementById("idProfesseur").value;
+    
 
 
-    if (!nom.trim() || !teacherId.trim()) {
+    if (!nom.trim()) {
         return alert("Tous les champs de création de la matiere sont obligatoires");
     };
 
@@ -1381,7 +1350,7 @@ btn_enregistreMatiere.addEventListener("click", async function () {
             "Authorization": "Bearer " + token
         },
 
-        body: JSON.stringify({ nom, teacherId })
+        body: JSON.stringify({ nom})
 
     });
 
