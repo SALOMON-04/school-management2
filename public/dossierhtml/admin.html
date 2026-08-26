@@ -1746,7 +1746,7 @@
 
                     <div>
                         <div class="label_carte">Total des notes</div>
-                        <div class="valeur_carte">12 240</div>
+                        <div class="valeur_carte  statTotalNotes">12 240</div>
                         <div class="legende_carte">Toutes matières confondues</div>
                     </div>
 
@@ -1759,7 +1759,7 @@
 
                     <div>
                         <div class="label_carte">Moyenne générale</div>
-                        <div class="valeur_carte">13.4/20</div>
+                        <div class="valeur_carte  statMoyenneNotes">13.4/20</div>
                         <div class="legende_carte">Sur l'année en cours</div>
                     </div>
 
@@ -1774,7 +1774,7 @@
                     <div>
 
                         <div class="label_carte">Meilleure note</div>
-                        <div class="valeur_carte">20/20</div>
+                        <div class="valeur_carte  statMeilleureNote">20/20</div>
                         <div class="legende_carte">Yao Serge - Informatique</div>
                     </div>
 
@@ -1788,7 +1788,7 @@
 
                     <div>
                         <div class="label_carte">Notes en dessous de 10</div>
-                        <div class="valeur_carte">1 380</div>
+                        <div class="valeur_carte statNotesDessous">1 380</div>
                         <div class="legende_carte">A surveiller</div>
                     </div>
 
@@ -1805,7 +1805,7 @@
 
                     <div class="barre_filtres">
 
-                        <div class="champ_recherche">
+                        <div class="champ_recherche  rechercheNote">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un étudiant...">
                         </div>
@@ -1851,66 +1851,9 @@
 
 
 
-                            <tbody>
+                            <tbody id="listeNotes">
 
-                                <tr>
-
-                                    <td>2025L2001</td>
-                                    <td>Kouassi Jean</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>1</td>
-                                    <td>Français</td>
-                                    <td><span class="badge actif">15/20</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
-
-                                <tr>
-                                    <td>2025L2003</td>
-                                    <td>Yao Serge</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>3</td>
-                                    <td>Informatique</td>
-                                    <td><span class="badge actif">20/20</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
-
-                                <tr>
-                                    <td>2025L2004</td>
-                                    <td>Koné Aminata</td>
-                                    <td><span class="badge classe">L2 Réseaux</span></td>
-                                    <td>2</td>
-                                    <td>Mathématiques</td>
-                                    <td><span class="badge inactif">08/20</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
+                                <!-- Cette partie sera injecter depuis les js dans la recuperation des note -->
 
                             </tbody>
 
@@ -1954,11 +1897,7 @@
 
                         <select class="champ_select" id="classe_note">
 
-                            <option value="">Sélectionnez une classe</option>
-                            <option value="L1-Info">L1 Informatique</option>
-                            <option value="L2-Info">L2 Informatique</option>
-                            <option value="L2-Res">L2 Réseaux</option>
-                            <option value="L3-Sec">L3 Sécurité</option>
+                           <!-- injecte dans le html depuis le js -->
 
                         </select>
 
@@ -1970,8 +1909,8 @@
 
                         <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
 
-                        <select class="champ_select" id="etudiant_note">
-                            <option value="">Sélectionnez d'abord une classe</option>
+                        <select class="champ_select" id="noteEtudiant">
+                            <!-- injecte dans le html depuis le js -->
                         </select>
 
                     </div>
@@ -1982,13 +1921,9 @@
 
                         <label class="etiquette_champ">Matière <span class="obligatoire">*</span></label>
 
-                        <select class="champ_select" id="mtiereNote">
+                        <select class="champ_select" id="noteMatiere">
 
-                            <option value="">Sélectionnez une matière</option>
-                            <option value="1">1. Français</option>
-                            <option value="2">2. Mathématiques</option>
-                            <option value="3">3. Informatique</option>
-                            <option value="4">4. Anglais</option>
+                           <!-- injecte dans le html depuis le js -->
 
                         </select>
 
@@ -1999,15 +1934,16 @@
                     <div class="groupe_champ">
 
                         <label class="etiquette_champ">Note <span class="obligatoire">*</span></label>
-                        <input type="number" class="champ_texte" placeholder="Ex: 15" min="0" max="20" step="0.25">
+                        <input type="number" class="champ_texte" id="noteValeur" placeholder="Ex: 15" min="0" max="20"
+                            step="0.25">
 
                     </div>
 
 
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler  btnAnnulNote">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreNote">Enregistrer</button>
                     </div>
 
 
@@ -2016,6 +1952,42 @@
             </div>
 
         </section>
+
+
+
+
+        <!-- Formulaire caché de modification de la note -->
+        <div class="formulaireCacherNote" style="display: none;">
+
+            <div id="formModifNote">
+
+                <div class="modal-header">
+                    <h3>Modifier la note</h3>
+                    <button class="btn_fermNote"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="modif">
+                    <label>Note (0 - 20)</label>
+                    <input type="number" id="modifValeurNote" min="0" max="20" step="0.25" />
+                </div>
+
+                <div class="actionModif">
+                    <button id="modifSauvNote">Sauvegarder</button>
+                    <button id="AnnulerNote">Annuler</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2156,62 +2128,7 @@
 
                             <tbody>
 
-                                <tr>
-                                    <td>2025L2001</td>
-                                    <td>Kouassi Jean</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>28/07/2026</td>
-                                    <td><span class="badge non_justifie">Non justifié</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
-
-                                <tr>
-
-                                    <td>2025L2002</td>
-                                    <td>Traoré Fatou</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>27/07/2026</td>
-                                    <td><span class="badge justifie">Justifié</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-                                    <td>2025L2005</td>
-                                    <td>N'Guessan Koffi</td>
-                                    <td><span class="badge classe">L3 Sécurité</span></td>
-                                    <td>26/07/2026</td>
-                                    <td><span class="badge non_justifie">Non justifié</span></td>
-
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-
-
+                                <!-- Cette partie est injecter depuis le js dans la recuperation de l'absence -->
 
                             </tbody>
 

@@ -46,9 +46,20 @@ const updateGrades = (id, data) => {
 
 const affGrades = () => {
     return db.prepare(`
-            SELECT * FROM grades
-        `).all()
-}
+        SELECT 
+            grades.id,
+            grades.note,
+            grades.student_id,
+            grades.subject_id,
+            students.nom,
+            students.prenom,
+            students.classe,
+            subjects.nom as subject_nom
+        FROM grades
+        LEFT JOIN students ON grades.student_id = students.id
+        LEFT JOIN subjects ON grades.subject_id = subjects.id
+    `).all();
+};
 
 
 

@@ -72,7 +72,7 @@ const updateASubject = (id, data) =>{
       WHERE id = ?
     `)
 
-    return updateMatiere.run(data.nom, id)
+    return updateMatiere.run(data.nom, data.teacher_id ?? null, id)
 }
 
 
