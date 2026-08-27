@@ -1,5 +1,5 @@
-import dotenv from "dotenv"; // protection des donné sensible
-dotenv.config();
+import dotenv from "dotenv/config"; // protection des donné sensible
+
 
 console.log("JWT_SECRET vaut :", process.env.JWT_SECRET);
 
