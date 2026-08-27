@@ -2,43 +2,36 @@ import db from "../db/database.js";
 
 
 
+const assignClasse = async (teacher_id, classe) => {
 
-
-
-
-
-const assignClasse = (teacher_id, classe) => {
-
-    const insertClasse = db.prepare(`
+    const insertClasse = await db.prepare(`
             INSERT OR IGNORE INTO teacher_classes(teacher_id, classe)
             VALUES(?, ?)
         `);
 
-        return insertClasse.run(teacher_id, classe);
+        return await insertClasse.run(teacher_id, classe);
 };
 
 
 
+const retireClasse = async (teacher_id, classe)  => {
 
-
-const retireClasse = (teacher_id, classe)  => {
-
-    const suprimer = db.prepare(`
+    const suprimer = await db.prepare(`
             DELETE FROM teacher_classes
             WHERE teacher_id = ? AND classe = ?
         `);
 
-        return suprimer.run(teacher_id, classe);
+        return await suprimer.run(teacher_id, classe);
 };
 
 
 
-const getClasseByTeacher = (teacher_id) => {
+const getClasseByTeacher = async (teacher_id) => {
 
-    return db.prepare(`
+    return await (await db.prepare(`
             SELECT * FROM teacher_classes
             WHERE teacher_id = ?
-        `).all(teacher_id)
+        `)).all(teacher_id)
 };
 
 

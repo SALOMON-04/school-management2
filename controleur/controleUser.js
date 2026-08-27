@@ -2,18 +2,18 @@ import { createUser, getAllUsers, getUserByUsername, updateUsers, getUserById, d
 
 
 
-const afficherUtilisateur = (req, res) => {
+const afficherUtilisateur = async (req, res) => {
 
-    const afficher = getAllUsers();
+    const afficher = await getAllUsers();
 
     return res.status(200).json(afficher);
 };
 
 
-const affUsersById = (req, res) => {
+const affUsersById = async (req, res) => {
 
     const id = Number(req.params.id);
-    const user = getUserById(id);
+    const user = await getUserById(id);
 
     if (!user) {
         return res.status(404).json({ error: "Utilisateur introuvable" });
@@ -39,12 +39,12 @@ const creationUsers = async (req, res) => {
 };
 
 
-const modiffierusers = (req, res) => {
+const modiffierusers = async (req, res) => {
 
     const id = Number(req.params.id);
     const data = req.body;
 
-    const modiffier = updateUsers(id, data);
+    const modiffier = await updateUsers(id, data);
 
     if (modiffier.changes === 0) {
         return res.status(404).json({ error: "Utilisateur introuvable." });
@@ -59,10 +59,10 @@ const modiffierusers = (req, res) => {
 };
 
 
-const suprimerUsers = (req, res) => {
+const suprimerUsers = async (req, res) => {
 
     const id = Number(req.params.id);
-    const user = deleteUser(id);
+    const user = await deleteUser(id);
 
     if (user.changes === 0) {
         return res.status(404).json({ error: "Utilisateur introuvable." });

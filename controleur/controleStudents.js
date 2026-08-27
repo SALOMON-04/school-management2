@@ -21,9 +21,9 @@ const creationStudent = async (req, res) => {
 
 
 
-const seachStudent = (req, res) => {
+const seachStudent = async (req, res) => {
 
-    const afficher = getAllStudents();
+    const afficher = await getAllStudents();
     return res.status(200).json(afficher);
 
 };
@@ -31,11 +31,11 @@ const seachStudent = (req, res) => {
 
 
 
-const seachStudentsId = (req, res) => {
+const seachStudentsId = async (req, res) => {
 
     const id = Number(req.params.id);
 
-    const student = getStudentById(id);
+    const student = await getStudentById(id);
 
     if (!student) {
         return res.status(404).json("utilisateur introuvable");
@@ -46,11 +46,11 @@ const seachStudentsId = (req, res) => {
 
 
 
-const seachStudentsMatricule = (req, res) => {
+const seachStudentsMatricule = async (req, res) => {
 
     const matricule = req.params.matricule;
 
-    const matStdent = getStudentByMatricule(matricule);
+    const matStdent = await getStudentByMatricule(matricule);
 
     if (!matStdent) {
         return res.status(404).json("utilisateur introuvable");
@@ -63,12 +63,12 @@ const seachStudentsMatricule = (req, res) => {
 
 
 
-const modifStudent = (req, res) => {
+const modifStudent = async (req, res) => {
 
     const id = Number(req.params.id);
     const data = req.body;
 
-    const update = updateStudent(id, data);
+    const update = await updateStudent(id, data);
 
     if (update.changes === 0) {
         return res.status(404).json({ error: "Modiffication impossible utilisateur introuvable" });
@@ -88,11 +88,11 @@ const modifStudent = (req, res) => {
 };
 
 
-const supprimeStudent = (req, res) => {
+const supprimeStudent = async (req, res) => {
 
     const id = Number(req.params.id);
 
-    const supprime = deleteStudent(id);
+    const supprime = await deleteStudent(id);
 
     if (supprime.changes === 0) {
         return res.status(404).json({ error: `l'utilisateur avec l'${id} est in trouvable` });

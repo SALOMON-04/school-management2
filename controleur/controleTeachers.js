@@ -21,18 +21,18 @@ const creationTeacher = async (req, res) => {
 
 
 
-const seachteacher = (req, res) => {
+const seachteacher = async (req, res) => {
 
-    const afficher = getAllTeacher();
+    const afficher = await getAllTeacher();
     return res.status(200).json(afficher);
 };
 
 
 
-const seachteacherMatiere = (req, res) => {
+const seachteacherMatiere = async (req, res) => {
     const matiere = req.params.matiere;
 
-    const subject = getAllTeacherAvecMatiere(matiere);
+    const subject = await getAllTeacherAvecMatiere(matiere);
 
     if(subject.length === 0){
         return res.status(404).json({error: "Aucun proffésseur associer a vette matière"});
@@ -45,11 +45,11 @@ const seachteacherMatiere = (req, res) => {
 
 
 
-const seachteacherId  = (req, res) => {
+const seachteacherId  = async (req, res) => {
 
     const id = Number(req.params.id);
 
-    const teacher = getTeacherById(id);
+    const teacher = await getTeacherById(id);
 
     if(!teacher){
         return res.status(404).json({error: "Aucun proffesseur trouver"});
@@ -62,7 +62,7 @@ const seachteacherId  = (req, res) => {
 
 
 
-const seachteacherUser_id = (req, res) => {
+const seachteacherUser_id = async (req, res) => {
 
    const user_id = Number(req.params.user_id);
 
@@ -74,7 +74,7 @@ const seachteacherUser_id = (req, res) => {
 
     
 
-   const user = getTeacherByUser_id(user_id);
+   const user = await getTeacherByUser_id(user_id);
 
    if(!user){
         return res.status(404).json({error: "Aucun proffesseur correspondant à ce Id trouver"});
@@ -88,13 +88,13 @@ const seachteacherUser_id = (req, res) => {
 
 
 
-const modifTeacher = (req, res) => {
+const modifTeacher = async (req, res) => {
 
     const id = Number(req.params.id);
 
     const data = req.body;
 
-    const update = updateTeacher(id, data);
+    const update = await updateTeacher(id, data);
 
     if(update.changes === 0){
         return res.status(404).json({error: "Modification impossible cet utilisateur"});
@@ -113,11 +113,11 @@ const modifTeacher = (req, res) => {
 
 
 
-const supprimeTeacher  = (req, res) => {
+const supprimeTeacher  = async (req, res) => {
 
     const id = Number(req.params.id);
 
-    const supprime = deleteTeacher(id);
+    const supprime = await deleteTeacher(id);
 
     if(supprime.changes === 0){
         return res.status(404).json({error: `l'utilisateur avec l'${id} est in trouvable` })
@@ -129,7 +129,3 @@ const supprimeTeacher  = (req, res) => {
 
 
 export {creationTeacher, seachteacher, seachteacherId, seachteacherUser_id, seachteacherMatiere, modifTeacher, supprimeTeacher};
-
-
-
-

@@ -1897,7 +1897,7 @@
 
                         <select class="champ_select" id="classe_note">
 
-                           <!-- injecte dans le html depuis le js -->
+                            <!-- injecte dans le html depuis le js -->
 
                         </select>
 
@@ -1923,7 +1923,7 @@
 
                         <select class="champ_select" id="noteMatiere">
 
-                           <!-- injecte dans le html depuis le js -->
+                            <!-- injecte dans le html depuis le js -->
 
                         </select>
 
@@ -2021,7 +2021,7 @@
 
                     <div>
                         <div class="label_carte">Total absences</div>
-                        <div class="valeur_carte">12 240</div>
+                        <div class="valeur_carte statTotalAbsence">12 240</div>
                         <div class="legende_carte">Depuis le début de l'année</div>
                     </div>
 
@@ -2034,7 +2034,7 @@
 
                     <div>
                         <div class="label_carte">Justifiées</div>
-                        <div class="valeur_carte">9 860</div>
+                        <div class="valeur_carte statAbsenceJustifie">9 860</div>
                         <div class="legende_carte">Absences justifiées</div>
                     </div>
 
@@ -2047,7 +2047,7 @@
 
                     <div>
                         <div class="label_carte">Non justifiées</div>
-                        <div class="valeur_carte">2 380</div>
+                        <div class="valeur_carte  statAbsenceNonJustifie">2 380</div>
                         <div class="legende_carte">A traiter</div>
                     </div>
 
@@ -2060,7 +2060,7 @@
 
                     <div>
                         <div class="label_carte">Absences aujourd'hui</div>
-                        <div class="valeur_carte">47</div>
+                        <div class="valeur_carte statAbsenceAujourdhui">47</div>
                         <div class="legende_carte">Enregistrées ce jour</div>
                     </div>
 
@@ -2078,20 +2078,20 @@
                     <div class="barre_filtres">
 
 
-                        <div class="champ_recherche">
+                        <div class="champ_recherche  rechercheAbsence">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input type="text" placeholder="Rechercher un étudiant...">
                         </div>
 
 
-                        <select class="select_filtre">
+                        <select class="select_filtre rechClasseAbsence">
                             <option>Toutes les classes</option>
                             <option>L1 Informatique</option>
                             <option>L2 Informatique</option>
                         </select>
 
 
-                        <select class="select_filtre">
+                        <select class="select_filtre rechStatutAbsence">
                             <option>Statut</option>
                             <option>Justifié</option>
                             <option>Non justifié</option>
@@ -2126,7 +2126,7 @@
 
 
 
-                            <tbody>
+                            <tbody id="listeAbsences">
 
                                 <!-- Cette partie est injecter depuis le js dans la recuperation de l'absence -->
 
@@ -2218,8 +2218,8 @@
                     </div>
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler  btn_annulAbsence">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreAbsence">Enregistrer</button>
                     </div>
 
                 </div>
@@ -2227,6 +2227,68 @@
             </div>
 
         </section>
+
+
+
+
+        <!-- Formulaire caché de modification de l'absence -->
+        <div class="formulaireCacherAbsence" style="display: none;">
+
+            <div id="formModifAbsence">
+
+                <div class="modal-header">
+
+                    <h3>Modifier l'absence</h3>
+                    <button class="btn_fermAbsence"><i class="fa-solid fa-xmark"></i></button>
+
+                </div>
+
+
+                <div class="modif">
+
+                    <label>Étudiant</label>
+                    <input type="text" id="modifEtudiantAbsence" disabled />
+
+                </div>
+
+
+                <div class="modif">
+
+                    <label>Date</label>
+                    <input type="text" id="modifDateAbsence" placeholder="AAAA-MM-JJ HH:MM:SS" />
+
+                </div>
+
+
+                <div class="sous_titre_formulaire">Statut</div>
+
+                <div class="groupe_champ">
+
+                    <div class="bascule_statut">
+
+                        <button type="button" class="btn_statut justifie" id="modifBtnJustifie">
+                            <i class="fa-solid fa-check"></i> Justifié
+                        </button>
+                        <button type="button" class="btn_statut non_justifie" id="modifBtnNonJustifie">
+                            <i class="fa-solid fa-xmark"></i> Non justifié
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                
+                <div class="actionModif">
+                    <button id="modifSauvAbsence">Sauvegarder</button>
+                    <button id="AnnulerAbsence">Annuler</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
 
 
 
