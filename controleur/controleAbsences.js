@@ -14,7 +14,7 @@ const creationAbsence = async (req, res) => {
     };
 
 
-    return res.status(201).json({ student_id, status });
+    return res.status(201).json({ student_id, data, status });
 
 };
 
@@ -55,7 +55,8 @@ const modifAbsence = async (req, res) => {
 
     const id = Number(req.params.id);
     const data = req.body;
-
+    console.log(data);
+    
     const uptdate = await updateAbsence(id, data);
 
     if (uptdate.changes === 0) {

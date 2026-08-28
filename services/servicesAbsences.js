@@ -21,7 +21,18 @@ const createAbsence = async (student_id, status) => {
 
 
 const getAllAbscence = async () => {
-    return await (await db.prepare(`SELECT * FROM absences`)).all();
+    return await (await db.prepare(`
+        SELECT 
+            absences.id,
+            absences.student_id,
+            absences.date,
+            absences.status,
+            students.nom,
+            students.prenom,
+            students.classe
+        FROM absences
+        LEFT JOIN students ON absences.student_id = students.id
+    `)).all();
 };
 
 
@@ -59,8 +70,8 @@ const updateAbsence = async (id, data) => {
         WHERE id = ?
     `);
 
-    return await updateTeacherStmt.run(data.student_id, data.date, data.status, id);
-}
+    return await updateTeacherStmt.run([data.student_id, data.date, data.status, id]);
+};
 
 
 const deleteAbsence = async (id) => {

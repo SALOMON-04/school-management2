@@ -22,13 +22,13 @@ router.get("/student/:student_id/total",  verifierToken, autoriserRoles("admin",
 router.get("/student/:student_id",  verifierToken, autoriserRoles("admin", "professeur", "etudiant"), afficherAbsencesByStudent);
 
 
-router.get("/:id",  verifierToken, autoriserRoles("admin"), seachAbsenceId);
-
-
 router.get("/teacher/:teacher_id", verifierToken, autoriserRoles("admin", "professeur"), absencesParProf);
 
 
 router.put("/:id",  verifierToken, autoriserRoles("admin", "professeur"), modifAbsence);
+
+
+router.get("/:id",  verifierToken, autoriserRoles("admin"), seachAbsenceId);
 
 
 router.delete("/:id",  verifierToken, autoriserRoles("admin"), supprimeAbsence);

@@ -2173,10 +2173,6 @@
                         <select class="champ_select" id="classe_absence">
 
                             <option value="">Sélectionnez une classe</option>
-                            <option value="L1-Info">L1 Informatique</option>
-                            <option value="L2-Info">L2 Informatique</option>
-                            <option value="L2-Res">L2 Réseaux</option>
-                            <option value="L3-Sec">L3 Sécurité</option>
 
                         </select>
 
@@ -2191,6 +2187,16 @@
                         <select class="champ_select" id="etudiant_absence">
                             <option value="">Sélectionnez d'abord une classe</option>
                         </select>
+
+                    </div>
+
+
+
+                    <!-- Ajoute après le select étudiant -->
+                    <div class="groupe_champ">
+
+                        <label class="etiquette_champ">Date <span class="obligatoire">*</span></label>
+                        <input type="date" class="champ_texte" id="absenceDate">
 
                     </div>
 
@@ -2278,7 +2284,7 @@
                 </div>
 
 
-                
+
                 <div class="actionModif">
                     <button id="modifSauvAbsence">Sauvegarder</button>
                     <button id="AnnulerAbsence">Annuler</button>

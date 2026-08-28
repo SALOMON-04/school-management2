@@ -845,7 +845,8 @@ body {
 #modifSauvStudent,
 #btnSauvegarder,
 #modifSauvMatiere,
-#modifSauvNote  {
+#modifSauvNote,
+#modifSauvAbsence   {
     border: none;
     background: #5B5FEF;
     color: white;
@@ -857,7 +858,8 @@ body {
 #btnAnnuler,
 #AnnulerProf,
 #AnnulerMatiere,
-#AnnulerNote  {
+#AnnulerNote,
+#AnnulerAbsence  {
     border: 1px solid #ccc;
     background: white;
 }
@@ -869,6 +871,7 @@ body {
 .formulaireCacherProf, 
 .formulaireCacherStudent,
 .formulaireCacherNote,
+.formulaireCacherAbsence,
 .formulaireCacherAbsence {
     display: flex;
     position: fixed;
@@ -887,6 +890,7 @@ body {
 #formModifProf,
 #formModifEtudiant,
 #formModifNote,
+#formModifAbsence,
 #formModifAbsence {
     background: #ffffff;
     border-radius: 10px;
@@ -899,7 +903,8 @@ body {
 .btn_fermMatiere,
 .btn_fermProf,
 .btn_fermStudent,
-.btn_fermNote {
+.btn_fermNote,
+.btn_fermAbsence {
     border: none;
     background: none;
     font-size: 16px;

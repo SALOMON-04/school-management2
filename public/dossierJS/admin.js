@@ -1444,6 +1444,363 @@ btnAnnulNote.addEventListener("click", function () {
     document.getElementById("noteValeur").value = "";
 });
 
+
+
+// RECUPERATION DE LA SECTION ABSENCES
+
+let tousLesAbsences = [];
+
+const chargerAbsences = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/absences", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const absences = await reponse.json();
+    console.log("absences :", absences);
+
+    tousLesAbsences = absences;
+
+    afficherLignesAbsences(tousLesAbsences);
+};
+
+
+// Stats
+const chargerStatsAbsences = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/statis/absences/stats", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const stats = await reponse.json();
+
+    document.querySelector(".statTotalAbsence").textContent = stats.total;
+    document.querySelector(".statAbsenceJustifie").textContent = stats.justifiees;
+    document.querySelector(".statAbsenceNonJustifie").textContent = stats.nonJust;
+    document.querySelector(".statAbsenceAujourdhui").textContent = stats.aujourdhui;
+};
+
+
+// Charger les classes depuis la BD
+const chargerClassesAbsence = async () => {
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch("http://localhost:3000/api/students", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const students = await reponse.json();
+
+    const classes = [...new Set(students.map(s => s.classe))];
+
+    const select = document.getElementById("classe_absence");
+    select.innerHTML = '<option value="">Sélectionnez une classe</option>';
+
+    classes.forEach(function (classe) {
+        const option = document.createElement("option");
+        option.value = classe;
+        option.textContent = classe;
+        select.appendChild(option);
+    });
+};
+
+
+// Charger les étudiants en fonction de la classe
+document.getElementById("classe_absence").addEventListener("change", async function () {
+
+    const classe = this.value;
+    const token = localStorage.getItem("token");
+
+    const select = document.getElementById("etudiant_absence");
+    select.innerHTML = '<option value="">Sélectionnez un étudiant</option>';
+
+    if (!classe) return;
+
+    const reponse = await fetch("http://localhost:3000/api/students", {
+        headers: { "Authorization": "Bearer " + token }
+    });
+
+    const students = await reponse.json();
+
+    const filtres = students.filter(s => s.classe === classe);
+
+    filtres.forEach(function (student) {
+        const option = document.createElement("option");
+        option.value = student.id;
+        option.textContent = `${student.prenom} ${student.nom}`;
+        select.appendChild(option);
+    });
+});
+
+
+// Statut sélectionné
+let statutAbsence = "non_justifiee";
+
+document.getElementById("btn_justifie").addEventListener("click", function () {
+    statutAbsence = "justifiee";
+    changerStatut("justifie");
+});
+
+document.getElementById("btn_non_justifie").addEventListener("click", function () {
+    statutAbsence = "non_justifiee";
+    changerStatut("non_justifie");
+});
+
+
+// Recherche par nom
+const rechercheAbsence = document.querySelector(".rechercheAbsence input");
+
+rechercheAbsence.addEventListener("input", function () {
+    const texte = this.value.toLowerCase();
+
+    const resultat = tousLesAbsences.filter(function (absence) {
+        return (absence.nom || "").toLowerCase().includes(texte) ||
+            (absence.prenom || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesAbsences(resultat);
+});
+
+
+// Filtre par classe
+const rechClasseAbsence = document.querySelector(".rechClasseAbsence");
+
+rechClasseAbsence.addEventListener("change", function () {
+    const texte = this.value.toLowerCase();
+
+    if (texte === "toutes les classes") {
+        afficherLignesAbsences(tousLesAbsences);
+        return;
+    };
+
+    const resultat = tousLesAbsences.filter(function (absence) {
+        return (absence.classe || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesAbsences(resultat);
+});
+
+
+// Filtre par statut
+const rechStatutAbsence = document.querySelector(".rechStatutAbsence");
+
+rechStatutAbsence.addEventListener("change", function () {
+    const texte = this.value.toLowerCase();
+
+    if (texte === "statut") {
+        afficherLignesAbsences(tousLesAbsences);
+        return;
+    };
+
+    const resultat = tousLesAbsences.filter(function (absence) {
+        return (absence.status || "").toLowerCase().includes(texte);
+    });
+
+    afficherLignesAbsences(resultat);
+});
+
+
+// Afficher les lignes des absences
+const afficherLignesAbsences = (liste) => {
+
+    const tbody = document.getElementById("listeAbsences");
+
+    tbody.innerHTML = "";
+
+    liste.forEach(function (absence) {
+
+        const ligne = document.createElement("tr");
+
+        ligne.innerHTML = `
+            <td>${absence.student_id}</td>
+            <td>${absence.nom || ""} ${absence.prenom || ""}</td>
+            <td>${absence.classe || ""}</td>
+            <td>${absence.date}</td>
+            <td><span class="badge ${absence.status === 'justifiee' ? 'justifie' : 'non_justifie'}">${absence.status === 'justifiee' ? 'Justifié' : 'Non justifié'}</span></td>
+            <td>
+                <div class="actions_ligne">
+                    <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn_action supprimer"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+        const btnModif = ligne.querySelector(".modifier");
+        const btnSprim = ligne.querySelector(".supprimer");
+
+        // Supprimer une absence
+        btnSprim.addEventListener("click", async () => {
+            const token = localStorage.getItem("token");
+
+            const reponse = await fetch(`http://localhost:3000/api/absences/${absence.id}`, {
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + token }
+            });
+
+            const data = await reponse.json();
+
+            chargerAbsences();
+            chargerStatsAbsences();
+        });
+
+        // Modifier — ouvre le formulaire caché pré-rempli
+        btnModif.addEventListener("click", () => {
+            document.getElementById("modifEtudiantAbsence").value = `${absence.prenom} ${absence.nom}`;
+            document.getElementById("modifDateAbsence").value = absence.date;
+
+            // Pré-sélectionner le statut
+            const btnJ = document.getElementById("modifBtnJustifie");
+            const btnNJ = document.getElementById("modifBtnNonJustifie");
+            btnJ.classList.remove("active");
+            btnNJ.classList.remove("active");
+
+            if (absence.status === "justifiee") {
+                btnJ.classList.add("active");
+            } else {
+                btnNJ.classList.add("active");
+            }
+
+            const overlay = document.querySelector(".formulaireCacherAbsence");
+            overlay.dataset.absenceId = absence.id;
+            overlay.dataset.studentId = absence.student_id;
+            overlay.style.display = "flex";
+        });
+
+        tbody.append(ligne);
+    });
+};
+
+
+// Statut dans la modale de modification
+let statutModifAbsence = "non_justifiee";
+
+document.getElementById("modifBtnJustifie").addEventListener("click", function () {
+    statutModifAbsence = "justifiee";
+    this.classList.add("active");
+    document.getElementById("modifBtnNonJustifie").classList.remove("active");
+});
+
+document.getElementById("modifBtnNonJustifie").addEventListener("click", function () {
+    statutModifAbsence = "non_justifiee";
+    this.classList.add("active");
+    document.getElementById("modifBtnJustifie").classList.remove("active");
+});
+
+
+// Boutons du formulaire caché de modification
+const AnnulerAbsence = document.getElementById("AnnulerAbsence");
+const modifSauvAbsence = document.getElementById("modifSauvAbsence");
+const btnFermAbsence = document.querySelector(".btn_fermAbsence");
+
+// Fermer sans sauvegarder
+AnnulerAbsence.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherAbsence").style.display = "none";
+});
+
+btnFermAbsence.addEventListener("click", () => {
+    document.querySelector(".formulaireCacherAbsence").style.display = "none";
+});
+
+// Fermer en cliquant sur le fond sombre
+document.querySelector(".formulaireCacherAbsence").addEventListener("click", (e) => {
+    if (e.target.classList.contains("formulaireCacherAbsence")) {
+        document.querySelector(".formulaireCacherAbsence").style.display = "none";
+    }
+});
+
+// Sauvegarder la modification
+modifSauvAbsence.addEventListener("click", async () => {
+    const id = document.querySelector(".formulaireCacherAbsence").dataset.absenceId;
+    const student_id = document.querySelector(".formulaireCacherAbsence").dataset.studentId;
+    const date = document.getElementById("modifDateAbsence").value;
+    const status = statutModifAbsence;
+    const token = localStorage.getItem("token");
+
+    const reponse = await fetch(`http://localhost:3000/api/absences/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({student_id, date, status })
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        alert("Erreur : " + (data.error || data.erreur));
+        return;
+    }
+
+    alert("Absence modifiée avec succès !");
+    document.querySelector(".formulaireCacherAbsence").style.display = "none";
+
+    chargerAbsences();
+    chargerStatsAbsences();
+});
+
+
+// Ajouter une absence
+const btn_enregistreAbsence = document.getElementById("btn_enregistreAbsence");
+
+btn_enregistreAbsence.addEventListener("click", async function () {
+    const token = localStorage.getItem("token");
+    const student_id = document.getElementById("etudiant_absence").value;
+    const date = document.getElementById("absenceDate").value;
+    const status = statutAbsence;
+
+    if (!student_id || !date) {
+        return alert("Veuillez sélectionner un étudiant et une date");
+    };
+
+    const reponse = await fetch("http://localhost:3000/api/absences", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ student_id: Number(student_id), date, status })
+    });
+
+    const data = await reponse.json();
+
+    if (!reponse.ok) {
+        console.log("Erreur :", data.error || data.erreur);
+        return;
+    };
+
+    alert("Absence ajoutée avec succès !");
+
+    document.getElementById("etudiant_absence").value = "";
+    document.getElementById("absenceDate").value = "";
+    statutAbsence = "non_justifiee";
+    changerStatut("non_justifie");
+
+    chargerAbsences();
+    chargerStatsAbsences();
+});
+
+
+// Bouton annuler du formulaire d'ajout
+const btn_annulAbsence = document.querySelector(".btn_annulAbsence");
+
+btn_annulAbsence.addEventListener("click", function () {
+    document.getElementById("etudiant_absence").value = "";
+    document.getElementById("absenceDate").value = "";
+    statutAbsence = "non_justifiee";
+    changerStatut("non_justifie");
+});
+
+
+
+
+
+
+
+
+
 // Chargement de la liste des utilisateur dans la bd
 
 chargerUser();
@@ -1458,3 +1815,6 @@ chargerNotes();
 chargerStatsNotes();
 chargerMatieresNote();
 chargerClassesNote();
+chargerClassesAbsence();
+chargerAbsences();
+chargerStatsAbsences();
