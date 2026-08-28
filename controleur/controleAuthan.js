@@ -18,7 +18,7 @@ export const connexion = async (req, res) => {
 
 
 
-        const user = getUserByUsername(identifiant);
+        const user = await getUserByUsername(identifiant);
 
         if (!user) {
 
@@ -66,7 +66,7 @@ export const connexion = async (req, res) => {
 
     if (matricule) {
 
-        const student = getStudentByMatricule(matricule);
+        const student = await getStudentByMatricule(matricule);
 
         if (!student) {
 
@@ -78,7 +78,7 @@ export const connexion = async (req, res) => {
 
 
         // Verification du mot de passe de l'etudiant
-        const user = getUserById(student.user_id);
+        const user = await getUserById(student.user_id);
 
 
         if (!user) {
@@ -131,7 +131,3 @@ export const connexion = async (req, res) => {
     return res.status(404).json({ error: "veuiller fornir les information demander " });
 
 };
-
-
-
-

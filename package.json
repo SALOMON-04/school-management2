@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/SALOMON-04/school-management#readme",
   "dependencies": {
+    "@libsql/client": "^0.17.4",
+    "@tursodatabase/serverless": "^1.4.0",
     "bcrypt": "^6.0.0",
     "better-sqlite3": "^12.11.1",
     "dotenv": "^17.4.2",
