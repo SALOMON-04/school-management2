@@ -1,95 +1,69 @@
-
 import db from "../db/database.js"
 import Subject from "../models/modelsSubject.js"
 
 
+const createSubject = async (nom) => {
 
+  const addSubject = new Subject(nom);
 
-
-// AJOUR UNE MATIERE
-
-const createSubject = (nom) => {
-
-  //AJOUT D'UNE MATIERE EN FONCTION DU MODEL SUBJECT
-
-    const addSubject = new Subject(nom);
-
-    const insertSubjects = db.prepare(`
+  const insertSubjects = await db.prepare(`
         INSERT OR IGNORE INTO subjects (nom)
         VALUES(?)
         `);
 
-  return insertSubjects.run(addSubject.nom);
+  return await insertSubjects.run(addSubject.nom);
 };
 
 
-
-//LISTE DES MATIERES
-
-const getAllSubjects = () => {
-    return db.prepare(`
+const getAllSubjects = async () => {
+  return await (await db.prepare(`
         SELECT subjects.*, teachers.nom as teacher_nom
         FROM subjects
         LEFT JOIN teachers ON subjects.teacher_id = teachers.id
-    `).all();
+    `)).all();
 };
 
 
-
-//AFFICHER UNE MATIER 
-
-const getSubjectById = (id) => {
-
-  return db.prepare(`
+const getSubjectById = async (id) => {
+  return await (await db.prepare(`
             SELECT * FROM subjects
             WHERE id = ?
-    `).get(id);
-    
+    `)).get(id);
 };
 
 
-// AFFECTATION D'UNE MATIERE A UN PROF
+const affectTeacherSubject = async (subjectId, teacherId) => {
 
-const affectTeacherSubject = (subjectId, teacherId) => {
-
-  const assign = db.prepare(`
+  const assign = await db.prepare(`
             UPDATE subjects 
             SET teacher_id = ?
             WHERE id = ?
         `);
 
-  return assign.run(teacherId, subjectId);
+  return await assign.run(teacherId, subjectId);
 }
 
 
-// MODIFIER UNE MATIERE
+const updateASubject = async (id, data) => {
 
-
-const updateASubject = (id, data) =>{
-
-  const updateMatiere = db.prepare(`
+  const updateMatiere = await db.prepare(`
       UPDATE subjects  SET nom = ?, teacher_id= ?
       WHERE id = ?
     `)
 
-    return updateMatiere.run(data.nom, data.teacher_id ?? null, id)
+  return await updateMatiere.run(data.nom, data.teacher_id ?? null, id)
 }
 
 
-
-// CHOISIR UNE POUR LE PROF ET L'ETUDIANT : on fait corresponde le choix  à l'id voulu  
-
 const choixMatiere = async (question, teacher_id = null) => {
 
+  let matieres;
 
-  let matieres ;
-
-  if(teacher_id){
-    matieres = db.prepare(`SELECT * FROM subjects WHERE teacher_id = ?`).all(teacher_id);
-  }else{
-    matieres = getAllSubjects();
+  if (teacher_id) {
+    matieres = await (await db.prepare(`SELECT * FROM subjects WHERE teacher_id = ?`)).all(teacher_id);
+  } else {
+    matieres = await getAllSubjects();
   }
-
 
   let texte = `
 ===========================
@@ -98,9 +72,7 @@ const choixMatiere = async (question, teacher_id = null) => {
 
 `;
 
-
-  for (let i = 0; i < matieres.length; i++){
-
+  for (let i = 0; i < matieres.length; i++) {
     texte += `${matieres[i].id}. ${matieres[i].nom}\n`
   }
 
@@ -108,37 +80,20 @@ const choixMatiere = async (question, teacher_id = null) => {
 
   const id = await question(texte);
   return Number(id);
-
 }
 
 
+const deleteSubject = async (id) => {
 
+  await (await db.prepare(`UPDATE teachers SET subject_id = NULL WHERE subject_id = ?`)).run(id);
 
+  await (await db.prepare(`DELETE FROM grades WHERE subject_id = ?`)).run(id);
 
-
-// SUPPRESSION D'UNE MATIERE
-
-
-const deleteSubject = (id) => {
-
-  //suppression de la clé subject dans la table subject
-  db.prepare(`UPDATE teachers SET subject_id = NULL WHERE subject_id = ?`).run(id);
-
-
-  //spression de la clé lier au notes dans la table grades
-  db.prepare(`DELETE FROM grades WHERE subject_id = ?`).run(id);
-
-
-  //suppression de la matiè!re
-
-  return db.prepare(`
+  return await (await db.prepare(`
             DELETE FROM subjects 
             WHERE  id = ?
-        `).run(id)
-
+        `)).run(id)
 };
 
 
 export { createSubject, getAllSubjects, getSubjectById, updateASubject, choixMatiere, affectTeacherSubject, deleteSubject }
-
-

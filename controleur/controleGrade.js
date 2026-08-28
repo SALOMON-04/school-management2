@@ -1,4 +1,4 @@
-import { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, calculMoyenne, meilleurEtudiant } from "../services/servicesGrades.js";
+import { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades,getGradesByTeacher, calculMoyenne, meilleurEtudiant } from "../services/servicesGrades.js";
 import { getStudentById } from "../services/servicesStudents.js";
 
 
