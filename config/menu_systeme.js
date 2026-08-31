@@ -8,7 +8,7 @@ import { createSubject, getAllSubjects, getSubjectById, updateASubject, choixMat
 import { createStudent, getAllStudents, getStudentById, updateStudent, choixEtudiant, deleteStudent } from "../services/servicesStudents.js";
 import { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, calculMoyenne, meilleurEtudiant } from "../services/servicesGrades.js";
 import { createAbsence, getAllAbscence, getAbsenceById, updateAbsence, deleteAbsence, nombreAbsences, getStudentAbsences } from "../services/servicesAbsences.js";
-import { moyenneGeneraleByStudent, moyenneGeneraleEcole, moyenneGeneralEtuddiant, totalUsers, totalStudent, totalProfesseur } from "../services/servicesStatistiques.js";
+import { moyenneGeneraleByStudent, moyenneGeneraleEcole, totalUsers, totalStudent, totalProfesseur } from "../services/servicesStatistiques.js";
 import { logger } from "../utils/logger.js"; 
 
 
