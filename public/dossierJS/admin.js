@@ -577,7 +577,7 @@ modifSauvStudent.addEventListener("click", async () => {
             Authorization: "Bearer " + token,
         },
 
-        body: JSON.stringify({ matricule, nom, prenom, age, classe, username }),
+        body: JSON.stringify({ matricule, nom, prenom, age, classe}),
     });
 
     const data = await reponse.json();
@@ -1713,7 +1713,6 @@ document.querySelector(".formulaireCacherAbsence").addEventListener("click", (e)
 // Sauvegarder la modification
 modifSauvAbsence.addEventListener("click", async () => {
     const id = document.querySelector(".formulaireCacherAbsence").dataset.absenceId;
-    const student_id = document.querySelector(".formulaireCacherAbsence").dataset.studentId;
     const date = document.getElementById("modifDateAbsence").value;
     const status = statutModifAbsence;
     const token = localStorage.getItem("token");
@@ -1724,7 +1723,7 @@ modifSauvAbsence.addEventListener("click", async () => {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + token
         },
-        body: JSON.stringify({student_id, date, status })
+        body: JSON.stringify({date, status })
     });
 
     const data = await reponse.json();

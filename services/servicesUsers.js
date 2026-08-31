@@ -1,125 +1,83 @@
 import db from "../db/database.js";
-import Users from "../models/modelsUser.js"
-import generPassword from "../utils/password.js";
+import Users from "../models/modelsUser.js";
 import bcrypt from "bcrypt";
 
-
-
-
-//AJOUTER UN UTILISATEUR
-
 const createUser = async (nom, role, username, password) => {
+    const existant = await db.execute({
+        sql: `SELECT id FROM users WHERE username = ?`,
+        args: [username]
+    });
 
-    
-    // Veriffication des usernames dans la base de donnée , si elle exixte on 
-    // renvoie erreur sinon on ajoute le nouveau username 
-    const existant =  (await (await db.prepare(`SELECT id FROM users WHERE username = ?`)).get(username));
-
-
-    if(existant){
-        return {erreur: `${username} déja utilisé, veuiller choisir un autre username`};
+    if (existant.rows[0]) {
+        return { erreur: `${username} déjà utilisé, veuillez choisir un autre username` };
     };
 
-    if(password.length < 6){
-        return {erreur: "le champ dois contenir au moins 6 caractère"};
+    if (password.length < 6) {
+        return { erreur: "le champ doit contenir au moins 6 caractères" };
     };
 
-    const passwordHash = await bcrypt.hash(password, 10); //varaible qui hash le password avec le sel integré
-
-
-    // Appel du models utilisateur
+    const passwordHash = await bcrypt.hash(password, 10);
     const addUsers = new Users(nom, role, username, passwordHash);
 
+    const result = await db.execute({
+        sql: `INSERT INTO users(nom, role, username, password) VALUES(?, ?, ?, ?)`,
+        args: [addUsers.nom, addUsers.role, addUsers.username, addUsers.password]
+    });
 
-    const insertUsers = (await db.prepare(`
-            INSERT INTO users(nom, role, username, password)
-            VALUES(?, ?, ?, ?)
-    `));
-    
-    
-    const result = (await insertUsers.run(addUsers.nom, addUsers.role, addUsers.username, addUsers.password));
-
-
-
-    console.log(result);
-    // on retourne le résultat ET l'id généré, pour que createStudent/createTeacher puissent l'utiliser
-    return result.lastInsertRowid ;
-
-}
-
-
-// AFFICHER LES UTILISATEUR
+    return result.lastInsertRowid;
+};
 
 const getAllUsers = async () => {
-    return (await (await db.prepare(`
-            SELECT * FROM users
-    `)).all());
+    const result = await db.execute(`SELECT * FROM users`);
+    return result.rows;
 };
-
-
-
-// AFFICHER UN UTILISATEUR
 
 const getUserById = async (id) => {
-
-    return (await (await db.prepare(`
-            SELECT * FROM users
-            WHERE id = ?
-    `)).get(id));
-
+    const result = await db.execute({
+        sql: `SELECT * FROM users WHERE id = ?`,
+        args: [id]
+    });
+    return result.rows[0];
 };
-
-
-
-// RECHERCHE D'UN UTILISATUER PAR SON NOM ET MOT DE PASSE
 
 const getUserByUsername = async (username) => {
-    return (await (await db.prepare(`
-        SELECT * FROM users
-        WHERE username = ?
-    `)).get(username));
+    const result = await db.execute({
+        sql: `SELECT * FROM users WHERE username = ?`,
+        args: [username]
+    });
+    return result.rows[0];
 };
-
-
-// MODIFICATION D'UN UTILISATEUR
 
 const updateUsers = async (id, data) => {
-
-    const updateUsersStmt = (await db.prepare(`
-        UPDATE users SET  nom = ?, role = ?, username = ?
-        WHERE id = ?
-    `));
-
-    return (await updateUsersStmt.run(data.nom, data.role, data.username, id));
-}
-
-
-
-//SUPPRESION D'UN UTILISATEUR
-
-const deleteUser = async (id) => {
-
-    // on cherche si cet utilisateur est lié à un étudiant
-    const student = (await (await db.prepare(`SELECT * FROM students WHERE user_id = ?`)).get(id));
-
-    if (student) {
-        await (await db.prepare(`DELETE FROM grades WHERE student_id = ?`)).run(student.id);
-        await (await db.prepare(`DELETE FROM absences WHERE student_id = ?`)).run(student.id);
-        await (await db.prepare(`DELETE FROM students WHERE id = ?`)).run(student.id);
-    }
-
-    // on cherche si cet utilisateur est lié à un professeur
-    const teacher = (await (await db.prepare(`SELECT * FROM teachers WHERE user_id = ?`)).get(id));
-
-    if (teacher) {
-        await (await db.prepare(`UPDATE subjects SET teacher_id = NULL WHERE teacher_id = ?`)).run(teacher.id);
-        await (await db.prepare(`DELETE FROM teachers WHERE id = ?`)).run(teacher.id);
-    }
-
-    // enfin on supprime l'utilisateur
-    return (await (await db.prepare(`DELETE FROM users WHERE id = ?`)).run(id));
+    return await db.execute({
+        sql: `UPDATE users SET nom = ?, role = ?, username = ? WHERE id = ?`,
+        args: [data.nom, data.role, data.username, id]
+    });
 };
 
+const deleteUser = async (id) => {
+    const student = await db.execute({
+        sql: `SELECT * FROM students WHERE user_id = ?`,
+        args: [id]
+    });
 
+    if (student.rows[0]) {
+        await db.execute({ sql: `DELETE FROM grades WHERE student_id = ?`, args: [student.rows[0].id] });
+        await db.execute({ sql: `DELETE FROM absences WHERE student_id = ?`, args: [student.rows[0].id] });
+        await db.execute({ sql: `DELETE FROM students WHERE id = ?`, args: [student.rows[0].id] });
+    }
+
+    const teacher = await db.execute({
+        sql: `SELECT * FROM teachers WHERE user_id = ?`,
+        args: [id]
+    });
+
+    if (teacher.rows[0]) {
+        await db.execute({ sql: `UPDATE subjects SET teacher_id = NULL WHERE teacher_id = ?`, args: [teacher.rows[0].id] });
+        await db.execute({ sql: `DELETE FROM teachers WHERE id = ?`, args: [teacher.rows[0].id] });
+    }
+
+    return await db.execute({ sql: `DELETE FROM users WHERE id = ?`, args: [id] });
+};
 
 export { createUser, getAllUsers, getUserByUsername, updateUsers, getUserById, deleteUser }

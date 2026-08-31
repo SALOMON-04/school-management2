@@ -264,49 +264,9 @@
 
                             </thead>
 
-                            <tbody>
+                            <tbody id="listeNotesProf">
 
-                                <tr>
-                                    <td>2025L2001</td>
-                                    <td>Kouassi Jean</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td><span class="badge actif">15/20</span></td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>2025L2004</td>
-                                    <td>Koné Aminata</td>
-                                    <td><span class="badge classe">L2 Réseaux</span></td>
-                                    <td><span class="badge inactif">08/20</span></td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>2025L2003</td>
-                                    <td>Yao Serge</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td><span class="badge actif">17/20</span></td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
 
                             </tbody>
 
@@ -337,7 +297,7 @@
 
                     <div class="groupe_champ">
                         <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
-                        <select class="champ_select" id="classe_note">
+                        <select class="champ_select" id="classeNoteProf" id="classe_note">
                             <option value="">Sélectionnez une classe</option>
                             <option value="L1-Info">L1 Informatique</option>
                             <option value="L2-Info">L2 Informatique</option>
@@ -348,7 +308,7 @@
 
                     <div class="groupe_champ">
                         <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
-                        <select class="champ_select" id="etudiant_note">
+                        <select class="champ_select" id="etudiantNoteProf" id="etudiant_note">
                             <option value="">Sélectionnez d'abord une classe</option>
                         </select>
                     </div>
@@ -360,12 +320,13 @@
 
                     <div class="groupe_champ">
                         <label class="etiquette_champ">Note <span class="obligatoire">*</span></label>
-                        <input type="number" class="champ_texte" placeholder="Ex: 15" min="0" max="20" step="0.25">
+                        <input type="number" class="champ_texte" id="noteValeurProf" placeholder="Ex: 15" min="0"
+                            max="20" step="0.25">
                     </div>
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler   btnAnnulNoteProf">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreNoteProf">Enregistrer</button>
                     </div>
 
                 </div>
@@ -373,6 +334,39 @@
             </div>
 
         </section>
+
+
+
+        <!-- Modale modification note prof -->
+        <div class="formulaireCacherNoteProf" style="display: none;">
+
+            <div id="formModifNoteProf">
+
+                <div class="modal-header">
+                    <h3>Modifier la note</h3>
+                    <button class="btn_fermNoteProf"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <div class="modif">
+                    <label>Note (0 - 20)</label>
+                    <input type="number" id="modifValeurNoteProf" min="0" max="20" step="0.25" />
+                </div>
+
+                <div class="actionModif">
+                    <button id="modifSauvNoteProf">Sauvegarder</button>
+                    <button id="AnnulerNoteProf">Annuler</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
 
 
 
@@ -441,37 +435,9 @@
 
                             </thead>
 
-                            <tbody>
+                            <tbody id="listeAbsencesProf">
 
-                                <tr>
-                                    <td>2025L2005</td>
-                                    <td>N'Guessan Koffi</td>
-                                    <td><span class="badge classe">L3 Sécurité</span></td>
-                                    <td>28/07/2026</td>
-                                    <td><span class="badge non_justifie">Non justifié</span></td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>2025L2002</td>
-                                    <td>Traoré Fatou</td>
-                                    <td><span class="badge classe">L2 Informatique</span></td>
-                                    <td>27/07/2026</td>
-                                    <td><span class="badge justifie">Justifié</span></td>
-                                    <td>
-                                        <div class="actions_ligne">
-                                            <button class="btn_action modifier"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="btn_action supprimer"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
 
                             </tbody>
 
@@ -501,39 +467,58 @@
                     <div class="sous_titre_formulaire">Sélection</div>
 
                     <div class="groupe_champ">
+
                         <label class="etiquette_champ">Classe <span class="obligatoire">*</span></label>
-                        <select class="champ_select" id="classe_absence">
+
+                        <select class="champ_select" id="classeAbsenceProf" id="classe_absence">
+
                             <option value="">Sélectionnez une classe</option>
                             <option value="L1-Info">L1 Informatique</option>
                             <option value="L2-Info">L2 Informatique</option>
                             <option value="L2-Res">L2 Réseaux</option>
                             <option value="L3-Sec">L3 Sécurité</option>
+
                         </select>
+
                     </div>
 
                     <div class="groupe_champ">
+
                         <label class="etiquette_champ">Étudiant <span class="obligatoire">*</span></label>
-                        <select class="champ_select" id="etudiant_absence">
+                        <select class="champ_select" id="etudiantAbsenceProf" id="etudiant_absence">
                             <option value="">Sélectionnez d'abord une classe</option>
                         </select>
+
                     </div>
 
-                    <div class="sous_titre_formulaire">Statut</div>
 
                     <div class="groupe_champ">
+                        <label  class="etiquette_champ">Date <span class="obligatoire">*</span></label>
+                        <input class="champ_select" id="absenceDateProf" type="date" id="modifDateAbsenceProf" />
+                    </div>
+
+
+                    <div class="sous_titre_formulaire" id="statutAbsenceProf">Statut</div>
+
+                    <div class="groupe_champ">
+
                         <div class="bascule_statut">
+
                             <button type="button" class="btn_statut justifie" id="btn_justifie">
                                 <i class="fa-solid fa-check"></i> Justifié
                             </button>
+
                             <button type="button" class="btn_statut non_justifie" id="btn_non_justifie">
                                 <i class="fa-solid fa-xmark"></i> Non justifié
                             </button>
+
                         </div>
+
                     </div>
 
                     <div class="pied_formulaire">
-                        <button class="btn_annuler">Annuler</button>
-                        <button class="btn_enregistrer">Enregistrer</button>
+                        <button class="btn_annuler   btn_annulAbsenceProf">Annuler</button>
+                        <button class="btn_enregistrer" id="btn_enregistreAbsenceProf">Enregistrer</button>
                     </div>
 
                 </div>
@@ -541,6 +526,57 @@
             </div>
 
         </section>
+
+
+        <!-- Modale modification absence prof -->
+        <div class="formulaireCacherAbsenceProf" style="display: none;">
+
+            <div id="formModifAbsenceProf">
+
+                <div class="modal-header">
+                    <h3>Modifier l'absence</h3>
+                    <button class="btn_fermAbsenceProf"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="modif">
+
+                    <label>Étudiant</label>
+                    <input type="text" id="modifEtudiantAbsenceProf" disabled />
+                </div>
+
+                <div class="modif">
+                    <label>Date</label>
+                    <input type="date" id="modifDateAbsenceProf" />
+                </div>
+
+                <div class="sous_titre_formulaire">Statut</div>
+
+                <div class="groupe_champ">
+
+                    <div class="bascule_statut">
+
+                        <button type="button" class="btn_statut justifie" id="modifBtnJustifieProf">
+                            <i class="fa-solid fa-check"></i> Justifié
+                        </button>
+
+                        <button type="button" class="btn_statut non_justifie" id="modifBtnNonJustifieProf">
+                            <i class="fa-solid fa-xmark"></i> Non justifié
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="actionModif">
+                    <button id="modifSauvAbsenceProf">Sauvegarder</button>
+                    <button id="AnnulerAbsenceProf">Annuler</button>
+                </div>
+
+            </div>
+            
+        </div>
+
+
 
 
 

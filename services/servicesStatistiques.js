@@ -1,46 +1,37 @@
 import db from "../db/database.js";
 
 const moyenneGeneraleByStudent = async (student_id) => {
+    const result = await db.execute({
+        sql: `SELECT AVG(note) AS moyenne FROM grades WHERE student_id = ?`,
+        args: [student_id]
+    });
+    if (result.rows[0].moyenne === null) return 0;
 
-    const resultat = await (await db.prepare(`
-             SELECT AVG(note) AS moyenne FROM grades
-             WHERE student_id = ?
-        `)).get(student_id);
+    const student = await db.execute({
+        sql: `SELECT matricule, nom, prenom, age, classe FROM students WHERE id = ?`,
+        args: [student_id]
+    });
 
-    if (resultat.moyenne === null) {
-        return 0;
-    }
-
-    const student = await (await db.prepare(`
-            SELECT matricule, nom, prenom, age, classe
-            FROM students 
-            WHERE id = ?
-        `)).get(student_id);
-
-    return { ...student, moyenne: resultat.moyenne };
-}
-
+    return { ...student.rows[0], moyenne: result.rows[0].moyenne };
+};
 
 const meilleurEtudiantParClasse = async () => {
-
-    const classes = await (await db.prepare(`SELECT DISTINCT classe FROM students`)).all();
-
+    const classes = await db.execute(`SELECT DISTINCT classe FROM students`);
     let resultatFinal = [];
 
-    for (let i = 0; i < classes.length; i++) {
+    for (let i = 0; i < classes.rows.length; i++) {
+        const classeActuelle = classes.rows[i].classe;
 
-        const classeActuelle = classes[i].classe;
-
-        const etudiantsDeCetteClasse = await (await db.prepare(`
-            SELECT id, nom, prenom FROM students WHERE classe = ?
-        `)).all(classeActuelle);
+        const etudiants = await db.execute({
+            sql: `SELECT id, nom, prenom FROM students WHERE classe = ?`,
+            args: [classeActuelle]
+        });
 
         let meilleurEtudiant = null;
         let meilleureMoyenne = 0;
 
-        for (let j = 0; j < etudiantsDeCetteClasse.length; j++) {
-
-            const etudiant = etudiantsDeCetteClasse[j];
+        for (let j = 0; j < etudiants.rows.length; j++) {
+            const etudiant = etudiants.rows[j];
             const resultatMoyenne = await moyenneGeneraleByStudent(etudiant.id);
             const sMoyenne = resultatMoyenne === 0 ? 0 : resultatMoyenne.moyenne;
 
@@ -62,35 +53,24 @@ const meilleurEtudiantParClasse = async () => {
     return resultatFinal;
 };
 
-
 const moyenneGeneraleEcole = async () => {
-
-    const resultats = await (await db.prepare(`
-           SELECT AVG(note) AS moyenneEcole
-           FROM grades 
-        `)).get();
-
-    if (resultats.moyenneEcole === null) {
-        return 0;
-    }
-
-    return resultats.moyenneEcole;
-}
-
+    const result = await db.execute(`SELECT AVG(note) AS moyenneEcole FROM grades`);
+    return result.rows[0].moyenneEcole ?? 0;
+};
 
 const totalUsers = async () => {
-    return await (await db.prepare(`SELECT COUNT(*) AS total FROM users`)).get();
-}
-
+    const result = await db.execute(`SELECT COUNT(*) AS total FROM users`);
+    return result.rows[0];
+};
 
 const totalStudent = async () => {
-    return await (await db.prepare(`SELECT COUNT(*) AS total FROM students`)).get();
+    const result = await db.execute(`SELECT COUNT(*) AS total FROM students`);
+    return result.rows[0];
 };
-
 
 const totalProfesseur = async () => {
-    return await (await db.prepare(`SELECT COUNT(*) AS total FROM teachers`)).get();
+    const result = await db.execute(`SELECT COUNT(*) AS total FROM teachers`);
+    return result.rows[0];
 };
-
 
 export { moyenneGeneraleByStudent, moyenneGeneraleEcole, meilleurEtudiantParClasse, totalUsers, totalStudent, totalProfesseur }
