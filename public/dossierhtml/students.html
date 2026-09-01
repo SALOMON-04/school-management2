@@ -89,7 +89,7 @@
                     <div class="icone_carte violet"><i class="fa-solid fa-chart-line"></i></div>
                     <div>
                         <div class="label_carte">Moyenne générale</div>
-                        <div class="valeur_carte">15.2/20</div>
+                        <div class="valeur_carte statMoyenneAccueil">15.2/20</div>
                         <div class="legende_carte">Toutes matières</div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <div class="icone_carte vert"><i class="fa-solid fa-book"></i></div>
                     <div>
                         <div class="label_carte">Matières</div>
-                        <div class="valeur_carte">6</div>
+                        <div class="valeur_carte tatMatieresAccueil">6</div>
                         <div class="legende_carte">Suivies cette année</div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                     <div class="icone_carte orange"><i class="fa-regular fa-clock"></i></div>
                     <div>
                         <div class="label_carte">Absences</div>
-                        <div class="valeur_carte">4</div>
+                        <div class="valeur_carte statAbsencesAccueil">4</div>
                         <div class="legende_carte">Depuis le début de l'année</div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                     <div class="icone_carte rouge"><i class="fa-solid fa-triangle-exclamation"></i></div>
                     <div>
                         <div class="label_carte">Non justifiées</div>
-                        <div class="valeur_carte">1</div>
+                        <div class="valeur_carte statNonJustifieesAccueil">1</div>
                         <div class="legende_carte">A régulariser</div>
                     </div>
                 </div>
@@ -142,22 +142,9 @@
 
                         </thead>
 
-                        <tbody>
+                        <tbody  id="dernieresNotesEtudiant">
 
-                            <tr>
-                                <td>Français</td>
-                                <td>15/20</td>
-                            </tr>
-
-                            <tr>
-                                <td>Informatique</td>
-                                <td>18/20</td>
-                            </tr>
-
-                            <tr>
-                                <td>Mathématiques</td>
-                                <td>13/20</td>
-                            </tr>
+                           <!-- cette partie sera injecter depuis le js au niveau de la recuperation  listeNotesEtudiant-->
 
                         </tbody>
 
@@ -224,7 +211,7 @@
                     <div class="icone_carte violet"><i class="fa-solid fa-chart-line"></i></div>
                     <div>
                         <div class="label_carte">Moyenne générale</div>
-                        <div class="valeur_carte">15.2/20</div>
+                        <div class="valeur_carte statMoyenneEtudiant">15.2/20</div>
                         <div class="legende_carte">Toutes matières</div>
                     </div>
                 </div>
@@ -233,7 +220,7 @@
                     <div class="icone_carte vert"><i class="fa-solid fa-trophy"></i></div>
                     <div>
                         <div class="label_carte">Meilleure note</div>
-                        <div class="valeur_carte">18/20</div>
+                        <div class="valeur_carte statMeilleureEtudiant">18/20</div>
                         <div class="legende_carte">Informatique</div>
                     </div>
                 </div>
@@ -242,7 +229,7 @@
                     <div class="icone_carte orange"><i class="fa-solid fa-book"></i></div>
                     <div>
                         <div class="label_carte">Matières notées</div>
-                        <div class="valeur_carte">6</div>
+                        <div class="valeur_carte statMatieresEtudiant">6</div>
                         <div class="legende_carte">Sur l'année</div>
                     </div>
                 </div>
@@ -264,31 +251,9 @@
 
                     </thead>
 
-                    <tbody>
+                    <tbody id="listeNotesEtudiant">
 
-                        <tr>
-                            <td>1</td>
-                            <td>Français</td>
-                            <td><span class="badge actif">15/20</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Mathématiques</td>
-                            <td><span class="badge actif">13/20</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td>Informatique</td>
-                            <td><span class="badge actif">18/20</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>4</td>
-                            <td>Anglais</td>
-                            <td><span class="badge inactif">08/20</span></td>
-                        </tr>
+                        <!-- cette partie sera injecter depuis le js au niveau de  listeNotesEtudiant -->
 
                     </tbody>
 
@@ -322,7 +287,7 @@
                     <div class="icone_carte violet"><i class="fa-regular fa-clock"></i></div>
                     <div>
                         <div class="label_carte">Total absences</div>
-                        <div class="valeur_carte">4</div>
+                        <div class="valeur_carte statTotalAbsenceEtudiant">4</div>
                         <div class="legende_carte">Depuis le début de l'année</div>
                     </div>
                 </div>
@@ -331,7 +296,7 @@
                     <div class="icone_carte vert"><i class="fa-solid fa-check"></i></div>
                     <div>
                         <div class="label_carte">Justifiées</div>
-                        <div class="valeur_carte">3</div>
+                        <div class="valeur_carte statJustifieEtudiant">3</div>
                         <div class="legende_carte">Absences justifiées</div>
                     </div>
                 </div>
@@ -340,7 +305,7 @@
                     <div class="icone_carte rouge"><i class="fa-solid fa-xmark"></i></div>
                     <div>
                         <div class="label_carte">Non justifiées</div>
-                        <div class="valeur_carte">1</div>
+                        <div class="valeur_carte statNonJustifieEtudiant">1</div>
                         <div class="legende_carte">A régulariser</div>
                     </div>
                 </div>
@@ -361,27 +326,9 @@
 
                     </thead>
 
-                    <tbody>
+                    <tbody id="listeAbsencesEtudiant">
 
-                        <tr>
-                            <td>28/07/2026</td>
-                            <td><span class="badge non_justifie">Non justifié</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>15/07/2026</td>
-                            <td><span class="badge justifie">Justifié</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>02/07/2026</td>
-                            <td><span class="badge justifie">Justifié</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>20/06/2026</td>
-                            <td><span class="badge justifie">Justifié</span></td>
-                        </tr>
+                        <!-- cette partie injecter depuis au niveau de la recuperation de listeAbsencesEtudiant -->
 
                     </tbody>
 
@@ -412,9 +359,12 @@
 
                 <div class="avatar_grand">KJ</div>
 
-                <div class="nom_profil">Kouassi Jean</div>
-                <div class="sous_texte_profil">Étudiant - L2 Informatique</div>
+                <div class="nom_profil nomPrenomEtudiant">Kouassi Jean</div>
+                <div class="sous_texte_profil role">Étudiant - L2 Informatique</div>
 
+                <div class="welcome-title titreAccueilEtudiant">Bienvenue, Jean 👋</div>
+
+                
                 <div class="liste_infos">
 
                     <div class="ligne_info">
