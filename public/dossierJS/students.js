@@ -161,7 +161,7 @@ const chargerAccueilEtudiant = async () => {
     const student = await getStudentReel();
 
     // Dernières notes
-    const repNotes = await fetch(`${API}/api/grades/studentId/${student.id}/subjectId/all`, {
+    const repNotes = await fetch(`${API}/api/grades/studentId/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const notes = await repNotes.json();
