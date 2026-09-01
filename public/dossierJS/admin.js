@@ -1,5 +1,6 @@
 protegePages("admin");
 
+const API = "" ;
 const etudiantsParClasse = {
     "L1-Info": [
         { id: "2025L1006", nom: "Bamba Mariam" },
@@ -111,7 +112,7 @@ const statUserAdmin = document.querySelector(".statUserAdmin");
 const chargerStats = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/statis/users/stats", {
+    const reponse = await fetch(`${API}/api/statis/users/stats`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -130,7 +131,7 @@ let tousLesUser = [];
 const chargerUser = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/users", {
+    const reponse = await fetch(`${API}/api/users`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -181,7 +182,7 @@ const afficherLignesUsers = (liste) => {
             const token = localStorage.getItem("token");
 
             const reponse = await fetch(
-                `http://localhost:3000/api/users/${user.id}`,
+                `${API}/api/users/${user.id}`,
                 {
                     method: "DELETE",
                     headers: { Authorization: "Bearer " + token },
@@ -241,7 +242,7 @@ btnSauvegarder.addEventListener("click", async () => {
     const role = document.getElementById("modifRole").value;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/users/${id}`, {
+    const reponse = await fetch(`${API}/api/users/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -324,7 +325,7 @@ enregistreUser.addEventListener("click", async function () {
         );
     }
 
-    const reponse = await fetch("http://localhost:3000/api/users", {
+    const reponse = await fetch(`${API}/api/users"`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -366,7 +367,7 @@ let tousLesStudent = [];
 const chargerStudent = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -386,7 +387,7 @@ const statStudentInactif = document.querySelector(".statStudentInactif");
 const chargerStatsStudent = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/students/stats", {
+    const reponse = await fetch(`${API}/api/students/stats`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -505,7 +506,7 @@ const afficherLignesStudents = (liste) => {
             const token = localStorage.getItem("token");
 
             const reponse = await fetch(
-                `http://localhost:3000/api/students/${student.id}`,
+                `${API}/api/students/${student.id}`,
                 {
                     method: "DELETE",
                     headers: { Authorization: "Bearer " + token },
@@ -570,7 +571,7 @@ modifSauvStudent.addEventListener("click", async () => {
     const classe = document.getElementById("modifStudiantClasse").value;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/students/${id}`, {
+    const reponse = await fetch(`${API}/api/students/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -619,7 +620,7 @@ btn_enregistreStudent.addEventListener("click", async function () {
         return alert("Tous les champs de création de l'étudiant sont obligatoires");
     }
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -669,7 +670,7 @@ const chargerStatsProf = async () => {
     const token = localStorage.getItem("token");
 
     const reponse = await fetch(
-        "http://localhost:3000/api/statis/professeurs/stats",
+        `${API}/api/statis/professeurs/stats`,
         {
             headers: { Authorization: "Bearer " + token },
         },
@@ -717,7 +718,7 @@ let tousLesProf = [];
 const chargerProf = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/teachers", {
+    const reponse = await fetch(`${API}/api/teachers`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -760,7 +761,7 @@ const afficherLignesProf = (liste) => {
             const token = localStorage.getItem("token");
 
             const reponse = await fetch(
-                `http://localhost:3000/api/teachers/${teachers.id}`,
+                `${API}/api/teachers/${teachers.id}`,
                 {
                     method: "DELETE",
                     headers: { Authorization: "Bearer " + token },
@@ -779,7 +780,7 @@ const afficherLignesProf = (liste) => {
             const token = localStorage.getItem("token");
 
             // Charger les matières depuis la BD
-            const reponse = await fetch("http://localhost:3000/api/subjects", {
+            const reponse = await fetch(`${API}/api/subjects`, {
                 headers: { Authorization: "Bearer " + token },
             });
             const matieres = await reponse.json();
@@ -841,7 +842,7 @@ modifSauvProf.addEventListener("click", async () => {
     const subject_id = document.getElementById("modifMatiereProf").value;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/teachers/${id}`, {
+    const reponse = await fetch(`${API}/api/teachers/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -878,7 +879,7 @@ btn_enregistreProf.addEventListener("click", async function () {
         return alert("Tous les champs de création du professeur sont obligatoires");
     }
 
-    const reponse = await fetch("http://localhost:3000/api/teachers", {
+    const reponse = await fetch(`${API}/api/teachers`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -929,7 +930,7 @@ const chargerStatsMatiere = async () => {
     const token = localStorage.getItem("token");
 
     const reponse = await fetch(
-        "http://localhost:3000/api/statis/matieres/stats",
+        `${API}/api/statis/matieres/stats`,
         {
             headers: { Authorization: "Bearer " + token },
         },
@@ -947,7 +948,7 @@ let tousLesMatiere = [];
 const chargerMartiere = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/subjects", {
+    const reponse = await fetch(`${API}/api/subjects`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -990,7 +991,7 @@ const afficherLignesMatiere = (liste) => {
             const token = localStorage.getItem("token");
 
             const reponse = await fetch(
-                `http://localhost:3000/api/subjects/${subjects.id}`,
+                `${API}/api/subjects/${subjects.id}`,
                 {
                     method: "DELETE",
                     headers: { Authorization: "Bearer " + token },
@@ -1009,7 +1010,7 @@ const afficherLignesMatiere = (liste) => {
             const token = localStorage.getItem("token");
 
             // Charger les matières depuis la BD
-            const reponse = await fetch("http://localhost:3000/api/teachers", {
+            const reponse = await fetch(`${API}/api/teachers`, {
                 headers: { Authorization: "Bearer " + token },
             });
             const matieres = await reponse.json();
@@ -1072,7 +1073,7 @@ modifSauvMatiere.addEventListener("click", async () => {
     const teacher_id = document.getElementById("modifProfMatiere").value;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/subjects/${id}`, {
+    const reponse = await fetch(`${API}/api/subjects/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -1109,7 +1110,7 @@ btn_enregistreMatiere.addEventListener("click", async function () {
         return alert("Tous les champs de création de la matiere sont obligatoires");
     }
 
-    const reponse = await fetch("http://localhost:3000/api/subjects", {
+    const reponse = await fetch(`${API}/api/subjects`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1152,7 +1153,7 @@ let tousLesNotes = [];
 const chargerNotes = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/grades", {
+    const reponse = await fetch(`${API}/api/grades`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -1167,7 +1168,7 @@ const chargerNotes = async () => {
 const chargerStatsNotes = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/statis/notes/stats", {
+    const reponse = await fetch(`${API}/api/statis/notes/stats`, {
         headers: { Authorization: "Bearer " + token },
     });
 
@@ -1187,7 +1188,7 @@ const chargerMatieresNote = async () => {
 
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/subjects", {
+    const reponse = await fetch(`${API}/api/subjects`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1210,7 +1211,7 @@ const chargerMatieresNote = async () => {
 
 const chargerClassesNote = async () => {
     const token = localStorage.getItem("token");
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const students = await reponse.json();
@@ -1241,7 +1242,7 @@ classeEtudiant.addEventListener("change", async function () {
 
     if (!classe) return;
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1314,7 +1315,7 @@ const afficherLignesNotes = (liste) => {
             const token = localStorage.getItem("token");
 
             const reponse = await fetch(
-                `http://localhost:3000/api/grades/${grade.id}`,
+                `${API}/api/grades/${grade.id}`,
                 {
                     method: "DELETE",
                     headers: { Authorization: "Bearer " + token },
@@ -1369,7 +1370,7 @@ modifSauvNote.addEventListener("click", async () => {
     const note = document.getElementById("modifValeurNote").value;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/grades/${id}`, {
+    const reponse = await fetch(`${API}/api/grades/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -1405,7 +1406,7 @@ btn_enregistreNote.addEventListener("click", async function () {
         return alert("Tous les champs sont obligatoires");
     }
 
-    const reponse = await fetch("http://localhost:3000/api/grades", {
+    const reponse = await fetch(`${API}/api/grades`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1453,7 +1454,7 @@ let tousLesAbsences = [];
 const chargerAbsences = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/absences", {
+    const reponse = await fetch(`${API}/api/absences`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1470,7 +1471,7 @@ const chargerAbsences = async () => {
 const chargerStatsAbsences = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/statis/absences/stats", {
+    const reponse = await fetch(`${API}/api/statis/absences/stats`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1487,7 +1488,7 @@ const chargerStatsAbsences = async () => {
 const chargerClassesAbsence = async () => {
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1518,7 +1519,7 @@ document.getElementById("classe_absence").addEventListener("change", async funct
 
     if (!classe) return;
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -1634,7 +1635,7 @@ const afficherLignesAbsences = (liste) => {
         btnSprim.addEventListener("click", async () => {
             const token = localStorage.getItem("token");
 
-            const reponse = await fetch(`http://localhost:3000/api/absences/${absence.id}`, {
+            const reponse = await fetch(`${API}/api/absences/${absence.id}`, {
                 method: "DELETE",
                 headers: { "Authorization": "Bearer " + token }
             });
@@ -1717,7 +1718,7 @@ modifSauvAbsence.addEventListener("click", async () => {
     const status = statutModifAbsence;
     const token = localStorage.getItem("token");
 
-    const reponse = await fetch(`http://localhost:3000/api/absences/${id}`, {
+    const reponse = await fetch(`${API}/api/absences/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -1754,7 +1755,7 @@ btn_enregistreAbsence.addEventListener("click", async function () {
         return alert("Veuillez sélectionner un étudiant et une date");
     };
 
-    const reponse = await fetch("http://localhost:3000/api/absences", {
+    const reponse = await fetch(`${API}/api/absences`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 protegePages("professeur");
 
+const API = "" ;
 
 //  TOKEN ET UTILITAIRES 
 
@@ -15,7 +16,7 @@ function getTeacherIdFromToken() {
 // Récupère le profil complet du professeur connecté depuis la BD
 const getTeacherReel = async () => {
     const user_id = getTeacherIdFromToken();
-    const reponse = await fetch(`http://localhost:3000/api/teachers/user/${user_id}`, {
+    const reponse = await fetch(`${API}/api/teachers/user/${user_id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
     return await reponse.json();
@@ -63,7 +64,7 @@ let tousLesNotesProf = [];
 const chargerNotesProf = async () => {
     const prof = await getTeacherReel();
 
-    const reponse = await fetch(`http://localhost:3000/api/grades/teacher/${prof.id}`, {
+    const reponse = await fetch(`${API}/api/grades/teacher/${prof.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -97,7 +98,7 @@ const afficherLignesNotesProf = (liste) => {
 
         // Supprime la note et recharge la liste
         btnSprim.addEventListener("click", async () => {
-            await fetch(`http://localhost:3000/api/grades/${grade.id}`, {
+            await fetch(`${API}/api/grades/${grade.id}`, {
                 method: "DELETE",
                 headers: { "Authorization": "Bearer " + token }
             });
@@ -146,7 +147,7 @@ modifSauvNoteProf.addEventListener("click", async () => {
     const id = document.querySelector(".formulaireCacherNoteProf").dataset.noteId;
     const note = document.getElementById("modifValeurNoteProf").value;
 
-    const reponse = await fetch(`http://localhost:3000/api/grades/${id}`, {
+    const reponse = await fetch(`${API}/api/grades/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
         body: JSON.stringify({ note: Number(note) })
@@ -171,7 +172,7 @@ const btnAnnulNoteProf = document.querySelector(".btnAnnulNoteProf");
 
 // Charge les classes depuis la BD dans le select classe
 const chargerClassesNoteProf = async () => {
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const students = await reponse.json();
@@ -192,7 +193,7 @@ classeNoteProf.addEventListener("change", async function () {
     etudiantNoteProf.innerHTML = '<option value="">Sélectionnez un étudiant</option>';
     if (!classe) return;
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const students = await reponse.json();
@@ -245,7 +246,7 @@ let tousLesAbsencesProf = [];
 const chargerAbsencesProf = async () => {
     const prof = await getTeacherReel();
 
-    const reponse = await fetch(`http://localhost:3000/api/absences/teacher/${prof.id}`, {
+    const reponse = await fetch(`${API}/api/absences/teacher/${prof.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -280,7 +281,7 @@ const afficherLignesAbsencesProf = (liste) => {
 
         // Supprime l'absence et recharge la liste
         btnSprim.addEventListener("click", async () => {
-            await fetch(`http://localhost:3000/api/absences/${absence.id}`, {
+            await fetch(`${API}/api/absences/${absence.id}`, {
                 method: "DELETE",
                 headers: { "Authorization": "Bearer " + token }
             });
@@ -361,7 +362,7 @@ modifSauvAbsenceProf.addEventListener("click", async () => {
     const date = document.getElementById("modifDateAbsenceProf").value;
     const status = statutModifAbsenceProf;
 
-    const reponse = await fetch(`http://localhost:3000/api/absences/${id}`, {
+    const reponse = await fetch(`${API}/api/absences/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
         body: JSON.stringify({ date, status })
@@ -388,7 +389,7 @@ const btn_non_justifie = document.getElementById("btn_non_justifie");
 
 // Charge les classes depuis la BD dans le select classe
 const chargerClassesAbsenceProf = async () => {
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const students = await reponse.json();
@@ -409,7 +410,7 @@ classeAbsenceProf.addEventListener("change", async function () {
     etudiantAbsenceProf.innerHTML = '<option value="">Sélectionnez un étudiant</option>';
     if (!classe) return;
 
-    const reponse = await fetch("http://localhost:3000/api/students", {
+    const reponse = await fetch(`${API}/api/students`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const students = await reponse.json();
@@ -444,7 +445,7 @@ btn_enregistreAbsenceProf.addEventListener("click", async function () {
 
     if (!student_id || !date) return alert("Veuillez sélectionner un étudiant et une date");
 
-    const reponse = await fetch("http://localhost:3000/api/absences", {
+    const reponse = await fetch(`${API}/api/absences`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
         body: JSON.stringify({ student_id: Number(student_id), date, status })

@@ -1,5 +1,6 @@
 protegePages("etudiant");
 
+const API = "" ;
 
 // TOKEN ET UTILITAIRES 
 
@@ -15,7 +16,7 @@ function getStudentIdFromToken() {
 // Récupère le profil complet de l'étudiant connecté depuis la BD
 const getStudentReel = async () => {
     const user_id = getStudentIdFromToken();
-    const reponse = await fetch(`http://localhost:3000/api/students/user/${user_id}`, {
+    const reponse = await fetch(`${API}/api/students/user/${user_id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
     return await reponse.json();
@@ -43,7 +44,7 @@ document.querySelectorAll('.nav-item[data-section]').forEach(function (item) {
 const chargerNotesEtudiant = async () => {
     const student = await getStudentReel();
 
-    const reponse = await fetch(`http://localhost:3000/api/grades/studentId/${student.id}/subjectId/all`, {
+    const reponse = await fetch(`${API}/api/grades/studentId/${student.id}/subjectId/all`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -93,7 +94,7 @@ const mettreAJourStatsNotes = (notes) => {
 const chargerAbsencesEtudiant = async () => {
     const student = await getStudentReel();
 
-    const reponse = await fetch(`http://localhost:3000/api/absences/student/${student.id}`, {
+    const reponse = await fetch(`${API}/api/absences/student/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -160,7 +161,7 @@ const chargerAccueilEtudiant = async () => {
     const student = await getStudentReel();
 
     // Dernières notes
-    const repNotes = await fetch(`http://localhost:3000/api/grades/studentId/${student.id}/subjectId/all`, {
+    const repNotes = await fetch(`${API}/api/grades/studentId/${student.id}/subjectId/all`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const notes = await repNotes.json();
@@ -179,7 +180,7 @@ const chargerAccueilEtudiant = async () => {
     }
 
     // Dernières absences
-    const repAbs = await fetch(`http://localhost:3000/api/absences/student/${student.id}`, {
+    const repAbs = await fetch(`${API}/api/absences/student/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const absences = await repAbs.json();
