@@ -44,7 +44,7 @@ document.querySelectorAll('.nav-item[data-section]').forEach(function (item) {
 const chargerNotesEtudiant = async () => {
     const student = await getStudentReel();
 
-    const reponse = await fetch(`${API}/api/grades/studentId/${student.id}/subjectId/all`, {
+    const reponse = await fetch(`${API}/api/grades/studentId/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
