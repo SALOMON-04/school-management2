@@ -12,7 +12,7 @@ const TableUsers = `
     )
 ` ;
 
-db.exec(TableUsers);
+db.execute(TableUsers);
 
 
 
@@ -32,7 +32,7 @@ const TableStudents = `
     )
 ` ;
 
-db.exec(TableStudents)
+db.execute(TableStudents)
 
 
 
@@ -51,7 +51,7 @@ const TableTeachers = `
     )
 ` ;
 
-db.exec(TableTeachers)
+db.execute(TableTeachers)
 
 
 
@@ -69,7 +69,7 @@ const tableTeacher_classe = `
     ) 
 `;
 
-db.exec(tableTeacher_classe);
+db.execute(tableTeacher_classe);
 
 
 
@@ -84,7 +84,7 @@ const TableSubjects = `
     )
 `;
 
-db.exec(TableSubjects)
+db.execute(TableSubjects)
 
 
   
@@ -102,7 +102,7 @@ const TableGrades = `
     )
 `;
 
-db.exec(TableGrades)
+db.execute(TableGrades)
 
 
 
@@ -120,7 +120,7 @@ const TableAbsence = `
     )
 ` ;
 
-db.exec(TableAbsence);
+db.execute(TableAbsence);
 
 
 
