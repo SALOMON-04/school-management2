@@ -1,5 +1,5 @@
 import express from "express";
-import { creationStudent, seachStudent, seachStudentsId, seachStudentsMatricule,modifStudent, supprimeStudent } from "../controleur/controleStudents.js";
+import { creationStudent, seachStudent, seachStudentsId, seachStudentByUserId, seachStudentsMatricule,modifStudent, supprimeStudent } from "../controleur/controleStudents.js";
 
 import { getStatsStudents } from "../controleur/controleStatistique.js";
 
@@ -24,6 +24,9 @@ router.get("/matricule/:matricule",  verifierToken, autoriserRoles("admin"), sea
 
 
 router.get("/stats",    verifierToken,  getStatsStudents);
+
+
+router.get("/user/:user_id", verifierToken, seachStudentByUserId);
 
 
 router.get("/:id",  verifierToken, autoriserRoles("admin", "professeur"), seachStudentsId);

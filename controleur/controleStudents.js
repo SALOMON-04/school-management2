@@ -1,4 +1,4 @@
-import { createStudent, getAllStudents, getStudentById, getStudentByMatricule, updateStudent, choixEtudiant, deleteStudent } from "../services/servicesStudents.js";
+import { createStudent, getAllStudents, getStudentById, getStudentByUserId, getStudentByMatricule, updateStudent, choixEtudiant, deleteStudent } from "../services/servicesStudents.js";
 
 
 
@@ -41,6 +41,16 @@ const seachStudentsId = async (req, res) => {
         return res.status(404).json("utilisateur introuvable");
     };
 
+    return res.status(200).json(student);
+};
+
+
+
+
+const seachStudentByUserId = async (req, res) => {
+    const user_id = Number(req.params.user_id);
+    const student = await getStudentByUserId(user_id);
+    if (!student) return res.status(404).json({ error: "Étudiant introuvable" });
     return res.status(200).json(student);
 };
 
@@ -103,4 +113,4 @@ const supprimeStudent = async (req, res) => {
 
 
 
-export { creationStudent, seachStudent, seachStudentsId, seachStudentsMatricule, modifStudent, supprimeStudent };
+export { creationStudent, seachStudent, seachStudentsId, seachStudentByUserId,  seachStudentsMatricule, modifStudent, supprimeStudent };

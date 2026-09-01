@@ -27,6 +27,15 @@ const getStudentById = async (id) => {
     return result.rows[0];
 };
 
+
+const getStudentByUserId = async (user_id) => {
+    const result = await db.execute({
+        sql: `SELECT * FROM students WHERE user_id = ?`,
+        args: [user_id]
+    });
+    return result.rows[0];
+};
+
 const getStudentByMatricule = async (matricule) => {
     const result = await db.execute({
         sql: `SELECT * FROM students WHERE matricule = ?`,
@@ -64,4 +73,4 @@ const choixEtudiant = async (question) => {
     return Number(id);
 };
 
-export { createStudent, getAllStudents, getStudentById, getStudentByMatricule, choixEtudiant, updateStudent, deleteStudent }
+export { createStudent, getAllStudents, getStudentById, getStudentByUserId, getStudentByMatricule, choixEtudiant, updateStudent, deleteStudent }
