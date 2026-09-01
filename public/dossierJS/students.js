@@ -44,7 +44,7 @@ document.querySelectorAll('.nav-item[data-section]').forEach(function (item) {
 const chargerNotesEtudiant = async () => {
     const student = await getStudentReel();
 
-    const reponse = await fetch(`${API}/api/grades/studentId/${student.id}`, {
+    const reponse = await fetch(`${API}/api/grades/student/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
 
@@ -180,7 +180,7 @@ const chargerAccueilEtudiant = async () => {
     }
 
     // Dernières absences
-    const repAbs = await fetch(`${API}/api/absences/student/${student.id}`, {
+    const repAbs = await fetch(`${API}/api/grades/student/${student.id}`, {
         headers: { "Authorization": "Bearer " + token }
     });
     const absences = await repAbs.json();
