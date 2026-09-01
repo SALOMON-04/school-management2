@@ -58,6 +58,21 @@ const getGradesByTeacher = async (teacher_id) => {
     );
 };
 
+
+
+const getAllGradesByStudent = async (studentId) => {
+    const result = await db.execute({
+        sql: `SELECT grades.*, subjects.nom as subject_nom
+              FROM grades
+              LEFT JOIN subjects ON grades.subject_id = subjects.id
+              WHERE grades.student_id = ?`,
+        args: [studentId]
+    });
+    return result.rows;
+};
+
+
+
 const calculMoyenne = async (student_id, subject_id) => {
     const NOTES = await getStudentGrades(student_id, subject_id);
     if (NOTES.length === 0) return 0;
@@ -109,4 +124,4 @@ const deleteGrades = async (id) => {
     return await db.execute({ sql: `DELETE FROM grades WHERE id = ?`, args: [id] });
 };
 
-export { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, getGradesByTeacher, calculMoyenne, meilleurEtudiant }
+export { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, getAllGradesByStudent, getGradesByTeacher, calculMoyenne, meilleurEtudiant }

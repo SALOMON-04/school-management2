@@ -1,4 +1,4 @@
-import { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades,getGradesByTeacher, calculMoyenne, meilleurEtudiant } from "../services/servicesGrades.js";
+import { addNoteGrade, updateGrades, deleteGrades, affGrades, getStudentGrades, getGradesByTeacher, getAllGradesByStudent, calculMoyenne, meilleurEtudiant } from "../services/servicesGrades.js";
 import { getStudentById } from "../services/servicesStudents.js";
 
 
@@ -87,6 +87,13 @@ const gradesParProf = async (req, res) => {
 
 
 
+const seachAllGradesStudent = async (req, res) => {
+    const studentId = Number(req.params.studentId);
+    const notes = await getAllGradesByStudent(studentId);
+    return res.status(200).json(notes);
+};
+
+
 const moyenneStudent = async (req, res) => {
 
     const studentId = Number(req.params.studentId);
@@ -130,4 +137,4 @@ const supprimeGrades = async (req, res) => {
 
 };
 
-export { ajoutGrades, modifGrades, seachGrades, seachGradesStudent, gradesParProf, moyenneStudent, supprimeGrades };
+export { ajoutGrades, modifGrades, seachGrades, seachGradesStudent, gradesParProf, seachAllGradesStudent, moyenneStudent, supprimeGrades };
