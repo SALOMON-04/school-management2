@@ -1,6 +1,6 @@
 protegePages("etudiant");
 
-const API = "" ;
+const API = "";
 
 // TOKEN ET UTILITAIRES 
 
@@ -78,13 +78,13 @@ const mettreAJourStatsNotes = (notes) => {
     const meilleure = Math.max(...notes.map(n => n.note));
     const matieres = new Set(notes.map(n => n.subject_id)).size;
 
-    const statMoyenne  = document.querySelector(".statMoyenneEtudiant");
+    const statMoyenne = document.querySelector(".statMoyenneEtudiant");
     const statMeilleure = document.querySelector(".statMeilleureEtudiant");
-    const statMatieres  = document.querySelector(".statMatieresEtudiant");
+    const statMatieres = document.querySelector(".statMatieresEtudiant");
 
-    if (statMoyenne)   statMoyenne.textContent  = `${moyenne.toFixed(2)}/20`;
+    if (statMoyenne) statMoyenne.textContent = `${moyenne.toFixed(2)}/20`;
     if (statMeilleure) statMeilleure.textContent = `${meilleure}/20`;
-    if (statMatieres)  statMatieres.textContent  = matieres;
+    if (statMatieres) statMatieres.textContent = matieres;
 };
 
 
@@ -121,16 +121,16 @@ const afficherLignesAbsencesEtudiant = (liste) => {
 
 // Met à jour les cartes de stats des absences
 const mettreAJourStatsAbsences = (absences) => {
-    const total      = absences.length;
+    const total = absences.length;
     const justifiees = absences.filter(a => a.status === 'justifiee').length;
-    const nonJust    = total - justifiees;
+    const nonJust = total - justifiees;
 
-    const statTotal    = document.querySelector(".statTotalAbsenceEtudiant");
-    const statJust     = document.querySelector(".statJustifieEtudiant");
-    const statNonJust  = document.querySelector(".statNonJustifieEtudiant");
+    const statTotal = document.querySelector(".statTotalAbsenceEtudiant");
+    const statJust = document.querySelector(".statJustifieEtudiant");
+    const statNonJust = document.querySelector(".statNonJustifieEtudiant");
 
-    if (statTotal)   statTotal.textContent   = total;
-    if (statJust)    statJust.textContent    = justifiees;
+    if (statTotal) statTotal.textContent = total;
+    if (statJust) statJust.textContent = justifiees;
     if (statNonJust) statNonJust.textContent = nonJust;
 };
 
@@ -141,9 +141,9 @@ const mettreAJourStatsAbsences = (absences) => {
 const chargerProfilEtudiant = async () => {
     const student = await getStudentReel();
 
-    document.querySelector(".nom_profil").textContent        = `${student.prenom} ${student.nom}`;
+    document.querySelector(".nom_profil").textContent = `${student.prenom} ${student.nom}`;
     document.querySelector(".sous_texte_profil").textContent = `Étudiant - ${student.classe}`;
-    document.querySelector(".avatar_grand").textContent      = `${student.prenom[0]}${student.nom[0]}`.toUpperCase();
+    document.querySelector(".avatar_grand").textContent = `${student.prenom[0]}${student.nom[0]}`.toUpperCase();
 
     const infos = document.querySelectorAll(".valeur_info");
     if (infos[0]) infos[0].textContent = student.matricule;
@@ -190,7 +190,7 @@ const chargerAccueilEtudiant = async () => {
         divAbsences.innerHTML = "";
         absences.slice(0, 2).forEach(function (absence) {
             const color = absence.status === 'justifiee' ? '#1DAA4A' : '#E0433D';
-            const icon  = absence.status === 'justifiee' ? 'fa-check' : 'fa-xmark';
+            const icon = absence.status === 'justifiee' ? 'fa-check' : 'fa-xmark';
             const texte = absence.status === 'justifiee' ? 'Justifiée' : 'Non justifiée';
 
             divAbsences.innerHTML += `
@@ -215,3 +215,11 @@ chargerAccueilEtudiant();
 chargerNotesEtudiant();
 chargerAbsencesEtudiant();
 chargerProfilEtudiant();
+
+
+
+//DECONNEXION
+document.querySelector(".logout").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../dossierhtml/index.html";
+});

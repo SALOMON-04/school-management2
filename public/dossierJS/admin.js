@@ -1818,3 +1818,10 @@ chargerClassesNote();
 chargerClassesAbsence();
 chargerAbsences();
 chargerStatsAbsences();
+
+
+//DECONNEXION
+document.querySelector(".logout").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../dossierhtml/index.html";
+});
