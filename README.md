@@ -1,13 +1,12 @@
 # Système de Gestion Scolaire
-Gérez votre école complètement depuis le terminal.
 
----
+Application web complète de gestion scolaire, avec back-end API et front-end intégré.
 
 ## 📖 Présentation du projet
 
-Ce projet est une application **CLI (ligne de commande)** de gestion complète d'un système scolaire, développée en **Node.js** avec **SQLite** comme base de données. Elle permet de gérer les utilisateurs, les étudiants, les professeurs, les matières, les notes, les absences et les statistiques — le tout en mode terminal, sans aucun frontend.
+Ce projet est une application web de gestion complète d'un système scolaire, développée en Node.js avec Express.js pour le back-end et une base de données SQLite hébergée sur Turso (libSQL). Le front-end est construit en HTML/CSS/JavaScript, sans framework. Elle permet de gérer les utilisateurs, les étudiants, les professeurs, les matières, les notes, les absences et les statistiques via des interfaces web dédiées à chaque rôle.
 
----
+Le projet a démarré comme une application en ligne de commande (CLI), puis a évolué vers une application web complète avec authentification par token, API REST, et tableaux de bord interactifs pour chaque type d'utilisateur.
 
 ## Problématique
 
@@ -17,35 +16,34 @@ Dans de nombreux établissements scolaires, la gestion des données reste manuel
 - difficulté à suivre les notes et calculer les moyennes de manière fiable,
 - aucune traçabilité des absences justifiées ou non justifiées,
 - pas de contrôle d'accès selon les rôles (admin, professeur, étudiant),
-- absence de journalisation des actions effectuées dans le système.
-
----
+- absence d'une interface accessible depuis n'importe quel navigateur.
 
 ## Solution proposée
 
-Une application terminal structurée en modules, sécurisée par rôle, avec une base de données relationnelle SQLite, un système de logs automatique et une génération automatique des mots de passe.
-
----
+Une application web structurée en API REST sécurisée par rôle, avec une base de données relationnelle hébergée dans le cloud (Turso), une authentification par JWT, et trois tableaux de bord distincts (admin, professeur, étudiant) accessibles depuis un navigateur.
 
 ## Fonctionnalités principales
 
 ### 👤 Gestion des utilisateurs
-Le système gère trois types de rôles distincts :
-- création d'un compte avec un **username unique** et un **mot de passe généré automatiquement**,
-- connexion sécurisée par **username + mot de passe** pour les admins et professeurs,
-- connexion par **matricule + mot de passe** pour les étudiants,
+- création d'un compte avec un username unique et un mot de passe (haché via bcrypt),
+- connexion sécurisée par username + mot de passe pour les admins et professeurs,
+- connexion par matricule + mot de passe pour les étudiants,
+- authentification par token JWT sur toutes les routes protégées,
 - modification et suppression avec cascade sur les tables liées.
 
 ### 🎓 Gestion des étudiants
 - ajout d'un étudiant avec matricule, nom, prénom, âge et classe,
-- création automatique d'un compte utilisateur lié (`user_id`),
+- création automatique d'un compte utilisateur lié (user_id),
 - modification et suppression complète (notes et absences incluses),
-- recherche par ID ou par matricule.
+- recherche par ID ou par matricule,
+- tableau de bord dédié : consultation des notes, absences et profil.
 
 ### 👨‍🏫 Gestion des professeurs
 - ajout d'un professeur avec son nom et sa matière assignée,
-- création automatique d'un compte utilisateur lié (`user_id`),
-- le professeur ne voit et n'agit que sur **sa propre matière**,
+- création automatique d'un compte utilisateur lié (user_id),
+- assignation de classes spécifiques à chaque professeur (accès limité),
+- le professeur ne voit et n'agit que sur les étudiants de ses classes assignées,
+- tableau de bord dédié : ajout de notes, gestion des absences, consultation du profil,
 - suppression propre avec désaffectation automatique de la matière.
 
 ### 📚 Gestion des matières
@@ -56,46 +54,37 @@ Le système gère trois types de rôles distincts :
 ### 📝 Gestion des notes
 - ajout d'une note (entre 0 et 20, vérifiée par contrainte SQL),
 - modification et suppression par ID,
-- calcul de la moyenne d'un étudiant dans une matière,
-- affichage des notes sous forme de tableau.
+- calcul de la moyenne d'un étudiant par matière ou toutes matières confondues,
+- affichage des notes sous forme de tableau dans l'interface web.
 
 ### 📅 Gestion des absences
-- enregistrement d'une absence avec date et heure automatiques,
-- statut **Justifié** ou **Non justifié**,
-- consultation et comptage des absences par étudiant.
+- enregistrement d'une absence avec date et statut (justifiée / non justifiée),
+- consultation et comptage des absences par étudiant,
+- filtrage des absences par professeur selon ses classes assignées.
 
 ### 📊 Statistiques
 - moyenne d'un étudiant par matière,
 - moyenne générale d'un étudiant (toutes matières),
 - moyenne générale de toute l'école,
 - meilleur étudiant par matière et toutes matières confondues,
-- nombre total d'utilisateurs, étudiants et professeurs.
+- nombre total d'utilisateurs, étudiants et professeurs,
+- statistiques détaillées (notes, absences, matières) affichées sur les tableaux de bord.
 
 ### 🔐 Système d'authentification
-- **Admin / Professeur** : connexion par `username` + `mot de passe`,
-- **Étudiant** : connexion par `matricule` + `mot de passe`,
-- vérification du rôle à chaque connexion,
-- `user_id` lié directement dans les tables `students` et `teachers` pour une authentification fiable.
-
-### 📋 Journalisation (Logs)
-Toutes les actions importantes sont enregistrées dans `logs/app.log` :
-```
-2026-06-13 10:15:00 [INFO] Alice Martin a ajouté l'étudiant Jean Dupont
-2026-06-13 10:20:00 [WARNING] Tentative de connexion échouée — username: prof_x
-2026-06-13 10:30:00 [INFO] M. Grand (professeur) connecté
-```
-
----
+- Admin / Professeur : connexion par username + mot de passe,
+- Étudiant : connexion par matricule + mot de passe,
+- génération d'un token JWT à la connexion, vérifié à chaque requête API,
+- vérification du rôle à chaque connexion et sur chaque route protégée,
+- user_id lié directement dans les tables students et teachers pour une authentification fiable.
 
 ## Structure du projet
 
 ```
 school-management/
-│── main.js
-│── seed.js
+│── main.js                    # Point d'entrée du serveur Express
+│── seeds.js                   # Peuplement de la base avec des données de test
 │── db/
-│   ├── database.js
-│   └── tables.js
+│   └── database.js            # Connexion à la base Turso
 │── models/
 │   ├── modelsUser.js
 │   ├── modelsStudent.js
@@ -110,109 +99,115 @@ school-management/
 │   ├── servicesSubjects.js
 │   ├── servicesGrades.js
 │   ├── servicesAbsences.js
+│   ├── serviceTeachers_classes.js
 │   └── servicesStatistiques.js
-│── config/
-│   ├── menu_systeme.js
-│   ├── menu.js
-│   └── authantification.js
-│── utils/
-│   ├── logger.js
-│   └── password.js
-│── logs/
-│   └── app.log
+│── controleur/
+│   ├── controleUsers.js
+│   ├── controleStudents.js
+│   ├── controleTeachers.js
+│   ├── controleSubjects.js
+│   ├── controleGrades.js
+│   ├── controleAbsences.js
+│   ├── controleAuthantification.js
+│   ├── controleTeachers_classes.js
+│   └── controleStatistique.js
+│── routes/
+│   ├── routesUsers.js
+│   ├── routesStudents.js
+│   ├── routesTeachers.js
+│   ├── routesSubjects.js
+│   ├── routesGrades.js
+│   ├── routesAbsences.js
+│   ├── routesAuthantification.js
+│   ├── routesTeacher_classses.js
+│   └── routesStatistique.js
+│── middleweaes/
+│   ├── middleAuth.js           # Vérification du token JWT
+│   └── middleRoles.js          # Vérification des rôles autorisés
+│── public/
+│   ├── dossierhtml/            # Pages HTML (index, admin, teachers, students)
+│   ├── dossierCss/             # Feuilles de style
+│   └── dossierJS/              # Scripts front-end par page
 ```
 
----
+## Base de données
 
-## Base de données SQLite
-
-Le projet utilise **6 tables relationnelles** :
+Le projet utilise 7 tables relationnelles, hébergées sur Turso (base SQLite distribuée dans le cloud) :
 
 | Table | Description |
 |---|---|
 | `users` | Tous les comptes de connexion (admin, professeur, étudiant) |
 | `students` | Fiches des étudiants, liées à `users` via `user_id` |
 | `teachers` | Fiches des professeurs, liées à `users` via `user_id` |
+| `teacher_classes` | Classes assignées à chaque professeur |
 | `subjects` | Matières avec affectation d'un professeur |
 | `grades` | Notes des étudiants par matière (0-20) |
 | `absences` | Absences des étudiants avec date et statut |
 
----
+## Interfaces disponibles
 
-## Menus disponibles
+### Interface Admin
+- Gestion complète des utilisateurs, étudiants, professeurs et matières
+- Statistiques globales de l'établissement
+- Assignation des classes aux professeurs
 
-### Menu Admin
-```
-1. Gérer les utilisateurs
-2. Gérer les étudiants
-3. Gérer les professeurs
-4. Gérer les matières
-5. Gérer les notes
-6. Gérer les absences
-7. Statistiques
-```
+### Interface Professeur
+- Ajout et modification des notes des étudiants de ses classes
+- Enregistrement et gestion des absences
+- Consultation de son profil et de sa matière assignée
 
-### Menu Professeur
-```
-1. Ajouter une note
-2. Modifier une note
-3. Enregistrer une absence
-4. Voir les étudiants
-```
-
-### Menu Étudiant
-```
-1. Voir mes notes
-2. Voir ma moyenne
-3. Voir mes matières
-4. Voir mes absences
-```
-
----
+### Interface Étudiant
+- Consultation de ses notes par matière
+- Consultation de l'historique de ses absences
+- Consultation de son profil
 
 ## Technologies utilisées
 
 - **Node.js** — runtime JavaScript
-- **better-sqlite3** — base de données SQLite synchrone
-- **crypto** (module natif Node.js) — génération de mots de passe
-- **readline** (module natif Node.js) — interface terminal interactive
-- **fs / path** (modules natifs Node.js) — gestion des logs
-
----
+- **Express.js** — framework back-end pour l'API REST
+- **Turso (@libsql/client)** — base de données SQLite hébergée dans le cloud
+- **bcrypt** — hachage des mots de passe
+- **jsonwebtoken** — authentification par token JWT
+- **HTML / CSS / JavaScript** — front-end, sans framework
+- **dotenv** — gestion des variables d'environnement
 
 ## Installation et lancement
 
 ```bash
 # Cloner le projet
-git clone https://github.com/votre-username/school-management.git
-cd school-management
+git clone https://github.com/votre-username/school-management2.git
+cd school-management2
 
 # Installer les dépendances
 npm install
 
-# Peupler la base avec des données de test
-node seed.js
+# Configurer les variables d'environnement dans un fichier .env
+TURSO_DATABASE_URL=libsql://votre-db.turso.io
+TURSO_AUTH_TOKEN=votre_token
+JWT_SECRET=votre_secret
 
-# Lancer l'application
+# Peupler la base avec des données de test
+node seeds.js
+
+# Lancer le serveur
 node main.js
 ```
 
-> ⚠️ Si vous changez de système d'exploitation (Windows ↔ Linux ↔ Mac), relancez `npm install` pour recompiler le module natif `better-sqlite3`.
+L'application est ensuite accessible sur `http://localhost:3000`.
 
----
+## Déploiement
+
+Le projet est déployé sur [Render](https://render.com), avec la base de données hébergée sur [Turso](https://turso.tech).
 
 ## Contraintes respectées
 
-- ✅ Aucun framework
-- ✅ Aucun frontend (HTML/CSS interdit)
-- ✅ Application en ligne de commande uniquement
-- ✅ Utilisation obligatoire de SQLite
-- ✅ Système de logs obligatoire
-- ✅ Code structuré en modules
+- ✅ Architecture back-end / front-end séparée
+- ✅ API REST sécurisée par rôle
+- ✅ Base de données relationnelle (SQLite / Turso)
+- ✅ Authentification par token JWT
+- ✅ Code structuré en modules (MVC : models, services, controleurs, routes)
 - ✅ Utilisation de Git
-
----
 
 ## Auteur
 
-Projet conçu et développé par **N'GORAN ATCHIELOH SALOMON REGIS** dans le cadre d'une formation en développement d'applications — Côte d'Ivoire.
+Projet conçu et développé par N'GORAN ATCHIELOH SALOMON REGIS dans le cadre d'une formation en développement d'applications — Côte d'Ivoire.
