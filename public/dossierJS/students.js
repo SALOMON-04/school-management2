@@ -1,5 +1,6 @@
 protegePages("etudiant");
 
+
 const API = "";
 
 // TOKEN ET UTILITAIRES 
@@ -215,6 +216,7 @@ chargerAccueilEtudiant();
 chargerNotesEtudiant();
 chargerAbsencesEtudiant();
 chargerProfilEtudiant();
+chargerAccueilEtudiant();
 
 
 
